@@ -1,0 +1,36 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="StocktakrClient.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="store_id" Type="System.String" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="password" Type="System.String" Scope="User">
+      <Value Profile="(Default)">12345678</Value>
+    </Setting>
+    <Setting Name="RMDBLocation" Type="System.String" Scope="User">
+      <Value Profile="(Default)">D:\rm12012\Clearwater Pty Ltd\Recent.mdb</Value>
+    </Setting>
+    <Setting Name="StocktakrDBLocation" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="POSServerLocation" Type="System.String" Scope="User">
+      <Value Profile="(Default)">localhost</Value>
+    </Setting>
+    <Setting Name="POSServerUser" Type="System.String" Scope="User">
+      <Value Profile="(Default)">sa</Value>
+    </Setting>
+    <Setting Name="POSServerPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)">password</Value>
+    </Setting>
+    <Setting Name="POSSoftware" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Microsoft</Value>
+    </Setting>
+    <Setting Name="POSServerDBName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">sample</Value>
+    </Setting>
+    <Setting Name="StocktakrClient_com_stocktakr_POSItemHandler" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://stocktakr.com/services/POSItemHandler.asmx</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
