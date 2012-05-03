@@ -1157,6 +1157,7 @@ namespace StocktakrClient
 							else
 							{
 								Helpers.DownloadStockTakeTransactions(newResponse.localStocktakeTransactions);
+                                        var deleteResponse = handler.DeleteStocktakeTransactions(storeID, PasswordTextBox.Text);
 								AddLog(newResponse.localStocktakeTransactions.Count() + " Stocktake Transactions downloaded", true);
 							}
 						}
