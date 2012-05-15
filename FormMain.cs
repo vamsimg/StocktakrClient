@@ -666,7 +666,7 @@ namespace StocktakrClient
 			this.Controls.Add(this.MainTabControl);
 			this.Controls.Add(this.lbLog);
 			this.Name = "FormMain";
-			this.Text = "DocketPlace - Stocktakr and Customer Uploader";
+			this.Text = "StockTakr POS Client";
 			this.DatabasesTab.ResumeLayout(false);
 			this.DatabasesTab.PerformLayout();
 			this.POSSoftwareSplitContainer.Panel1.ResumeLayout(false);
