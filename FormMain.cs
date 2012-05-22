@@ -73,11 +73,17 @@ namespace StocktakrClient
 	   private Button UpdateItemsButton;
 	   private Button ReplaceItemsButton;
 	   private Label SendItemsErrorLabel;
-	   private Label CommitItemsErrorLabel;
+	   private Label CommitStocktakeItemsErrorLabel;
 	   private Button CommitStocktakeButton;
-	   private Label GetStocktakeTransactionsErrorLabel;
-	   private Button GetItemsButton;
+	   private Label GetStocktakeItemsErrorLabel;
+	   private Button GetStocktakeItemsButton;
 	   private Label label9;
+        private GroupBox PurchaseOrdersGroupBox;
+        private GroupBox StockTakeGroupBox;
+        private Button GetPurchaseOrdersButton;
+        private Label GetPurchaseOrdersErrorLabel;
+        private Button WritePurchaseOrdersButton;
+        private Label WritePurchaseOrdersErrorLabel;
         private IContainer components;
 
 		
@@ -102,591 +108,669 @@ namespace StocktakrClient
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.components = new System.ComponentModel.Container();
-			this.lbLog = new System.Windows.Forms.TextBox();
-			this.TraynotifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
-			this.RMOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
-			this.DPOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
-			this.DatabasesTab = new System.Windows.Forms.TabPage();
-			this.DatabaseSettingsErrorLabel = new System.Windows.Forms.Label();
-			this.POSSoftwareSplitContainer = new System.Windows.Forms.SplitContainer();
-			this.label2 = new System.Windows.Forms.Label();
-			this.FindRMDBbutton = new System.Windows.Forms.Button();
-			this.label1 = new System.Windows.Forms.Label();
-			this.RMDBTextBox = new System.Windows.Forms.TextBox();
-			this.MicrosoftDBTextBox = new System.Windows.Forms.TextBox();
-			this.label7 = new System.Windows.Forms.Label();
-			this.TestMicrosoftConnectionErrorLabel = new System.Windows.Forms.Label();
-			this.MicrosoftTestConnectionButton = new System.Windows.Forms.Button();
-			this.label6 = new System.Windows.Forms.Label();
-			this.MicrosoftPasswordTextBox = new System.Windows.Forms.TextBox();
-			this.label5 = new System.Windows.Forms.Label();
-			this.MicrosoftUserTextBox = new System.Windows.Forms.TextBox();
-			this.label4 = new System.Windows.Forms.Label();
-			this.MicrosoftLocationTextBox = new System.Windows.Forms.TextBox();
-			this.label3 = new System.Windows.Forms.Label();
-			this.POSSoftwareGroupBox = new System.Windows.Forms.GroupBox();
-			this.MicrosoftRMSRadioButton = new System.Windows.Forms.RadioButton();
-			this.MYOBRadioButton = new System.Windows.Forms.RadioButton();
-			this.SaveDatabaseSettingsButton = new System.Windows.Forms.Button();
-			this.FindDPDBButton = new System.Windows.Forms.Button();
-			this.DPDBTextBox = new System.Windows.Forms.TextBox();
-			this.STLocationLabel = new System.Windows.Forms.Label();
-			this.ConnectionTab = new System.Windows.Forms.TabPage();
-			this.ConnectionErrorlabel = new System.Windows.Forms.Label();
-			this.StoreIDtextBox = new System.Windows.Forms.TextBox();
-			this.PasswordTextBox = new System.Windows.Forms.TextBox();
-			this.TestConnectionErrorlabel = new System.Windows.Forms.Label();
-			this.SaveConnectionSettingsButton = new System.Windows.Forms.Button();
-			this.Storelabel = new System.Windows.Forms.Label();
-			this.Passwordlabel = new System.Windows.Forms.Label();
-			this.TestConnectionButton = new System.Windows.Forms.Button();
-			this.MainTabControl = new System.Windows.Forms.TabControl();
-			this.SyncTab = new System.Windows.Forms.TabPage();
-			this.panel2 = new System.Windows.Forms.Panel();
-			this.SendOptionsGroupBox = new System.Windows.Forms.GroupBox();
-			this.UpdateItemsButton = new System.Windows.Forms.Button();
-			this.ReplaceItemsButton = new System.Windows.Forms.Button();
-			this.SendItemsErrorLabel = new System.Windows.Forms.Label();
-			this.CommitItemsErrorLabel = new System.Windows.Forms.Label();
-			this.CommitStocktakeButton = new System.Windows.Forms.Button();
-			this.GetStocktakeTransactionsErrorLabel = new System.Windows.Forms.Label();
-			this.GetItemsButton = new System.Windows.Forms.Button();
-			this.label9 = new System.Windows.Forms.Label();
-			this.DatabasesTab.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.POSSoftwareSplitContainer)).BeginInit();
-			this.POSSoftwareSplitContainer.Panel1.SuspendLayout();
-			this.POSSoftwareSplitContainer.Panel2.SuspendLayout();
-			this.POSSoftwareSplitContainer.SuspendLayout();
-			this.POSSoftwareGroupBox.SuspendLayout();
-			this.ConnectionTab.SuspendLayout();
-			this.MainTabControl.SuspendLayout();
-			this.SyncTab.SuspendLayout();
-			this.panel2.SuspendLayout();
-			this.SendOptionsGroupBox.SuspendLayout();
-			this.SuspendLayout();
-			// 
-			// lbLog
-			// 
-			this.lbLog.Location = new System.Drawing.Point(593, 26);
-			this.lbLog.Multiline = true;
-			this.lbLog.Name = "lbLog";
-			this.lbLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.lbLog.Size = new System.Drawing.Size(519, 550);
-			this.lbLog.TabIndex = 22;
-			// 
-			// DatabasesTab
-			// 
-			this.DatabasesTab.Controls.Add(this.DatabaseSettingsErrorLabel);
-			this.DatabasesTab.Controls.Add(this.POSSoftwareSplitContainer);
-			this.DatabasesTab.Controls.Add(this.POSSoftwareGroupBox);
-			this.DatabasesTab.Controls.Add(this.SaveDatabaseSettingsButton);
-			this.DatabasesTab.Controls.Add(this.FindDPDBButton);
-			this.DatabasesTab.Controls.Add(this.DPDBTextBox);
-			this.DatabasesTab.Controls.Add(this.STLocationLabel);
-			this.DatabasesTab.Location = new System.Drawing.Point(4, 22);
-			this.DatabasesTab.Name = "DatabasesTab";
-			this.DatabasesTab.Padding = new System.Windows.Forms.Padding(3);
-			this.DatabasesTab.Size = new System.Drawing.Size(538, 524);
-			this.DatabasesTab.TabIndex = 2;
-			this.DatabasesTab.Text = "Databases";
-			this.DatabasesTab.UseVisualStyleBackColor = true;
-			// 
-			// DatabaseSettingsErrorLabel
-			// 
-			this.DatabaseSettingsErrorLabel.AutoSize = true;
-			this.DatabaseSettingsErrorLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.DatabaseSettingsErrorLabel.ForeColor = System.Drawing.Color.Red;
-			this.DatabaseSettingsErrorLabel.Location = new System.Drawing.Point(125, 401);
-			this.DatabaseSettingsErrorLabel.Name = "DatabaseSettingsErrorLabel";
-			this.DatabaseSettingsErrorLabel.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-			this.DatabaseSettingsErrorLabel.Size = new System.Drawing.Size(12, 15);
-			this.DatabaseSettingsErrorLabel.TabIndex = 49;
-			// 
-			// POSSoftwareSplitContainer
-			// 
-			this.POSSoftwareSplitContainer.Location = new System.Drawing.Point(9, 135);
-			this.POSSoftwareSplitContainer.Name = "POSSoftwareSplitContainer";
-			this.POSSoftwareSplitContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
-			// 
-			// POSSoftwareSplitContainer.Panel1
-			// 
-			this.POSSoftwareSplitContainer.Panel1.Controls.Add(this.label2);
-			this.POSSoftwareSplitContainer.Panel1.Controls.Add(this.FindRMDBbutton);
-			this.POSSoftwareSplitContainer.Panel1.Controls.Add(this.label1);
-			this.POSSoftwareSplitContainer.Panel1.Controls.Add(this.RMDBTextBox);
-			// 
-			// POSSoftwareSplitContainer.Panel2
-			// 
-			this.POSSoftwareSplitContainer.Panel2.Controls.Add(this.MicrosoftDBTextBox);
-			this.POSSoftwareSplitContainer.Panel2.Controls.Add(this.label7);
-			this.POSSoftwareSplitContainer.Panel2.Controls.Add(this.TestMicrosoftConnectionErrorLabel);
-			this.POSSoftwareSplitContainer.Panel2.Controls.Add(this.MicrosoftTestConnectionButton);
-			this.POSSoftwareSplitContainer.Panel2.Controls.Add(this.label6);
-			this.POSSoftwareSplitContainer.Panel2.Controls.Add(this.MicrosoftPasswordTextBox);
-			this.POSSoftwareSplitContainer.Panel2.Controls.Add(this.label5);
-			this.POSSoftwareSplitContainer.Panel2.Controls.Add(this.MicrosoftUserTextBox);
-			this.POSSoftwareSplitContainer.Panel2.Controls.Add(this.label4);
-			this.POSSoftwareSplitContainer.Panel2.Controls.Add(this.MicrosoftLocationTextBox);
-			this.POSSoftwareSplitContainer.Panel2.Controls.Add(this.label3);
-			this.POSSoftwareSplitContainer.Size = new System.Drawing.Size(526, 228);
-			this.POSSoftwareSplitContainer.SplitterDistance = 77;
-			this.POSSoftwareSplitContainer.TabIndex = 48;
-			// 
-			// label2
-			// 
-			this.label2.AutoSize = true;
-			this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label2.Location = new System.Drawing.Point(13, 9);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(132, 13);
-			this.label2.TabIndex = 34;
-			this.label2.Text = "MYOB Retail Manager";
-			// 
-			// FindRMDBbutton
-			// 
-			this.FindRMDBbutton.Location = new System.Drawing.Point(438, 35);
-			this.FindRMDBbutton.Name = "FindRMDBbutton";
-			this.FindRMDBbutton.Size = new System.Drawing.Size(75, 23);
-			this.FindRMDBbutton.TabIndex = 33;
-			this.FindRMDBbutton.Text = "Find RMDB";
-			this.FindRMDBbutton.UseVisualStyleBackColor = true;
-			this.FindRMDBbutton.Click += new System.EventHandler(this.FindRMDBbutton_Click);
-			// 
-			// label1
-			// 
-			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(13, 38);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(86, 13);
-			this.label1.TabIndex = 29;
-			this.label1.Text = "RM DB Location";
-			// 
-			// RMDBTextBox
-			// 
-			this.RMDBTextBox.Location = new System.Drawing.Point(131, 35);
-			this.RMDBTextBox.Name = "RMDBTextBox";
-			this.RMDBTextBox.Size = new System.Drawing.Size(268, 20);
-			this.RMDBTextBox.TabIndex = 30;
-			// 
-			// MicrosoftDBTextBox
-			// 
-			this.MicrosoftDBTextBox.Location = new System.Drawing.Point(131, 63);
-			this.MicrosoftDBTextBox.Name = "MicrosoftDBTextBox";
-			this.MicrosoftDBTextBox.Size = new System.Drawing.Size(127, 20);
-			this.MicrosoftDBTextBox.TabIndex = 45;
-			// 
-			// label7
-			// 
-			this.label7.AutoSize = true;
-			this.label7.Location = new System.Drawing.Point(13, 67);
-			this.label7.Name = "label7";
-			this.label7.Size = new System.Drawing.Size(84, 13);
-			this.label7.TabIndex = 44;
-			this.label7.Text = "Database Name";
-			// 
-			// TestMicrosoftConnectionErrorLabel
-			// 
-			this.TestMicrosoftConnectionErrorLabel.AutoSize = true;
-			this.TestMicrosoftConnectionErrorLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.TestMicrosoftConnectionErrorLabel.ForeColor = System.Drawing.Color.Red;
-			this.TestMicrosoftConnectionErrorLabel.Location = new System.Drawing.Point(131, 122);
-			this.TestMicrosoftConnectionErrorLabel.Name = "TestMicrosoftConnectionErrorLabel";
-			this.TestMicrosoftConnectionErrorLabel.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-			this.TestMicrosoftConnectionErrorLabel.Size = new System.Drawing.Size(12, 15);
-			this.TestMicrosoftConnectionErrorLabel.TabIndex = 43;
-			// 
-			// MicrosoftTestConnectionButton
-			// 
-			this.MicrosoftTestConnectionButton.Location = new System.Drawing.Point(16, 117);
-			this.MicrosoftTestConnectionButton.Name = "MicrosoftTestConnectionButton";
-			this.MicrosoftTestConnectionButton.Size = new System.Drawing.Size(97, 23);
-			this.MicrosoftTestConnectionButton.TabIndex = 42;
-			this.MicrosoftTestConnectionButton.Text = "Test Connection";
-			this.MicrosoftTestConnectionButton.UseVisualStyleBackColor = true;
-			this.MicrosoftTestConnectionButton.Click += new System.EventHandler(this.MicrosoftTestConnectionButton_Click);
-			// 
-			// label6
-			// 
-			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(278, 67);
-			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(53, 13);
-			this.label6.TabIndex = 40;
-			this.label6.Text = "Password";
-			// 
-			// MicrosoftPasswordTextBox
-			// 
-			this.MicrosoftPasswordTextBox.Location = new System.Drawing.Point(356, 64);
-			this.MicrosoftPasswordTextBox.Name = "MicrosoftPasswordTextBox";
-			this.MicrosoftPasswordTextBox.PasswordChar = '*';
-			this.MicrosoftPasswordTextBox.Size = new System.Drawing.Size(157, 20);
-			this.MicrosoftPasswordTextBox.TabIndex = 41;
-			// 
-			// label5
-			// 
-			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(276, 34);
-			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(55, 13);
-			this.label5.TabIndex = 38;
-			this.label5.Text = "Username";
-			// 
-			// MicrosoftUserTextBox
-			// 
-			this.MicrosoftUserTextBox.Location = new System.Drawing.Point(356, 34);
-			this.MicrosoftUserTextBox.Name = "MicrosoftUserTextBox";
-			this.MicrosoftUserTextBox.Size = new System.Drawing.Size(157, 20);
-			this.MicrosoftUserTextBox.TabIndex = 39;
-			// 
-			// label4
-			// 
-			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(13, 37);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(69, 13);
-			this.label4.TabIndex = 36;
-			this.label4.Text = "Server Name";
-			// 
-			// MicrosoftLocationTextBox
-			// 
-			this.MicrosoftLocationTextBox.Location = new System.Drawing.Point(131, 34);
-			this.MicrosoftLocationTextBox.Name = "MicrosoftLocationTextBox";
-			this.MicrosoftLocationTextBox.Size = new System.Drawing.Size(127, 20);
-			this.MicrosoftLocationTextBox.TabIndex = 37;
-			// 
-			// label3
-			// 
-			this.label3.AutoSize = true;
-			this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label3.Location = new System.Drawing.Point(11, 13);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(90, 13);
-			this.label3.TabIndex = 35;
-			this.label3.Text = "Microsoft RMS";
-			// 
-			// POSSoftwareGroupBox
-			// 
-			this.POSSoftwareGroupBox.Controls.Add(this.MicrosoftRMSRadioButton);
-			this.POSSoftwareGroupBox.Controls.Add(this.MYOBRadioButton);
-			this.POSSoftwareGroupBox.Location = new System.Drawing.Point(140, 45);
-			this.POSSoftwareGroupBox.Name = "POSSoftwareGroupBox";
-			this.POSSoftwareGroupBox.Size = new System.Drawing.Size(285, 62);
-			this.POSSoftwareGroupBox.TabIndex = 47;
-			this.POSSoftwareGroupBox.TabStop = false;
-			this.POSSoftwareGroupBox.Text = "POS Software";
-			// 
-			// MicrosoftRMSRadioButton
-			// 
-			this.MicrosoftRMSRadioButton.AutoSize = true;
-			this.MicrosoftRMSRadioButton.Location = new System.Drawing.Point(30, 42);
-			this.MicrosoftRMSRadioButton.Name = "MicrosoftRMSRadioButton";
-			this.MicrosoftRMSRadioButton.Size = new System.Drawing.Size(95, 17);
-			this.MicrosoftRMSRadioButton.TabIndex = 1;
-			this.MicrosoftRMSRadioButton.TabStop = true;
-			this.MicrosoftRMSRadioButton.Text = "Microsoft RMS";
-			this.MicrosoftRMSRadioButton.UseVisualStyleBackColor = true;
-			this.MicrosoftRMSRadioButton.CheckedChanged += new System.EventHandler(this.MicrosoftRMSRadioButton_CheckedChanged);
-			// 
-			// MYOBRadioButton
-			// 
-			this.MYOBRadioButton.AutoSize = true;
-			this.MYOBRadioButton.Location = new System.Drawing.Point(30, 19);
-			this.MYOBRadioButton.Name = "MYOBRadioButton";
-			this.MYOBRadioButton.Size = new System.Drawing.Size(131, 17);
-			this.MYOBRadioButton.TabIndex = 0;
-			this.MYOBRadioButton.TabStop = true;
-			this.MYOBRadioButton.Text = "MYOB Retail Manager";
-			this.MYOBRadioButton.UseVisualStyleBackColor = true;
-			this.MYOBRadioButton.CheckedChanged += new System.EventHandler(this.MYOBRadioButton_CheckedChanged);
-			// 
-			// SaveDatabaseSettingsButton
-			// 
-			this.SaveDatabaseSettingsButton.Location = new System.Drawing.Point(25, 396);
-			this.SaveDatabaseSettingsButton.Name = "SaveDatabaseSettingsButton";
-			this.SaveDatabaseSettingsButton.Size = new System.Drawing.Size(83, 23);
-			this.SaveDatabaseSettingsButton.TabIndex = 35;
-			this.SaveDatabaseSettingsButton.Text = "Save Settings";
-			this.SaveDatabaseSettingsButton.UseVisualStyleBackColor = true;
-			this.SaveDatabaseSettingsButton.Click += new System.EventHandler(this.SaveDatabaseSettingsButton_Click);
-			// 
-			// FindDPDBButton
-			// 
-			this.FindDPDBButton.Location = new System.Drawing.Point(447, 17);
-			this.FindDPDBButton.Name = "FindDPDBButton";
-			this.FindDPDBButton.Size = new System.Drawing.Size(75, 23);
-			this.FindDPDBButton.TabIndex = 34;
-			this.FindDPDBButton.Text = "Find DPDB";
-			this.FindDPDBButton.UseVisualStyleBackColor = true;
-			this.FindDPDBButton.Click += new System.EventHandler(this.FindDPDBButton_Click);
-			// 
-			// DPDBTextBox
-			// 
-			this.DPDBTextBox.Location = new System.Drawing.Point(140, 19);
-			this.DPDBTextBox.Name = "DPDBTextBox";
-			this.DPDBTextBox.Size = new System.Drawing.Size(268, 20);
-			this.DPDBTextBox.TabIndex = 32;
-			// 
-			// STLocationLabel
-			// 
-			this.STLocationLabel.AutoSize = true;
-			this.STLocationLabel.Location = new System.Drawing.Point(6, 22);
-			this.STLocationLabel.Name = "STLocationLabel";
-			this.STLocationLabel.Size = new System.Drawing.Size(115, 13);
-			this.STLocationLabel.TabIndex = 31;
-			this.STLocationLabel.Text = "Stocktakr DB Location";
-			// 
-			// ConnectionTab
-			// 
-			this.ConnectionTab.Controls.Add(this.ConnectionErrorlabel);
-			this.ConnectionTab.Controls.Add(this.StoreIDtextBox);
-			this.ConnectionTab.Controls.Add(this.PasswordTextBox);
-			this.ConnectionTab.Controls.Add(this.TestConnectionErrorlabel);
-			this.ConnectionTab.Controls.Add(this.SaveConnectionSettingsButton);
-			this.ConnectionTab.Controls.Add(this.Storelabel);
-			this.ConnectionTab.Controls.Add(this.Passwordlabel);
-			this.ConnectionTab.Controls.Add(this.TestConnectionButton);
-			this.ConnectionTab.Location = new System.Drawing.Point(4, 22);
-			this.ConnectionTab.Name = "ConnectionTab";
-			this.ConnectionTab.Padding = new System.Windows.Forms.Padding(3);
-			this.ConnectionTab.Size = new System.Drawing.Size(538, 524);
-			this.ConnectionTab.TabIndex = 0;
-			this.ConnectionTab.Text = "Connection";
-			this.ConnectionTab.UseVisualStyleBackColor = true;
-			// 
-			// ConnectionErrorlabel
-			// 
-			this.ConnectionErrorlabel.AutoSize = true;
-			this.ConnectionErrorlabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.ConnectionErrorlabel.ForeColor = System.Drawing.Color.Red;
-			this.ConnectionErrorlabel.Location = new System.Drawing.Point(135, 121);
-			this.ConnectionErrorlabel.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-			this.ConnectionErrorlabel.Name = "ConnectionErrorlabel";
-			this.ConnectionErrorlabel.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-			this.ConnectionErrorlabel.Size = new System.Drawing.Size(12, 15);
-			this.ConnectionErrorlabel.TabIndex = 35;
-			// 
-			// StoreIDtextBox
-			// 
-			this.StoreIDtextBox.Location = new System.Drawing.Point(108, 16);
-			this.StoreIDtextBox.Name = "StoreIDtextBox";
-			this.StoreIDtextBox.Size = new System.Drawing.Size(386, 20);
-			this.StoreIDtextBox.TabIndex = 26;
-			// 
-			// PasswordTextBox
-			// 
-			this.PasswordTextBox.Location = new System.Drawing.Point(108, 56);
-			this.PasswordTextBox.Name = "PasswordTextBox";
-			this.PasswordTextBox.Size = new System.Drawing.Size(386, 20);
-			this.PasswordTextBox.TabIndex = 28;
-			// 
-			// TestConnectionErrorlabel
-			// 
-			this.TestConnectionErrorlabel.AutoSize = true;
-			this.TestConnectionErrorlabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.TestConnectionErrorlabel.ForeColor = System.Drawing.Color.Red;
-			this.TestConnectionErrorlabel.Location = new System.Drawing.Point(16, 265);
-			this.TestConnectionErrorlabel.Name = "TestConnectionErrorlabel";
-			this.TestConnectionErrorlabel.Size = new System.Drawing.Size(2, 15);
-			this.TestConnectionErrorlabel.TabIndex = 36;
-			// 
-			// SaveConnectionSettingsButton
-			// 
-			this.SaveConnectionSettingsButton.Location = new System.Drawing.Point(16, 117);
-			this.SaveConnectionSettingsButton.Name = "SaveConnectionSettingsButton";
-			this.SaveConnectionSettingsButton.Size = new System.Drawing.Size(87, 23);
-			this.SaveConnectionSettingsButton.TabIndex = 34;
-			this.SaveConnectionSettingsButton.Text = "Save Settings";
-			this.SaveConnectionSettingsButton.UseVisualStyleBackColor = true;
-			this.SaveConnectionSettingsButton.Click += new System.EventHandler(this.SaveConnectionSettingsButton_Click);
-			// 
-			// Storelabel
-			// 
-			this.Storelabel.AutoSize = true;
-			this.Storelabel.Location = new System.Drawing.Point(13, 16);
-			this.Storelabel.Name = "Storelabel";
-			this.Storelabel.Size = new System.Drawing.Size(49, 13);
-			this.Storelabel.TabIndex = 25;
-			this.Storelabel.Text = "Store ID:";
-			// 
-			// Passwordlabel
-			// 
-			this.Passwordlabel.AutoSize = true;
-			this.Passwordlabel.Location = new System.Drawing.Point(13, 56);
-			this.Passwordlabel.Name = "Passwordlabel";
-			this.Passwordlabel.Size = new System.Drawing.Size(56, 13);
-			this.Passwordlabel.TabIndex = 27;
-			this.Passwordlabel.Text = "Password:";
-			// 
-			// TestConnectionButton
-			// 
-			this.TestConnectionButton.Location = new System.Drawing.Point(16, 210);
-			this.TestConnectionButton.Name = "TestConnectionButton";
-			this.TestConnectionButton.Size = new System.Drawing.Size(102, 23);
-			this.TestConnectionButton.TabIndex = 24;
-			this.TestConnectionButton.Text = "Test Connection";
-			this.TestConnectionButton.UseVisualStyleBackColor = true;
-			this.TestConnectionButton.Click += new System.EventHandler(this.TestConnectionButton_Click);
-			// 
-			// MainTabControl
-			// 
-			this.MainTabControl.Controls.Add(this.ConnectionTab);
-			this.MainTabControl.Controls.Add(this.DatabasesTab);
-			this.MainTabControl.Controls.Add(this.SyncTab);
-			this.MainTabControl.Location = new System.Drawing.Point(28, 26);
-			this.MainTabControl.Name = "MainTabControl";
-			this.MainTabControl.SelectedIndex = 0;
-			this.MainTabControl.Size = new System.Drawing.Size(546, 550);
-			this.MainTabControl.TabIndex = 39;
-			// 
-			// SyncTab
-			// 
-			this.SyncTab.Controls.Add(this.panel2);
-			this.SyncTab.Location = new System.Drawing.Point(4, 22);
-			this.SyncTab.Name = "SyncTab";
-			this.SyncTab.Padding = new System.Windows.Forms.Padding(3);
-			this.SyncTab.Size = new System.Drawing.Size(538, 524);
-			this.SyncTab.TabIndex = 3;
-			this.SyncTab.Text = "Sync";
-			this.SyncTab.UseVisualStyleBackColor = true;
-			// 
-			// panel2
-			// 
-			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.panel2.Controls.Add(this.SendOptionsGroupBox);
-			this.panel2.Controls.Add(this.CommitItemsErrorLabel);
-			this.panel2.Controls.Add(this.CommitStocktakeButton);
-			this.panel2.Controls.Add(this.GetStocktakeTransactionsErrorLabel);
-			this.panel2.Controls.Add(this.GetItemsButton);
-			this.panel2.Controls.Add(this.label9);
-			this.panel2.Location = new System.Drawing.Point(29, 28);
-			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(479, 477);
-			this.panel2.TabIndex = 46;
-			// 
-			// SendOptionsGroupBox
-			// 
-			this.SendOptionsGroupBox.Controls.Add(this.UpdateItemsButton);
-			this.SendOptionsGroupBox.Controls.Add(this.ReplaceItemsButton);
-			this.SendOptionsGroupBox.Controls.Add(this.SendItemsErrorLabel);
-			this.SendOptionsGroupBox.Location = new System.Drawing.Point(23, 58);
-			this.SendOptionsGroupBox.Name = "SendOptionsGroupBox";
-			this.SendOptionsGroupBox.Size = new System.Drawing.Size(432, 120);
-			this.SendOptionsGroupBox.TabIndex = 48;
-			this.SendOptionsGroupBox.TabStop = false;
-			this.SendOptionsGroupBox.Text = "1. Send Products to Server";
-			// 
-			// UpdateItemsButton
-			// 
-			this.UpdateItemsButton.Location = new System.Drawing.Point(264, 36);
-			this.UpdateItemsButton.Name = "UpdateItemsButton";
-			this.UpdateItemsButton.Size = new System.Drawing.Size(139, 38);
-			this.UpdateItemsButton.TabIndex = 43;
-			this.UpdateItemsButton.Text = "Update New Items Only";
-			this.UpdateItemsButton.UseVisualStyleBackColor = true;
-			this.UpdateItemsButton.Click += new System.EventHandler(this.UpdateItemsButton_Click);
-			// 
-			// ReplaceItemsButton
-			// 
-			this.ReplaceItemsButton.Location = new System.Drawing.Point(17, 36);
-			this.ReplaceItemsButton.Name = "ReplaceItemsButton";
-			this.ReplaceItemsButton.Size = new System.Drawing.Size(139, 38);
-			this.ReplaceItemsButton.TabIndex = 1;
-			this.ReplaceItemsButton.Text = "Replace All Items";
-			this.ReplaceItemsButton.UseVisualStyleBackColor = true;
-			this.ReplaceItemsButton.Click += new System.EventHandler(this.ReplaceItemsButton_Click);
-			// 
-			// SendItemsErrorLabel
-			// 
-			this.SendItemsErrorLabel.AutoSize = true;
-			this.SendItemsErrorLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.SendItemsErrorLabel.ForeColor = System.Drawing.Color.Red;
-			this.SendItemsErrorLabel.Location = new System.Drawing.Point(17, 88);
-			this.SendItemsErrorLabel.Name = "SendItemsErrorLabel";
-			this.SendItemsErrorLabel.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-			this.SendItemsErrorLabel.Size = new System.Drawing.Size(12, 15);
-			this.SendItemsErrorLabel.TabIndex = 42;
-			// 
-			// CommitItemsErrorLabel
-			// 
-			this.CommitItemsErrorLabel.AutoSize = true;
-			this.CommitItemsErrorLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.CommitItemsErrorLabel.ForeColor = System.Drawing.Color.Red;
-			this.CommitItemsErrorLabel.Location = new System.Drawing.Point(29, 306);
-			this.CommitItemsErrorLabel.Name = "CommitItemsErrorLabel";
-			this.CommitItemsErrorLabel.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-			this.CommitItemsErrorLabel.Size = new System.Drawing.Size(12, 15);
-			this.CommitItemsErrorLabel.TabIndex = 45;
-			// 
-			// CommitStocktakeButton
-			// 
-			this.CommitStocktakeButton.Location = new System.Drawing.Point(29, 257);
-			this.CommitStocktakeButton.Name = "CommitStocktakeButton";
-			this.CommitStocktakeButton.Size = new System.Drawing.Size(193, 35);
-			this.CommitStocktakeButton.TabIndex = 44;
-			this.CommitStocktakeButton.Text = "3. Write Stocktake Items to POS Database";
-			this.CommitStocktakeButton.UseVisualStyleBackColor = true;
-			this.CommitStocktakeButton.Click += new System.EventHandler(this.CommitStocktakeButton_Click);
-			// 
-			// GetStocktakeTransactionsErrorLabel
-			// 
-			this.GetStocktakeTransactionsErrorLabel.AutoSize = true;
-			this.GetStocktakeTransactionsErrorLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.GetStocktakeTransactionsErrorLabel.ForeColor = System.Drawing.Color.Red;
-			this.GetStocktakeTransactionsErrorLabel.Location = new System.Drawing.Point(228, 206);
-			this.GetStocktakeTransactionsErrorLabel.Name = "GetStocktakeTransactionsErrorLabel";
-			this.GetStocktakeTransactionsErrorLabel.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-			this.GetStocktakeTransactionsErrorLabel.Size = new System.Drawing.Size(12, 15);
-			this.GetStocktakeTransactionsErrorLabel.TabIndex = 43;
-			// 
-			// GetItemsButton
-			// 
-			this.GetItemsButton.Location = new System.Drawing.Point(28, 193);
-			this.GetItemsButton.Name = "GetItemsButton";
-			this.GetItemsButton.Size = new System.Drawing.Size(193, 38);
-			this.GetItemsButton.TabIndex = 2;
-			this.GetItemsButton.Text = "2. Get StockTake Items from Server";
-			this.GetItemsButton.UseVisualStyleBackColor = true;
-			this.GetItemsButton.Click += new System.EventHandler(this.GetItemsButton_Click);
-			// 
-			// label9
-			// 
-			this.label9.AutoSize = true;
-			this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label9.Location = new System.Drawing.Point(24, 19);
-			this.label9.Name = "label9";
-			this.label9.Size = new System.Drawing.Size(155, 24);
-			this.label9.TabIndex = 0;
-			this.label9.Text = "Items in Inventory";
-			// 
-			// FormMain
-			// 
-			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
-			this.ClientSize = new System.Drawing.Size(1124, 590);
-			this.Controls.Add(this.MainTabControl);
-			this.Controls.Add(this.lbLog);
-			this.Name = "FormMain";
-			this.Text = "StockTakr POS Client";
-			this.DatabasesTab.ResumeLayout(false);
-			this.DatabasesTab.PerformLayout();
-			this.POSSoftwareSplitContainer.Panel1.ResumeLayout(false);
-			this.POSSoftwareSplitContainer.Panel1.PerformLayout();
-			this.POSSoftwareSplitContainer.Panel2.ResumeLayout(false);
-			this.POSSoftwareSplitContainer.Panel2.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.POSSoftwareSplitContainer)).EndInit();
-			this.POSSoftwareSplitContainer.ResumeLayout(false);
-			this.POSSoftwareGroupBox.ResumeLayout(false);
-			this.POSSoftwareGroupBox.PerformLayout();
-			this.ConnectionTab.ResumeLayout(false);
-			this.ConnectionTab.PerformLayout();
-			this.MainTabControl.ResumeLayout(false);
-			this.SyncTab.ResumeLayout(false);
-			this.panel2.ResumeLayout(false);
-			this.panel2.PerformLayout();
-			this.SendOptionsGroupBox.ResumeLayout(false);
-			this.SendOptionsGroupBox.PerformLayout();
-			this.ResumeLayout(false);
-			this.PerformLayout();
+               this.components = new System.ComponentModel.Container();
+               this.lbLog = new System.Windows.Forms.TextBox();
+               this.TraynotifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
+               this.RMOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
+               this.DPOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
+               this.DatabasesTab = new System.Windows.Forms.TabPage();
+               this.DatabaseSettingsErrorLabel = new System.Windows.Forms.Label();
+               this.POSSoftwareSplitContainer = new System.Windows.Forms.SplitContainer();
+               this.label2 = new System.Windows.Forms.Label();
+               this.FindRMDBbutton = new System.Windows.Forms.Button();
+               this.label1 = new System.Windows.Forms.Label();
+               this.RMDBTextBox = new System.Windows.Forms.TextBox();
+               this.MicrosoftDBTextBox = new System.Windows.Forms.TextBox();
+               this.label7 = new System.Windows.Forms.Label();
+               this.TestMicrosoftConnectionErrorLabel = new System.Windows.Forms.Label();
+               this.MicrosoftTestConnectionButton = new System.Windows.Forms.Button();
+               this.label6 = new System.Windows.Forms.Label();
+               this.MicrosoftPasswordTextBox = new System.Windows.Forms.TextBox();
+               this.label5 = new System.Windows.Forms.Label();
+               this.MicrosoftUserTextBox = new System.Windows.Forms.TextBox();
+               this.label4 = new System.Windows.Forms.Label();
+               this.MicrosoftLocationTextBox = new System.Windows.Forms.TextBox();
+               this.label3 = new System.Windows.Forms.Label();
+               this.POSSoftwareGroupBox = new System.Windows.Forms.GroupBox();
+               this.MicrosoftRMSRadioButton = new System.Windows.Forms.RadioButton();
+               this.MYOBRadioButton = new System.Windows.Forms.RadioButton();
+               this.SaveDatabaseSettingsButton = new System.Windows.Forms.Button();
+               this.FindDPDBButton = new System.Windows.Forms.Button();
+               this.DPDBTextBox = new System.Windows.Forms.TextBox();
+               this.STLocationLabel = new System.Windows.Forms.Label();
+               this.ConnectionTab = new System.Windows.Forms.TabPage();
+               this.ConnectionErrorlabel = new System.Windows.Forms.Label();
+               this.StoreIDtextBox = new System.Windows.Forms.TextBox();
+               this.PasswordTextBox = new System.Windows.Forms.TextBox();
+               this.TestConnectionErrorlabel = new System.Windows.Forms.Label();
+               this.SaveConnectionSettingsButton = new System.Windows.Forms.Button();
+               this.Storelabel = new System.Windows.Forms.Label();
+               this.Passwordlabel = new System.Windows.Forms.Label();
+               this.TestConnectionButton = new System.Windows.Forms.Button();
+               this.MainTabControl = new System.Windows.Forms.TabControl();
+               this.SyncTab = new System.Windows.Forms.TabPage();
+               this.panel2 = new System.Windows.Forms.Panel();
+               this.SendOptionsGroupBox = new System.Windows.Forms.GroupBox();
+               this.UpdateItemsButton = new System.Windows.Forms.Button();
+               this.ReplaceItemsButton = new System.Windows.Forms.Button();
+               this.SendItemsErrorLabel = new System.Windows.Forms.Label();
+               this.CommitStocktakeItemsErrorLabel = new System.Windows.Forms.Label();
+               this.CommitStocktakeButton = new System.Windows.Forms.Button();
+               this.GetStocktakeItemsErrorLabel = new System.Windows.Forms.Label();
+               this.GetStocktakeItemsButton = new System.Windows.Forms.Button();
+               this.label9 = new System.Windows.Forms.Label();
+               this.StockTakeGroupBox = new System.Windows.Forms.GroupBox();
+               this.PurchaseOrdersGroupBox = new System.Windows.Forms.GroupBox();
+               this.GetPurchaseOrdersButton = new System.Windows.Forms.Button();
+               this.GetPurchaseOrdersErrorLabel = new System.Windows.Forms.Label();
+               this.WritePurchaseOrdersButton = new System.Windows.Forms.Button();
+               this.WritePurchaseOrdersErrorLabel = new System.Windows.Forms.Label();
+               this.DatabasesTab.SuspendLayout();
+               ((System.ComponentModel.ISupportInitialize)(this.POSSoftwareSplitContainer)).BeginInit();
+               this.POSSoftwareSplitContainer.Panel1.SuspendLayout();
+               this.POSSoftwareSplitContainer.Panel2.SuspendLayout();
+               this.POSSoftwareSplitContainer.SuspendLayout();
+               this.POSSoftwareGroupBox.SuspendLayout();
+               this.ConnectionTab.SuspendLayout();
+               this.MainTabControl.SuspendLayout();
+               this.SyncTab.SuspendLayout();
+               this.panel2.SuspendLayout();
+               this.SendOptionsGroupBox.SuspendLayout();
+               this.StockTakeGroupBox.SuspendLayout();
+               this.PurchaseOrdersGroupBox.SuspendLayout();
+               this.SuspendLayout();
+               // 
+               // lbLog
+               // 
+               this.lbLog.Location = new System.Drawing.Point(593, 26);
+               this.lbLog.Multiline = true;
+               this.lbLog.Name = "lbLog";
+               this.lbLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+               this.lbLog.Size = new System.Drawing.Size(519, 550);
+               this.lbLog.TabIndex = 22;
+               // 
+               // DatabasesTab
+               // 
+               this.DatabasesTab.Controls.Add(this.DatabaseSettingsErrorLabel);
+               this.DatabasesTab.Controls.Add(this.POSSoftwareSplitContainer);
+               this.DatabasesTab.Controls.Add(this.POSSoftwareGroupBox);
+               this.DatabasesTab.Controls.Add(this.SaveDatabaseSettingsButton);
+               this.DatabasesTab.Controls.Add(this.FindDPDBButton);
+               this.DatabasesTab.Controls.Add(this.DPDBTextBox);
+               this.DatabasesTab.Controls.Add(this.STLocationLabel);
+               this.DatabasesTab.Location = new System.Drawing.Point(4, 22);
+               this.DatabasesTab.Name = "DatabasesTab";
+               this.DatabasesTab.Padding = new System.Windows.Forms.Padding(3);
+               this.DatabasesTab.Size = new System.Drawing.Size(538, 524);
+               this.DatabasesTab.TabIndex = 2;
+               this.DatabasesTab.Text = "Databases";
+               this.DatabasesTab.UseVisualStyleBackColor = true;
+               // 
+               // DatabaseSettingsErrorLabel
+               // 
+               this.DatabaseSettingsErrorLabel.AutoSize = true;
+               this.DatabaseSettingsErrorLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+               this.DatabaseSettingsErrorLabel.ForeColor = System.Drawing.Color.Red;
+               this.DatabaseSettingsErrorLabel.Location = new System.Drawing.Point(125, 401);
+               this.DatabaseSettingsErrorLabel.Name = "DatabaseSettingsErrorLabel";
+               this.DatabaseSettingsErrorLabel.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+               this.DatabaseSettingsErrorLabel.Size = new System.Drawing.Size(12, 15);
+               this.DatabaseSettingsErrorLabel.TabIndex = 49;
+               // 
+               // POSSoftwareSplitContainer
+               // 
+               this.POSSoftwareSplitContainer.Location = new System.Drawing.Point(9, 135);
+               this.POSSoftwareSplitContainer.Name = "POSSoftwareSplitContainer";
+               this.POSSoftwareSplitContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
+               // 
+               // POSSoftwareSplitContainer.Panel1
+               // 
+               this.POSSoftwareSplitContainer.Panel1.Controls.Add(this.label2);
+               this.POSSoftwareSplitContainer.Panel1.Controls.Add(this.FindRMDBbutton);
+               this.POSSoftwareSplitContainer.Panel1.Controls.Add(this.label1);
+               this.POSSoftwareSplitContainer.Panel1.Controls.Add(this.RMDBTextBox);
+               // 
+               // POSSoftwareSplitContainer.Panel2
+               // 
+               this.POSSoftwareSplitContainer.Panel2.Controls.Add(this.MicrosoftDBTextBox);
+               this.POSSoftwareSplitContainer.Panel2.Controls.Add(this.label7);
+               this.POSSoftwareSplitContainer.Panel2.Controls.Add(this.TestMicrosoftConnectionErrorLabel);
+               this.POSSoftwareSplitContainer.Panel2.Controls.Add(this.MicrosoftTestConnectionButton);
+               this.POSSoftwareSplitContainer.Panel2.Controls.Add(this.label6);
+               this.POSSoftwareSplitContainer.Panel2.Controls.Add(this.MicrosoftPasswordTextBox);
+               this.POSSoftwareSplitContainer.Panel2.Controls.Add(this.label5);
+               this.POSSoftwareSplitContainer.Panel2.Controls.Add(this.MicrosoftUserTextBox);
+               this.POSSoftwareSplitContainer.Panel2.Controls.Add(this.label4);
+               this.POSSoftwareSplitContainer.Panel2.Controls.Add(this.MicrosoftLocationTextBox);
+               this.POSSoftwareSplitContainer.Panel2.Controls.Add(this.label3);
+               this.POSSoftwareSplitContainer.Size = new System.Drawing.Size(526, 228);
+               this.POSSoftwareSplitContainer.SplitterDistance = 77;
+               this.POSSoftwareSplitContainer.TabIndex = 48;
+               // 
+               // label2
+               // 
+               this.label2.AutoSize = true;
+               this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+               this.label2.Location = new System.Drawing.Point(13, 9);
+               this.label2.Name = "label2";
+               this.label2.Size = new System.Drawing.Size(132, 13);
+               this.label2.TabIndex = 34;
+               this.label2.Text = "MYOB Retail Manager";
+               // 
+               // FindRMDBbutton
+               // 
+               this.FindRMDBbutton.Location = new System.Drawing.Point(438, 35);
+               this.FindRMDBbutton.Name = "FindRMDBbutton";
+               this.FindRMDBbutton.Size = new System.Drawing.Size(75, 23);
+               this.FindRMDBbutton.TabIndex = 33;
+               this.FindRMDBbutton.Text = "Find RMDB";
+               this.FindRMDBbutton.UseVisualStyleBackColor = true;
+               this.FindRMDBbutton.Click += new System.EventHandler(this.FindRMDBbutton_Click);
+               // 
+               // label1
+               // 
+               this.label1.AutoSize = true;
+               this.label1.Location = new System.Drawing.Point(13, 38);
+               this.label1.Name = "label1";
+               this.label1.Size = new System.Drawing.Size(86, 13);
+               this.label1.TabIndex = 29;
+               this.label1.Text = "RM DB Location";
+               // 
+               // RMDBTextBox
+               // 
+               this.RMDBTextBox.Location = new System.Drawing.Point(131, 35);
+               this.RMDBTextBox.Name = "RMDBTextBox";
+               this.RMDBTextBox.Size = new System.Drawing.Size(268, 20);
+               this.RMDBTextBox.TabIndex = 30;
+               // 
+               // MicrosoftDBTextBox
+               // 
+               this.MicrosoftDBTextBox.Location = new System.Drawing.Point(131, 63);
+               this.MicrosoftDBTextBox.Name = "MicrosoftDBTextBox";
+               this.MicrosoftDBTextBox.Size = new System.Drawing.Size(127, 20);
+               this.MicrosoftDBTextBox.TabIndex = 45;
+               // 
+               // label7
+               // 
+               this.label7.AutoSize = true;
+               this.label7.Location = new System.Drawing.Point(13, 67);
+               this.label7.Name = "label7";
+               this.label7.Size = new System.Drawing.Size(84, 13);
+               this.label7.TabIndex = 44;
+               this.label7.Text = "Database Name";
+               // 
+               // TestMicrosoftConnectionErrorLabel
+               // 
+               this.TestMicrosoftConnectionErrorLabel.AutoSize = true;
+               this.TestMicrosoftConnectionErrorLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+               this.TestMicrosoftConnectionErrorLabel.ForeColor = System.Drawing.Color.Red;
+               this.TestMicrosoftConnectionErrorLabel.Location = new System.Drawing.Point(131, 122);
+               this.TestMicrosoftConnectionErrorLabel.Name = "TestMicrosoftConnectionErrorLabel";
+               this.TestMicrosoftConnectionErrorLabel.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+               this.TestMicrosoftConnectionErrorLabel.Size = new System.Drawing.Size(12, 15);
+               this.TestMicrosoftConnectionErrorLabel.TabIndex = 43;
+               // 
+               // MicrosoftTestConnectionButton
+               // 
+               this.MicrosoftTestConnectionButton.Location = new System.Drawing.Point(16, 117);
+               this.MicrosoftTestConnectionButton.Name = "MicrosoftTestConnectionButton";
+               this.MicrosoftTestConnectionButton.Size = new System.Drawing.Size(97, 23);
+               this.MicrosoftTestConnectionButton.TabIndex = 42;
+               this.MicrosoftTestConnectionButton.Text = "Test Connection";
+               this.MicrosoftTestConnectionButton.UseVisualStyleBackColor = true;
+               this.MicrosoftTestConnectionButton.Click += new System.EventHandler(this.MicrosoftTestConnectionButton_Click);
+               // 
+               // label6
+               // 
+               this.label6.AutoSize = true;
+               this.label6.Location = new System.Drawing.Point(278, 67);
+               this.label6.Name = "label6";
+               this.label6.Size = new System.Drawing.Size(53, 13);
+               this.label6.TabIndex = 40;
+               this.label6.Text = "Password";
+               // 
+               // MicrosoftPasswordTextBox
+               // 
+               this.MicrosoftPasswordTextBox.Location = new System.Drawing.Point(356, 64);
+               this.MicrosoftPasswordTextBox.Name = "MicrosoftPasswordTextBox";
+               this.MicrosoftPasswordTextBox.PasswordChar = '*';
+               this.MicrosoftPasswordTextBox.Size = new System.Drawing.Size(157, 20);
+               this.MicrosoftPasswordTextBox.TabIndex = 41;
+               // 
+               // label5
+               // 
+               this.label5.AutoSize = true;
+               this.label5.Location = new System.Drawing.Point(276, 34);
+               this.label5.Name = "label5";
+               this.label5.Size = new System.Drawing.Size(55, 13);
+               this.label5.TabIndex = 38;
+               this.label5.Text = "Username";
+               // 
+               // MicrosoftUserTextBox
+               // 
+               this.MicrosoftUserTextBox.Location = new System.Drawing.Point(356, 34);
+               this.MicrosoftUserTextBox.Name = "MicrosoftUserTextBox";
+               this.MicrosoftUserTextBox.Size = new System.Drawing.Size(157, 20);
+               this.MicrosoftUserTextBox.TabIndex = 39;
+               // 
+               // label4
+               // 
+               this.label4.AutoSize = true;
+               this.label4.Location = new System.Drawing.Point(13, 37);
+               this.label4.Name = "label4";
+               this.label4.Size = new System.Drawing.Size(69, 13);
+               this.label4.TabIndex = 36;
+               this.label4.Text = "Server Name";
+               // 
+               // MicrosoftLocationTextBox
+               // 
+               this.MicrosoftLocationTextBox.Location = new System.Drawing.Point(131, 34);
+               this.MicrosoftLocationTextBox.Name = "MicrosoftLocationTextBox";
+               this.MicrosoftLocationTextBox.Size = new System.Drawing.Size(127, 20);
+               this.MicrosoftLocationTextBox.TabIndex = 37;
+               // 
+               // label3
+               // 
+               this.label3.AutoSize = true;
+               this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+               this.label3.Location = new System.Drawing.Point(11, 13);
+               this.label3.Name = "label3";
+               this.label3.Size = new System.Drawing.Size(90, 13);
+               this.label3.TabIndex = 35;
+               this.label3.Text = "Microsoft RMS";
+               // 
+               // POSSoftwareGroupBox
+               // 
+               this.POSSoftwareGroupBox.Controls.Add(this.MicrosoftRMSRadioButton);
+               this.POSSoftwareGroupBox.Controls.Add(this.MYOBRadioButton);
+               this.POSSoftwareGroupBox.Location = new System.Drawing.Point(140, 45);
+               this.POSSoftwareGroupBox.Name = "POSSoftwareGroupBox";
+               this.POSSoftwareGroupBox.Size = new System.Drawing.Size(285, 62);
+               this.POSSoftwareGroupBox.TabIndex = 47;
+               this.POSSoftwareGroupBox.TabStop = false;
+               this.POSSoftwareGroupBox.Text = "POS Software";
+               // 
+               // MicrosoftRMSRadioButton
+               // 
+               this.MicrosoftRMSRadioButton.AutoSize = true;
+               this.MicrosoftRMSRadioButton.Location = new System.Drawing.Point(30, 42);
+               this.MicrosoftRMSRadioButton.Name = "MicrosoftRMSRadioButton";
+               this.MicrosoftRMSRadioButton.Size = new System.Drawing.Size(95, 17);
+               this.MicrosoftRMSRadioButton.TabIndex = 1;
+               this.MicrosoftRMSRadioButton.TabStop = true;
+               this.MicrosoftRMSRadioButton.Text = "Microsoft RMS";
+               this.MicrosoftRMSRadioButton.UseVisualStyleBackColor = true;
+               this.MicrosoftRMSRadioButton.CheckedChanged += new System.EventHandler(this.MicrosoftRMSRadioButton_CheckedChanged);
+               // 
+               // MYOBRadioButton
+               // 
+               this.MYOBRadioButton.AutoSize = true;
+               this.MYOBRadioButton.Location = new System.Drawing.Point(30, 19);
+               this.MYOBRadioButton.Name = "MYOBRadioButton";
+               this.MYOBRadioButton.Size = new System.Drawing.Size(131, 17);
+               this.MYOBRadioButton.TabIndex = 0;
+               this.MYOBRadioButton.TabStop = true;
+               this.MYOBRadioButton.Text = "MYOB Retail Manager";
+               this.MYOBRadioButton.UseVisualStyleBackColor = true;
+               this.MYOBRadioButton.CheckedChanged += new System.EventHandler(this.MYOBRadioButton_CheckedChanged);
+               // 
+               // SaveDatabaseSettingsButton
+               // 
+               this.SaveDatabaseSettingsButton.Location = new System.Drawing.Point(25, 396);
+               this.SaveDatabaseSettingsButton.Name = "SaveDatabaseSettingsButton";
+               this.SaveDatabaseSettingsButton.Size = new System.Drawing.Size(83, 23);
+               this.SaveDatabaseSettingsButton.TabIndex = 35;
+               this.SaveDatabaseSettingsButton.Text = "Save Settings";
+               this.SaveDatabaseSettingsButton.UseVisualStyleBackColor = true;
+               this.SaveDatabaseSettingsButton.Click += new System.EventHandler(this.SaveDatabaseSettingsButton_Click);
+               // 
+               // FindDPDBButton
+               // 
+               this.FindDPDBButton.Location = new System.Drawing.Point(447, 17);
+               this.FindDPDBButton.Name = "FindDPDBButton";
+               this.FindDPDBButton.Size = new System.Drawing.Size(75, 23);
+               this.FindDPDBButton.TabIndex = 34;
+               this.FindDPDBButton.Text = "Find DPDB";
+               this.FindDPDBButton.UseVisualStyleBackColor = true;
+               this.FindDPDBButton.Click += new System.EventHandler(this.FindDPDBButton_Click);
+               // 
+               // DPDBTextBox
+               // 
+               this.DPDBTextBox.Location = new System.Drawing.Point(140, 19);
+               this.DPDBTextBox.Name = "DPDBTextBox";
+               this.DPDBTextBox.Size = new System.Drawing.Size(268, 20);
+               this.DPDBTextBox.TabIndex = 32;
+               // 
+               // STLocationLabel
+               // 
+               this.STLocationLabel.AutoSize = true;
+               this.STLocationLabel.Location = new System.Drawing.Point(6, 22);
+               this.STLocationLabel.Name = "STLocationLabel";
+               this.STLocationLabel.Size = new System.Drawing.Size(115, 13);
+               this.STLocationLabel.TabIndex = 31;
+               this.STLocationLabel.Text = "Stocktakr DB Location";
+               // 
+               // ConnectionTab
+               // 
+               this.ConnectionTab.Controls.Add(this.ConnectionErrorlabel);
+               this.ConnectionTab.Controls.Add(this.StoreIDtextBox);
+               this.ConnectionTab.Controls.Add(this.PasswordTextBox);
+               this.ConnectionTab.Controls.Add(this.TestConnectionErrorlabel);
+               this.ConnectionTab.Controls.Add(this.SaveConnectionSettingsButton);
+               this.ConnectionTab.Controls.Add(this.Storelabel);
+               this.ConnectionTab.Controls.Add(this.Passwordlabel);
+               this.ConnectionTab.Controls.Add(this.TestConnectionButton);
+               this.ConnectionTab.Location = new System.Drawing.Point(4, 22);
+               this.ConnectionTab.Name = "ConnectionTab";
+               this.ConnectionTab.Padding = new System.Windows.Forms.Padding(3);
+               this.ConnectionTab.Size = new System.Drawing.Size(538, 524);
+               this.ConnectionTab.TabIndex = 0;
+               this.ConnectionTab.Text = "Connection";
+               this.ConnectionTab.UseVisualStyleBackColor = true;
+               // 
+               // ConnectionErrorlabel
+               // 
+               this.ConnectionErrorlabel.AutoSize = true;
+               this.ConnectionErrorlabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+               this.ConnectionErrorlabel.ForeColor = System.Drawing.Color.Red;
+               this.ConnectionErrorlabel.Location = new System.Drawing.Point(135, 121);
+               this.ConnectionErrorlabel.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+               this.ConnectionErrorlabel.Name = "ConnectionErrorlabel";
+               this.ConnectionErrorlabel.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+               this.ConnectionErrorlabel.Size = new System.Drawing.Size(12, 15);
+               this.ConnectionErrorlabel.TabIndex = 35;
+               // 
+               // StoreIDtextBox
+               // 
+               this.StoreIDtextBox.Location = new System.Drawing.Point(108, 16);
+               this.StoreIDtextBox.Name = "StoreIDtextBox";
+               this.StoreIDtextBox.Size = new System.Drawing.Size(386, 20);
+               this.StoreIDtextBox.TabIndex = 26;
+               // 
+               // PasswordTextBox
+               // 
+               this.PasswordTextBox.Location = new System.Drawing.Point(108, 56);
+               this.PasswordTextBox.Name = "PasswordTextBox";
+               this.PasswordTextBox.Size = new System.Drawing.Size(386, 20);
+               this.PasswordTextBox.TabIndex = 28;
+               // 
+               // TestConnectionErrorlabel
+               // 
+               this.TestConnectionErrorlabel.AutoSize = true;
+               this.TestConnectionErrorlabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+               this.TestConnectionErrorlabel.ForeColor = System.Drawing.Color.Red;
+               this.TestConnectionErrorlabel.Location = new System.Drawing.Point(16, 265);
+               this.TestConnectionErrorlabel.Name = "TestConnectionErrorlabel";
+               this.TestConnectionErrorlabel.Size = new System.Drawing.Size(2, 15);
+               this.TestConnectionErrorlabel.TabIndex = 36;
+               // 
+               // SaveConnectionSettingsButton
+               // 
+               this.SaveConnectionSettingsButton.Location = new System.Drawing.Point(16, 117);
+               this.SaveConnectionSettingsButton.Name = "SaveConnectionSettingsButton";
+               this.SaveConnectionSettingsButton.Size = new System.Drawing.Size(87, 23);
+               this.SaveConnectionSettingsButton.TabIndex = 34;
+               this.SaveConnectionSettingsButton.Text = "Save Settings";
+               this.SaveConnectionSettingsButton.UseVisualStyleBackColor = true;
+               this.SaveConnectionSettingsButton.Click += new System.EventHandler(this.SaveConnectionSettingsButton_Click);
+               // 
+               // Storelabel
+               // 
+               this.Storelabel.AutoSize = true;
+               this.Storelabel.Location = new System.Drawing.Point(13, 16);
+               this.Storelabel.Name = "Storelabel";
+               this.Storelabel.Size = new System.Drawing.Size(49, 13);
+               this.Storelabel.TabIndex = 25;
+               this.Storelabel.Text = "Store ID:";
+               // 
+               // Passwordlabel
+               // 
+               this.Passwordlabel.AutoSize = true;
+               this.Passwordlabel.Location = new System.Drawing.Point(13, 56);
+               this.Passwordlabel.Name = "Passwordlabel";
+               this.Passwordlabel.Size = new System.Drawing.Size(56, 13);
+               this.Passwordlabel.TabIndex = 27;
+               this.Passwordlabel.Text = "Password:";
+               // 
+               // TestConnectionButton
+               // 
+               this.TestConnectionButton.Location = new System.Drawing.Point(16, 210);
+               this.TestConnectionButton.Name = "TestConnectionButton";
+               this.TestConnectionButton.Size = new System.Drawing.Size(102, 23);
+               this.TestConnectionButton.TabIndex = 24;
+               this.TestConnectionButton.Text = "Test Connection";
+               this.TestConnectionButton.UseVisualStyleBackColor = true;
+               this.TestConnectionButton.Click += new System.EventHandler(this.TestConnectionButton_Click);
+               // 
+               // MainTabControl
+               // 
+               this.MainTabControl.Controls.Add(this.ConnectionTab);
+               this.MainTabControl.Controls.Add(this.DatabasesTab);
+               this.MainTabControl.Controls.Add(this.SyncTab);
+               this.MainTabControl.Location = new System.Drawing.Point(28, 26);
+               this.MainTabControl.Name = "MainTabControl";
+               this.MainTabControl.SelectedIndex = 0;
+               this.MainTabControl.Size = new System.Drawing.Size(546, 550);
+               this.MainTabControl.TabIndex = 39;
+               // 
+               // SyncTab
+               // 
+               this.SyncTab.Controls.Add(this.panel2);
+               this.SyncTab.Location = new System.Drawing.Point(4, 22);
+               this.SyncTab.Name = "SyncTab";
+               this.SyncTab.Padding = new System.Windows.Forms.Padding(3);
+               this.SyncTab.Size = new System.Drawing.Size(538, 524);
+               this.SyncTab.TabIndex = 3;
+               this.SyncTab.Text = "Sync";
+               this.SyncTab.UseVisualStyleBackColor = true;
+               // 
+               // panel2
+               // 
+               this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+               this.panel2.Controls.Add(this.PurchaseOrdersGroupBox);
+               this.panel2.Controls.Add(this.StockTakeGroupBox);
+               this.panel2.Controls.Add(this.SendOptionsGroupBox);
+               this.panel2.Controls.Add(this.label9);
+               this.panel2.Location = new System.Drawing.Point(29, 28);
+               this.panel2.Name = "panel2";
+               this.panel2.Size = new System.Drawing.Size(479, 477);
+               this.panel2.TabIndex = 46;
+               // 
+               // SendOptionsGroupBox
+               // 
+               this.SendOptionsGroupBox.Controls.Add(this.UpdateItemsButton);
+               this.SendOptionsGroupBox.Controls.Add(this.ReplaceItemsButton);
+               this.SendOptionsGroupBox.Controls.Add(this.SendItemsErrorLabel);
+               this.SendOptionsGroupBox.Location = new System.Drawing.Point(23, 58);
+               this.SendOptionsGroupBox.Name = "SendOptionsGroupBox";
+               this.SendOptionsGroupBox.Size = new System.Drawing.Size(432, 120);
+               this.SendOptionsGroupBox.TabIndex = 48;
+               this.SendOptionsGroupBox.TabStop = false;
+               this.SendOptionsGroupBox.Text = "Send Products to Server";
+               // 
+               // UpdateItemsButton
+               // 
+               this.UpdateItemsButton.Location = new System.Drawing.Point(264, 36);
+               this.UpdateItemsButton.Name = "UpdateItemsButton";
+               this.UpdateItemsButton.Size = new System.Drawing.Size(139, 38);
+               this.UpdateItemsButton.TabIndex = 43;
+               this.UpdateItemsButton.Text = "Update New Items Only";
+               this.UpdateItemsButton.UseVisualStyleBackColor = true;
+               this.UpdateItemsButton.Click += new System.EventHandler(this.UpdateItemsButton_Click);
+               // 
+               // ReplaceItemsButton
+               // 
+               this.ReplaceItemsButton.Location = new System.Drawing.Point(17, 36);
+               this.ReplaceItemsButton.Name = "ReplaceItemsButton";
+               this.ReplaceItemsButton.Size = new System.Drawing.Size(139, 38);
+               this.ReplaceItemsButton.TabIndex = 1;
+               this.ReplaceItemsButton.Text = "Replace All Items";
+               this.ReplaceItemsButton.UseVisualStyleBackColor = true;
+               this.ReplaceItemsButton.Click += new System.EventHandler(this.ReplaceItemsButton_Click);
+               // 
+               // SendItemsErrorLabel
+               // 
+               this.SendItemsErrorLabel.AutoSize = true;
+               this.SendItemsErrorLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+               this.SendItemsErrorLabel.ForeColor = System.Drawing.Color.Red;
+               this.SendItemsErrorLabel.Location = new System.Drawing.Point(17, 88);
+               this.SendItemsErrorLabel.Name = "SendItemsErrorLabel";
+               this.SendItemsErrorLabel.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+               this.SendItemsErrorLabel.Size = new System.Drawing.Size(12, 15);
+               this.SendItemsErrorLabel.TabIndex = 42;
+               // 
+               // CommitStocktakeItemsErrorLabel
+               // 
+               this.CommitStocktakeItemsErrorLabel.AutoSize = true;
+               this.CommitStocktakeItemsErrorLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+               this.CommitStocktakeItemsErrorLabel.ForeColor = System.Drawing.Color.Red;
+               this.CommitStocktakeItemsErrorLabel.Location = new System.Drawing.Point(228, 72);
+               this.CommitStocktakeItemsErrorLabel.Name = "CommitStocktakeItemsErrorLabel";
+               this.CommitStocktakeItemsErrorLabel.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+               this.CommitStocktakeItemsErrorLabel.Size = new System.Drawing.Size(12, 15);
+               this.CommitStocktakeItemsErrorLabel.TabIndex = 45;
+               // 
+               // CommitStocktakeButton
+               // 
+               this.CommitStocktakeButton.Location = new System.Drawing.Point(228, 19);
+               this.CommitStocktakeButton.Name = "CommitStocktakeButton";
+               this.CommitStocktakeButton.Size = new System.Drawing.Size(193, 38);
+               this.CommitStocktakeButton.TabIndex = 44;
+               this.CommitStocktakeButton.Text = "B. Write Stocktake Items to POS Database";
+               this.CommitStocktakeButton.UseVisualStyleBackColor = true;
+               this.CommitStocktakeButton.Click += new System.EventHandler(this.CommitStocktakeButton_Click);
+               // 
+               // GetStocktakeItemsErrorLabel
+               // 
+               this.GetStocktakeItemsErrorLabel.AutoSize = true;
+               this.GetStocktakeItemsErrorLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+               this.GetStocktakeItemsErrorLabel.ForeColor = System.Drawing.Color.Red;
+               this.GetStocktakeItemsErrorLabel.Location = new System.Drawing.Point(12, 72);
+               this.GetStocktakeItemsErrorLabel.Name = "GetStocktakeItemsErrorLabel";
+               this.GetStocktakeItemsErrorLabel.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+               this.GetStocktakeItemsErrorLabel.Size = new System.Drawing.Size(12, 15);
+               this.GetStocktakeItemsErrorLabel.TabIndex = 43;
+               // 
+               // GetStocktakeItemsButton
+               // 
+               this.GetStocktakeItemsButton.Location = new System.Drawing.Point(12, 19);
+               this.GetStocktakeItemsButton.Name = "GetStocktakeItemsButton";
+               this.GetStocktakeItemsButton.Size = new System.Drawing.Size(193, 38);
+               this.GetStocktakeItemsButton.TabIndex = 2;
+               this.GetStocktakeItemsButton.Text = "A. Get StockTake Items from Server";
+               this.GetStocktakeItemsButton.UseVisualStyleBackColor = true;
+               this.GetStocktakeItemsButton.Click += new System.EventHandler(this.GetStocktakeItemsButton_Click);
+               // 
+               // label9
+               // 
+               this.label9.AutoSize = true;
+               this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+               this.label9.Location = new System.Drawing.Point(24, 19);
+               this.label9.Name = "label9";
+               this.label9.Size = new System.Drawing.Size(155, 24);
+               this.label9.TabIndex = 0;
+               this.label9.Text = "Items in Inventory";
+               // 
+               // StockTakeGroupBox
+               // 
+               this.StockTakeGroupBox.Controls.Add(this.GetStocktakeItemsButton);
+               this.StockTakeGroupBox.Controls.Add(this.GetStocktakeItemsErrorLabel);
+               this.StockTakeGroupBox.Controls.Add(this.CommitStocktakeButton);
+               this.StockTakeGroupBox.Controls.Add(this.CommitStocktakeItemsErrorLabel);
+               this.StockTakeGroupBox.Location = new System.Drawing.Point(23, 198);
+               this.StockTakeGroupBox.Name = "StockTakeGroupBox";
+               this.StockTakeGroupBox.Size = new System.Drawing.Size(432, 100);
+               this.StockTakeGroupBox.TabIndex = 49;
+               this.StockTakeGroupBox.TabStop = false;
+               this.StockTakeGroupBox.Text = "StockTake";
+               // 
+               // PurchaseOrdersGroupBox
+               // 
+               this.PurchaseOrdersGroupBox.Controls.Add(this.GetPurchaseOrdersButton);
+               this.PurchaseOrdersGroupBox.Controls.Add(this.GetPurchaseOrdersErrorLabel);
+               this.PurchaseOrdersGroupBox.Controls.Add(this.WritePurchaseOrdersButton);
+               this.PurchaseOrdersGroupBox.Controls.Add(this.WritePurchaseOrdersErrorLabel);
+               this.PurchaseOrdersGroupBox.Location = new System.Drawing.Point(23, 322);
+               this.PurchaseOrdersGroupBox.Name = "PurchaseOrdersGroupBox";
+               this.PurchaseOrdersGroupBox.Size = new System.Drawing.Size(427, 117);
+               this.PurchaseOrdersGroupBox.TabIndex = 50;
+               this.PurchaseOrdersGroupBox.TabStop = false;
+               this.PurchaseOrdersGroupBox.Text = "Purchase Orders";
+               // 
+               // GetPurchaseOrdersButton
+               // 
+               this.GetPurchaseOrdersButton.Location = new System.Drawing.Point(12, 29);
+               this.GetPurchaseOrdersButton.Name = "GetPurchaseOrdersButton";
+               this.GetPurchaseOrdersButton.Size = new System.Drawing.Size(193, 38);
+               this.GetPurchaseOrdersButton.TabIndex = 46;
+               this.GetPurchaseOrdersButton.Text = "A, Get Purchase Orders from Server";
+               this.GetPurchaseOrdersButton.UseVisualStyleBackColor = true;
+               this.GetPurchaseOrdersButton.Click += new System.EventHandler(this.GetPurchaseOrdersButton_Click);
+               // 
+               // GetPurchaseOrdersErrorLabel
+               // 
+               this.GetPurchaseOrdersErrorLabel.AutoSize = true;
+               this.GetPurchaseOrdersErrorLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+               this.GetPurchaseOrdersErrorLabel.ForeColor = System.Drawing.Color.Red;
+               this.GetPurchaseOrdersErrorLabel.Location = new System.Drawing.Point(12, 82);
+               this.GetPurchaseOrdersErrorLabel.Name = "GetPurchaseOrdersErrorLabel";
+               this.GetPurchaseOrdersErrorLabel.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+               this.GetPurchaseOrdersErrorLabel.Size = new System.Drawing.Size(12, 15);
+               this.GetPurchaseOrdersErrorLabel.TabIndex = 47;
+               // 
+               // WritePurchaseOrdersButton
+               // 
+               this.WritePurchaseOrdersButton.Location = new System.Drawing.Point(228, 29);
+               this.WritePurchaseOrdersButton.Name = "WritePurchaseOrdersButton";
+               this.WritePurchaseOrdersButton.Size = new System.Drawing.Size(193, 38);
+               this.WritePurchaseOrdersButton.TabIndex = 48;
+               this.WritePurchaseOrdersButton.Text = "B. Write Purchase Orders to POS Database";
+               this.WritePurchaseOrdersButton.UseVisualStyleBackColor = true;
+               this.WritePurchaseOrdersButton.Click += new System.EventHandler(this.WritePurchaseOrdersButton_Click);
+               // 
+               // WritePurchaseOrdersErrorLabel
+               // 
+               this.WritePurchaseOrdersErrorLabel.AutoSize = true;
+               this.WritePurchaseOrdersErrorLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+               this.WritePurchaseOrdersErrorLabel.ForeColor = System.Drawing.Color.Red;
+               this.WritePurchaseOrdersErrorLabel.Location = new System.Drawing.Point(228, 82);
+               this.WritePurchaseOrdersErrorLabel.Name = "WritePurchaseOrdersErrorLabel";
+               this.WritePurchaseOrdersErrorLabel.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+               this.WritePurchaseOrdersErrorLabel.Size = new System.Drawing.Size(12, 15);
+               this.WritePurchaseOrdersErrorLabel.TabIndex = 49;
+               // 
+               // FormMain
+               // 
+               this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
+               this.ClientSize = new System.Drawing.Size(1124, 590);
+               this.Controls.Add(this.MainTabControl);
+               this.Controls.Add(this.lbLog);
+               this.Name = "FormMain";
+               this.Text = "StockTakr POS Client";
+               this.DatabasesTab.ResumeLayout(false);
+               this.DatabasesTab.PerformLayout();
+               this.POSSoftwareSplitContainer.Panel1.ResumeLayout(false);
+               this.POSSoftwareSplitContainer.Panel1.PerformLayout();
+               this.POSSoftwareSplitContainer.Panel2.ResumeLayout(false);
+               this.POSSoftwareSplitContainer.Panel2.PerformLayout();
+               ((System.ComponentModel.ISupportInitialize)(this.POSSoftwareSplitContainer)).EndInit();
+               this.POSSoftwareSplitContainer.ResumeLayout(false);
+               this.POSSoftwareGroupBox.ResumeLayout(false);
+               this.POSSoftwareGroupBox.PerformLayout();
+               this.ConnectionTab.ResumeLayout(false);
+               this.ConnectionTab.PerformLayout();
+               this.MainTabControl.ResumeLayout(false);
+               this.SyncTab.ResumeLayout(false);
+               this.panel2.ResumeLayout(false);
+               this.panel2.PerformLayout();
+               this.SendOptionsGroupBox.ResumeLayout(false);
+               this.SendOptionsGroupBox.PerformLayout();
+               this.StockTakeGroupBox.ResumeLayout(false);
+               this.StockTakeGroupBox.PerformLayout();
+               this.PurchaseOrdersGroupBox.ResumeLayout(false);
+               this.PurchaseOrdersGroupBox.PerformLayout();
+               this.ResumeLayout(false);
+               this.PerformLayout();
 
 		}
 		#endregion
@@ -792,8 +876,11 @@ namespace StocktakrClient
 			TestMicrosoftConnectionErrorLabel.Text = "";
 			DatabaseSettingsErrorLabel.Text = "";
 			SendItemsErrorLabel.Text = "";
-			GetStocktakeTransactionsErrorLabel.Text = "";
-			CommitItemsErrorLabel.Text = "";
+			GetStocktakeItemsErrorLabel.Text = "";
+			CommitStocktakeItemsErrorLabel.Text = "";
+
+               GetPurchaseOrdersErrorLabel.Text = "";
+               WritePurchaseOrdersErrorLabel.Text = "";
 		}		
 
 		private void SaveConnectionSettingsButton_Click(object sender, EventArgs e)
@@ -944,6 +1031,7 @@ namespace StocktakrClient
 	
 		private void FindDPDBButton_Click(object sender, EventArgs e)
 		{
+               ClearErrorMessages();
 			if (DPOpenFileDialog.ShowDialog() == DialogResult.OK)
 			{
 				string fileName = DPOpenFileDialog.FileName;
@@ -990,15 +1078,16 @@ namespace StocktakrClient
 
 		private void UpdateItemsButton_Click(object sender, EventArgs e)
 		{
-			SendItems(false);
+               ClearErrorMessages();
+			SendItemsAndSuppliers(false);
 		}
 
 		private void ReplaceItemsButton_Click(object sender, EventArgs e)
 		{
-
+               ClearErrorMessages();
 			// Initializes the variables to pass to the MessageBox.Show method.
 
-			string message = "Are you sure ? This action will replace ALL items on the server including stocktake data.";
+			string message = "Are you sure ? This action will replace ALL items on the server as well as updating the supplier list.";
 			string caption = "Confirm ";
 
 			MessageBoxButtons buttons = MessageBoxButtons.YesNo;
@@ -1010,12 +1099,12 @@ namespace StocktakrClient
 			result = MessageBox.Show(message, caption, buttons);
 
 			if (result == System.Windows.Forms.DialogResult.Yes)
-			{				// Closes the parent form.
-				SendItems(true);
+			{				
+				SendItemsAndSuppliers(true);
 			}
 		}
 
-		private void SendItems(bool replaceAll)
+		private void SendItemsAndSuppliers(bool replaceAll)
 		{
 			Cursor.Current = Cursors.WaitCursor;
 
@@ -1031,10 +1120,11 @@ namespace StocktakrClient
 				int storeID = Convert.ToInt32(StoreIDtextBox.Text);
 
 				List<LocalItem> localItems = new List<LocalItem>();
-
+                    List<LocalSupplier> localSuppliers = new List<LocalSupplier>();
 				switch (Properties.Settings.Default.POSSoftware)
 				{
 					case "MYOB":
+                              localSuppliers = MYOB.GetCompleteSupplierList();
 						if (replaceAll)
 						{
 							localItems = MYOB.GetCompleteItemList();
@@ -1043,24 +1133,21 @@ namespace StocktakrClient
 						{
 							localItems = MYOB.GetRecentlyModifiedItemList();
 						}
-
+                              
 						break;
 					case "Microsoft":
-						if (replaceAll)
-						{
-							if (TestSQLConnection(MicrosoftLocationTextBox.Text, MicrosoftDBTextBox.Text, MicrosoftUserTextBox.Text, MicrosoftPasswordTextBox.Text))
-						     {
-							     localItems = MicrosoftRMS.GetCompleteItemList();
+                              if (TestSQLConnection(MicrosoftLocationTextBox.Text, MicrosoftDBTextBox.Text, MicrosoftUserTextBox.Text, MicrosoftPasswordTextBox.Text))
+                              {
+                                   localSuppliers = MicrosoftRMS.GetCompleteSupplierList();
+						     if (replaceAll)
+						     {							
+							     localItems = MicrosoftRMS.GetCompleteItemList();						          
 						     }
-						}
-						else
-						{
-							if (TestSQLConnection(MicrosoftLocationTextBox.Text, MicrosoftDBTextBox.Text, MicrosoftUserTextBox.Text, MicrosoftPasswordTextBox.Text))
-							{
-								localItems = MicrosoftRMS.GetRecentlyModifiedItemList();
-							}
-						}
-						
+						     else
+						     {
+                                        localItems = MicrosoftRMS.GetRecentlyModifiedItemList();						
+						     }
+                              }
 						break;
 				}
 
@@ -1070,31 +1157,40 @@ namespace StocktakrClient
 				}
 				else
 				{
-
-
 					POSItemHandler handler = new POSItemHandler();					
 
 					handler.Timeout = 1000000;
 
-                         var jsonSerializer = new JavaScriptSerializer();
-                         jsonSerializer.MaxJsonLength = Int32.MaxValue;
-
-                         string rawData = jsonSerializer.Serialize(localItems);
-
-                         string compressedData = ZipHelper.CompressToGzip(rawData);                             
-
-					ItemResponse newResponse = handler.UpdateOrReplaceItems(storeID, PasswordTextBox.Text, compressedData, replaceAll);
-
-					if (newResponse.is_error)
+                         ItemResponse supplierResponse = handler.UpdateSuppliers(storeID, PasswordTextBox.Text, localSuppliers.ToArray());
+                         if (supplierResponse.is_error)
 					{
-						AddLog(newResponse.errorMessage, true);
-						SendItemsErrorLabel.Text = newResponse.errorMessage;
+						AddLog(supplierResponse.errorMessage, true);
+						SendItemsErrorLabel.Text = supplierResponse.errorMessage;
 					}
 					else
-					{
-						SendItemsErrorLabel.Text = "Success";
-						AddLog(localItems.Count() + " Items sent to server.", true);
-					}
+					{	
+                              AddLog(localSuppliers.Count() + " Suppliers sent to server.", true);
+
+                              var jsonSerializer = new JavaScriptSerializer();
+                              jsonSerializer.MaxJsonLength = Int32.MaxValue;
+
+                              string rawData = jsonSerializer.Serialize(localItems);
+
+                              string compressedData = ZipHelper.CompressToGzip(rawData);                             
+
+					     ItemResponse newResponse = handler.UpdateOrReplaceItems(storeID, PasswordTextBox.Text, compressedData, replaceAll);
+
+					     if (newResponse.is_error)
+					     {
+						     AddLog(newResponse.errorMessage, true);
+						     SendItemsErrorLabel.Text = newResponse.errorMessage;
+					     }
+					     else
+					     {
+						     SendItemsErrorLabel.Text = "Success";                                  
+                                   AddLog(localItems.Count() + " Items sent to server.", true);
+                              }
+                         }
 				}
 			}
 			catch (Exception ex)
@@ -1106,80 +1202,11 @@ namespace StocktakrClient
 			Cursor.Current = Cursors.Default;
 		}
 
-		private void GetItemsButton_Click(object sender, EventArgs e)
-		{
-			Cursor.Current = Cursors.WaitCursor;
-
-			// Initializes the variables to pass to the MessageBox.Show method.
-
-			string message = "Are you sure ? This action will download ALL stocktake transactions on the server and then delete them.";
-			string caption = "Confirm ";
-
-			MessageBoxButtons buttons = MessageBoxButtons.YesNo;
-
-			DialogResult result;
-
-			// Displays the MessageBox.
-
-			result = MessageBox.Show(message, caption, buttons);
-
-			if (result == System.Windows.Forms.DialogResult.Yes)
-			{
-				if (!Helpers.TestDPDBConnection())
-				{
-					GetStocktakeTransactionsErrorLabel.Text = "Error see log";
-					AddLog("Unable to connect to  the Docketplace Stocktakr database", true);
-				}
-				else
-				{
-					try
-					{
-						//Check if all fields are filled.
-						if ((StoreIDtextBox.Text == "") || (PasswordTextBox.Text == ""))
-						{
-							GetStocktakeTransactionsErrorLabel.Text = "Store ID or Password are empty";
-							return;
-						}
-
-						int storeID = Convert.ToInt32(StoreIDtextBox.Text);
-
-						POSItemHandler handler = new POSItemHandler();
-
-						ItemResponse newResponse = handler.GetStocktakeTransactions(storeID, PasswordTextBox.Text);
-
-						if (!newResponse.is_error)
-						{
-
-							if (newResponse.localStocktakeTransactions == null)
-							{
-								AddLog("No Stocktake transactions", true);
-							}
-							else
-							{
-								Helpers.DownloadStockTakeTransactions(newResponse.localStocktakeTransactions);
-                                        var deleteResponse = handler.DeleteStocktakeTransactions(storeID, PasswordTextBox.Text);
-								AddLog(newResponse.localStocktakeTransactions.Count() + " Stocktake Transactions downloaded", true);
-							}
-						}
-						else
-						{
-							AddLog(newResponse.errorMessage, true);
-							GetStocktakeTransactionsErrorLabel.Text = newResponse.errorMessage;
-						}
-					}
-					catch (Exception ex)
-					{
-						AddLog(ex.ToString(), true);
-						GetStocktakeTransactionsErrorLabel.Text = "An error has occurred. See log";
-					}
-				}
-			}
-			Cursor.Current = Cursors.WaitCursor;
-		}
-
+		
 
 		private bool TestSQLConnection(string location, string DBname, string user, string password)
 		{
+               ClearErrorMessages();
 			string connectionString = MicrosoftRMS.MakeConnectionString(location, DBname, user, password);
 			SqlConnection conn = new SqlConnection(connectionString);
 
@@ -1201,6 +1228,7 @@ namespace StocktakrClient
 
 		private void FindRMDBbutton_Click(object sender, EventArgs e)
 		{
+               ClearErrorMessages();
 			if (RMOpenFileDialog.ShowDialog() == DialogResult.OK)
 			{
 				string fileName = RMOpenFileDialog.FileName;
@@ -1208,8 +1236,82 @@ namespace StocktakrClient
 			}
 		}
 
+          private void GetStocktakeItemsButton_Click(object sender, EventArgs e)
+          {
+               ClearErrorMessages();
+               Cursor.Current = Cursors.WaitCursor;
+
+               // Initializes the variables to pass to the MessageBox.Show method.
+
+               string message = "Are you sure ? This action will download ALL stocktake transactions on the server and then delete them.";
+               string caption = "Confirm ";
+
+               MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+
+               DialogResult result;
+
+               // Displays the MessageBox.
+
+               result = MessageBox.Show(message, caption, buttons);
+
+               if (result == System.Windows.Forms.DialogResult.Yes)
+               {
+                    if (!Helpers.TestDPDBConnection())
+                    {
+                         GetStocktakeItemsErrorLabel.Text = "Error see log";
+                         AddLog("Unable to connect to  the Stocktakr database", true);
+                    }
+                    else
+                    {
+                         try
+                         {
+                              //Check if all fields are filled.
+                              if ((StoreIDtextBox.Text == "") || (PasswordTextBox.Text == ""))
+                              {
+                                   GetStocktakeItemsErrorLabel.Text = "Store ID or Password are empty";
+                                   return;
+                              }
+
+                              int storeID = Convert.ToInt32(StoreIDtextBox.Text);
+
+                              POSItemHandler handler = new POSItemHandler();
+
+                              ItemResponse newResponse = handler.GetStocktakeTransactions(storeID, PasswordTextBox.Text);
+
+                              if (!newResponse.is_error)
+                              {
+
+                                   if (newResponse.localStocktakeTransactions == null)
+                                   {
+                                        AddLog("No Stocktake transactions", true);
+                                   }
+                                   else
+                                   {
+                                        Helpers.DownloadStockTakeTransactions(newResponse.localStocktakeTransactions);
+                                        var deleteResponse = handler.DeleteStocktakeTransactions(storeID, PasswordTextBox.Text);
+                                        AddLog(newResponse.localStocktakeTransactions.Count() + " Stocktake Transactions downloaded", true);
+                                   }
+                              }
+                              else
+                              {
+                                   AddLog(newResponse.errorMessage, true);
+                                   GetStocktakeItemsErrorLabel.Text = newResponse.errorMessage;
+                              }
+                         }
+                         catch (Exception ex)
+                         {
+                              AddLog(ex.ToString(), true);
+                              GetStocktakeItemsErrorLabel.Text = "An error has occurred. See log";
+                         }
+                    }
+               }
+               Cursor.Current = Cursors.WaitCursor;
+          }
+
+
 		private void CommitStocktakeButton_Click(object sender, EventArgs e)
 		{
+               ClearErrorMessages();
 			// Initializes the variables to pass to the MessageBox.Show method.
 
 			string message = "Are you sure ? This action will move all stocktake transactions from the temporary database to the POS database.";
@@ -1233,7 +1335,7 @@ namespace StocktakrClient
 					{
 						case "MYOB":						
 							itemCount = MYOB.CommitStocktakeToPOSDatabase();
-							CommitItemsErrorLabel.Text = "Success";
+							CommitStocktakeItemsErrorLabel.Text = "Success";
 							AddLog(itemCount.ToString() + " Items stocktaked", true);								
 							break;
 						case "Microsoft":
@@ -1244,19 +1346,140 @@ namespace StocktakrClient
                                    
                                    AddLog(itemCount.ToString() + " Items stocktaked", true);
 
-                                   CommitItemsErrorLabel.Text = "Stocktake successful. Lookup code for the Physical Inventory is: " + code;
+                                   CommitStocktakeItemsErrorLabel.Text = "Stocktake successful. Lookup code for the Physical Inventory is: " + code;
 							break;
 					}				
 				}
 				catch (Exception ex)
 				{
 					AddLog(ex.ToString(), true);
-					SendItemsErrorLabel.Text = "An error has occurred. See log";
+                         CommitStocktakeItemsErrorLabel.Text = "An error has occurred. See log";
 				}
 			}
 			Cursor.Current = Cursors.Default;
 		}
 
+          private void GetPurchaseOrdersButton_Click(object sender, EventArgs e)
+          {
+               ClearErrorMessages();
+               Cursor.Current = Cursors.WaitCursor;
+
+               // Initializes the variables to pass to the MessageBox.Show method.
+
+               string message = "Are you sure ? This action will download ALL Purchase Orders from the server and then delete them.";
+               string caption = "Confirm ";
+
+               MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+
+               DialogResult result;
+
+               // Displays the MessageBox.
+
+               result = MessageBox.Show(message, caption, buttons);
+
+               if (result == System.Windows.Forms.DialogResult.Yes)
+               {
+                    if (!Helpers.TestDPDBConnection())
+                    {
+                         GetPurchaseOrdersErrorLabel.Text = "Error see log";
+                         AddLog("Unable to connect to  the Stocktakr database", true);
+                    }
+                    else
+                    {
+                         try
+                         {
+                              //Check if all fields are filled.
+                              if ((StoreIDtextBox.Text == "") || (PasswordTextBox.Text == ""))
+                              {
+                                   GetPurchaseOrdersErrorLabel.Text = "Store ID or Password are empty";
+                                   return;
+                              }
+
+                              int storeID = Convert.ToInt32(StoreIDtextBox.Text);
+
+                              POSItemHandler handler = new POSItemHandler();
+
+                              ItemResponse newResponse = handler.GetPurchaseOrders(storeID, PasswordTextBox.Text);
+
+                              if (!newResponse.is_error)
+                              {
+
+                                   if (newResponse.localPurchaseOrders == null)
+                                   {
+                                        AddLog("No Purchase Orders", true);
+                                   }
+                                   else
+                                   {
+                                        Helpers.DownloadPurchaseOrders(newResponse.localPurchaseOrders);
+                                        var deleteResponse = handler.DeletePurchaseOrders(storeID, PasswordTextBox.Text);
+                                        AddLog(newResponse.localPurchaseOrders.Count() + " Purchase Orders downloaded", true);
+                                   }
+                              }
+                              else
+                              {
+                                   AddLog(newResponse.errorMessage, true);
+                                   GetPurchaseOrdersErrorLabel.Text = newResponse.errorMessage;
+                              }
+                         }
+                         catch (Exception ex)
+                         {
+                              AddLog(ex.ToString(), true);
+                              GetPurchaseOrdersErrorLabel.Text = "An error has occurred. See log";
+                         }
+                    }
+               }
+               Cursor.Current = Cursors.WaitCursor;
+          }
+
+          private void WritePurchaseOrdersButton_Click(object sender, EventArgs e)
+          {
+               ClearErrorMessages();
+               // Initializes the variables to pass to the MessageBox.Show method.
+
+               string message = "Are you sure ? This action will move all Purchase Orders from the temporary database to the POS database.";
+               string caption = "Confirm ";
+
+               MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+
+               DialogResult result;
+
+               // Displays the MessageBox.
+
+               result = MessageBox.Show(message, caption, buttons);
+
+               if (result == System.Windows.Forms.DialogResult.Yes)
+               {				// Closes the parent form.
+                    Cursor.Current = Cursors.WaitCursor;
+                    try
+                    {
+                         int itemCount = 0;
+                         switch (Properties.Settings.Default.POSSoftware)
+                         {
+                              case "MYOB":
+                                   itemCount = MYOB.CommitPurchaseOrdersToPOSDatabase();
+                                   WritePurchaseOrdersErrorLabel.Text = "Success";
+                                   AddLog(itemCount.ToString() + " Purchase Orders written", true);
+                                   break;
+                              case "Microsoft":
+                                   WritePurchaseOrdersErrorLabel.Text = "Not yet Implemented";
+                                   
+                                   //itemCount = MicrosoftRMS.CommitPurchaseOrdersToPOSDatabase();
+                                   //AddLog(itemCount.ToString() + " Items stocktaked", true);
+                                   break;
+                         }
+                    }
+                    catch (Exception ex)
+                    {
+                         AddLog(ex.ToString(), true);
+                         WritePurchaseOrdersErrorLabel.Text = "An error has occurred. See log";
+                    }
+               }
+               Cursor.Current = Cursors.Default;
+               return;
+          }
+
 		#endregion
+
+         
 	}	
 }		

@@ -239,22 +239,22 @@
   <ItemGroup>
     <PublishFile Include="Microsoft.PointOfService">
       <Visible>False</Visible>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="Microsoft.PointOfService.xml">
       <Visible>False</Visible>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
   </ItemGroup>
@@ -275,7 +275,7 @@
   </ItemGroup>
   <ItemGroup>
     <WebReferenceUrl Include="http://stocktakr.com/services/POSItemHandler.asmx">
-      <UrlBehavior>Dynamic</UrlBehavior>
+      <UrlBehavior>Static</UrlBehavior>
       <RelPath>Web References\com.stocktakr\</RelPath>
       <UpdateFromURL>http://stocktakr.com/services/POSItemHandler.asmx</UpdateFromURL>
       <ServiceLocationURL>

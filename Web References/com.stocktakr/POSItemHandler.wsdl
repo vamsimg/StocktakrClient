@@ -33,6 +33,7 @@
           <s:element minOccurs="0" maxOccurs="1" name="errorMessage" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="localItems" type="tns:ArrayOfLocalItem" />
           <s:element minOccurs="0" maxOccurs="1" name="localStocktakeTransactions" type="tns:ArrayOfLocalStocktakeTransaction" />
+          <s:element minOccurs="0" maxOccurs="1" name="localPurchaseOrders" type="tns:ArrayOfLocalPurchaseOrder" />
         </s:sequence>
       </s:complexType>
       <s:complexType name="ArrayOfLocalItem">
@@ -44,6 +45,7 @@
         <s:sequence>
           <s:element minOccurs="0" maxOccurs="1" name="product_code" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="product_barcode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="supplier_code" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="description" type="s:string" />
           <s:element minOccurs="1" maxOccurs="1" name="cost_price" type="s:decimal" />
           <s:element minOccurs="1" maxOccurs="1" name="sale_price" type="s:decimal" />
@@ -67,6 +69,33 @@
           <s:element minOccurs="1" maxOccurs="1" name="stocktake_datetime" type="s:dateTime" />
         </s:sequence>
       </s:complexType>
+      <s:complexType name="ArrayOfLocalPurchaseOrder">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="LocalPurchaseOrder" nillable="true" type="tns:LocalPurchaseOrder" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="LocalPurchaseOrder">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="purchaseorder_id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="supplier_code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="person" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="order_datetime" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="itemList" type="tns:ArrayOfLocalPurchaseOrderItem" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfLocalPurchaseOrderItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="LocalPurchaseOrderItem" nillable="true" type="tns:LocalPurchaseOrderItem" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="LocalPurchaseOrderItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="product_code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="product_barcode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="description" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="quantity" type="s:double" />
+        </s:sequence>
+      </s:complexType>
       <s:element name="UpdateOrReplaceItems">
         <s:complexType>
           <s:sequence>
@@ -81,6 +110,33 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="UpdateOrReplaceItemsResult" type="tns:ItemResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateSuppliers">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="storeID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="suppliers" type="tns:ArrayOfLocalSupplier" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfLocalSupplier">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="LocalSupplier" nillable="true" type="tns:LocalSupplier" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="LocalSupplier">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="supplier_code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="UpdateSuppliersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateSuppliersResult" type="tns:ItemResponse" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -114,6 +170,36 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetPurchaseOrders">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="storeID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPurchaseOrdersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPurchaseOrdersResult" type="tns:ItemResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeletePurchaseOrders">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="storeID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeletePurchaseOrdersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeletePurchaseOrdersResult" type="tns:ItemResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="HelloWorldSoapIn">
@@ -134,6 +220,12 @@
   <wsdl:message name="UpdateOrReplaceItemsSoapOut">
     <wsdl:part name="parameters" element="tns:UpdateOrReplaceItemsResponse" />
   </wsdl:message>
+  <wsdl:message name="UpdateSuppliersSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateSuppliers" />
+  </wsdl:message>
+  <wsdl:message name="UpdateSuppliersSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateSuppliersResponse" />
+  </wsdl:message>
   <wsdl:message name="GetStocktakeTransactionsSoapIn">
     <wsdl:part name="parameters" element="tns:GetStocktakeTransactions" />
   </wsdl:message>
@@ -145,6 +237,18 @@
   </wsdl:message>
   <wsdl:message name="DeleteStocktakeTransactionsSoapOut">
     <wsdl:part name="parameters" element="tns:DeleteStocktakeTransactionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPurchaseOrdersSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPurchaseOrders" />
+  </wsdl:message>
+  <wsdl:message name="GetPurchaseOrdersSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPurchaseOrdersResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeletePurchaseOrdersSoapIn">
+    <wsdl:part name="parameters" element="tns:DeletePurchaseOrders" />
+  </wsdl:message>
+  <wsdl:message name="DeletePurchaseOrdersSoapOut">
+    <wsdl:part name="parameters" element="tns:DeletePurchaseOrdersResponse" />
   </wsdl:message>
   <wsdl:portType name="POSItemHandlerSoap">
     <wsdl:operation name="HelloWorld">
@@ -159,6 +263,10 @@
       <wsdl:input message="tns:UpdateOrReplaceItemsSoapIn" />
       <wsdl:output message="tns:UpdateOrReplaceItemsSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="UpdateSuppliers">
+      <wsdl:input message="tns:UpdateSuppliersSoapIn" />
+      <wsdl:output message="tns:UpdateSuppliersSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="GetStocktakeTransactions">
       <wsdl:input message="tns:GetStocktakeTransactionsSoapIn" />
       <wsdl:output message="tns:GetStocktakeTransactionsSoapOut" />
@@ -166,6 +274,14 @@
     <wsdl:operation name="DeleteStocktakeTransactions">
       <wsdl:input message="tns:DeleteStocktakeTransactionsSoapIn" />
       <wsdl:output message="tns:DeleteStocktakeTransactionsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPurchaseOrders">
+      <wsdl:input message="tns:GetPurchaseOrdersSoapIn" />
+      <wsdl:output message="tns:GetPurchaseOrdersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeletePurchaseOrders">
+      <wsdl:input message="tns:DeletePurchaseOrdersSoapIn" />
+      <wsdl:output message="tns:DeletePurchaseOrdersSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="POSItemHandlerSoap" type="tns:POSItemHandlerSoap">
@@ -197,6 +313,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="UpdateSuppliers">
+      <soap:operation soapAction="http://stocktakr.com/UpdateSuppliers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetStocktakeTransactions">
       <soap:operation soapAction="http://stocktakr.com/GetStocktakeTransactions" style="document" />
       <wsdl:input>
@@ -208,6 +333,24 @@
     </wsdl:operation>
     <wsdl:operation name="DeleteStocktakeTransactions">
       <soap:operation soapAction="http://stocktakr.com/DeleteStocktakeTransactions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPurchaseOrders">
+      <soap:operation soapAction="http://stocktakr.com/GetPurchaseOrders" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeletePurchaseOrders">
+      <soap:operation soapAction="http://stocktakr.com/DeletePurchaseOrders" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -245,6 +388,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="UpdateSuppliers">
+      <soap12:operation soapAction="http://stocktakr.com/UpdateSuppliers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetStocktakeTransactions">
       <soap12:operation soapAction="http://stocktakr.com/GetStocktakeTransactions" style="document" />
       <wsdl:input>
@@ -256,6 +408,24 @@
     </wsdl:operation>
     <wsdl:operation name="DeleteStocktakeTransactions">
       <soap12:operation soapAction="http://stocktakr.com/DeleteStocktakeTransactions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPurchaseOrders">
+      <soap12:operation soapAction="http://stocktakr.com/GetPurchaseOrders" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeletePurchaseOrders">
+      <soap12:operation soapAction="http://stocktakr.com/DeletePurchaseOrders" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

@@ -9,7 +9,7 @@
       <Value Profile="(Default)">12345678</Value>
     </Setting>
     <Setting Name="RMDBLocation" Type="System.String" Scope="User">
-      <Value Profile="(Default)">D:\rm12012\Clearwater Pty Ltd\Recent.mdb</Value>
+      <Value Profile="(Default)">D:\retail2011\Clearwater Pty Ltd\Recent.mdb</Value>
     </Setting>
     <Setting Name="StocktakrDBLocation" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
@@ -24,7 +24,7 @@
       <Value Profile="(Default)">password</Value>
     </Setting>
     <Setting Name="POSSoftware" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Microsoft</Value>
+      <Value Profile="(Default)">MYOB</Value>
     </Setting>
     <Setting Name="POSServerDBName" Type="System.String" Scope="User">
       <Value Profile="(Default)">sample</Value>

@@ -104,7 +104,34 @@ namespace StocktakrClient
 				throw;
 			}
 		}
-		
+
+          public static void DeletePurchaseOrders()
+          {
+               string StocktakrDBLocation = Properties.Settings.Default.StocktakrDBLocation;
+
+               try
+               {
+                    OleDbConnection DBconnection = null;
+
+
+                    DBconnection = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0; User Id=; Password=; Data Source=" + StocktakrDBLocation);
+
+                    DBconnection.Open();
+
+                    OleDbCommand deleteCommand = DBconnection.CreateCommand();
+                    deleteCommand.CommandText = "delete * From PurchaseOrders";
+                    deleteCommand.ExecuteNonQuery();
+
+                    deleteCommand.CommandText = "delete * From PurchaseOrderItems";
+                    deleteCommand.ExecuteNonQuery();
+
+                    DBconnection.Close();
+               }
+               catch (Exception ex)
+               {
+                    throw;
+               }
+          }
 
 		public static void DownloadStockTakeTransactions(LocalStocktakeTransaction[] transactionList)
 		{			
@@ -190,6 +217,131 @@ namespace StocktakrClient
 			}
 			return transactionList;
 		}
+
+          public static void DownloadPurchaseOrders(LocalPurchaseOrder[] orderList)
+          {
+               string StocktakrDBLocation = Properties.Settings.Default.StocktakrDBLocation;
+
+               try
+               {
+                    OleDbConnection DBconnection = null;
+
+
+                    DBconnection = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0; User Id=; Password=; Data Source=" + StocktakrDBLocation);
+
+                    DBconnection.Open();
+
+                    foreach (var order in orderList)
+                    {
+                         OleDbCommand insertCommand = DBconnection.CreateCommand();
+                         string commandText = "INSERT INTO PurchaseOrders (purchaseorder_id, supplier_code ,person, order_datetime) VALUES (?, ?, ?, ?)";
+
+                         insertCommand.CommandText = commandText;
+
+                         insertCommand.Parameters.Add("@purchaseorder_id", OleDbType.Integer).Value = order.purchaseorder_id;
+                         insertCommand.Parameters.Add("@supplier_code", OleDbType.VarWChar).Value = order.supplier_code;
+                         insertCommand.Parameters.Add("@person", OleDbType.VarWChar).Value = order.person;
+                         insertCommand.Parameters.Add("@order_datetime", OleDbType.Date).Value = order.order_datetime;
+                         insertCommand.ExecuteNonQuery();
+
+                         foreach (var item in order.itemList)
+                         {
+                              insertCommand = DBconnection.CreateCommand();
+                              commandText = "INSERT INTO PurchaseOrderItems (purchaseorder_id, product_code, product_barcode, description, quantity) VALUES (?, ?, ?, ?, ?)";
+
+                              insertCommand.CommandText = commandText;
+                              insertCommand.Parameters.Add("@purchaseorder_id", OleDbType.Integer).Value = order.purchaseorder_id;
+                              insertCommand.Parameters.Add("@product_code", OleDbType.VarWChar).Value = item.product_code;
+                              insertCommand.Parameters.Add("@product_barcode", OleDbType.VarWChar).Value = item.product_barcode;
+                              insertCommand.Parameters.Add("@description", OleDbType.VarWChar).Value = item.description;
+                              insertCommand.Parameters.Add("@quantity", OleDbType.Double).Value = item.quantity;
+                              
+                              insertCommand.ExecuteNonQuery();
+                         }
+                    }
+
+                    DBconnection.Close();
+               }
+               catch
+               {
+                    throw;
+               }
+          }
+
+          public static List<LocalPurchaseOrder> GetPurchaseOrdersToCommit()
+          {
+               string StocktakrDBLocation = Properties.Settings.Default.StocktakrDBLocation;
+               List<LocalPurchaseOrder> orderList = new List<LocalPurchaseOrder>();
+
+               try
+               {
+
+                    OleDbConnection DBconnection = null;
+                    OleDbDataReader dbReader = null;
+
+                    DBconnection = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0; User Id=; Password=; Data Source=" + StocktakrDBLocation);
+
+
+                    OleDbCommand syncCmd = DBconnection.CreateCommand();
+                    
+                    syncCmd.CommandText = "SELECT purchaseorder_id,supplier_code,person, order_datetime from PurchaseOrders";
+
+                    DBconnection.Open();
+                    dbReader = syncCmd.ExecuteReader();
+
+                    if (dbReader.HasRows)
+                    {
+                         while (dbReader.Read())
+                         {
+                              var newPurchaseOrder = new LocalPurchaseOrder();
+
+
+                              newPurchaseOrder.purchaseorder_id = dbReader.GetInt32(0);
+                              newPurchaseOrder.supplier_code = dbReader.GetString(1);
+                              newPurchaseOrder.person = dbReader.GetString(2);
+                              newPurchaseOrder.order_datetime = dbReader.GetDateTime(3);
+
+                              orderList.Add(newPurchaseOrder);
+                         }
+                    }
+
+                    dbReader.Close();
+
+
+                    syncCmd.CommandText = "SELECT product_code, product_barcode, description, quantity FROM PurchaseOrderItems WHERE purchaseorder_id = ?";
+
+                    foreach (var order in orderList)
+                    {
+                         List<LocalPurchaseOrderItem> itemList = new List<LocalPurchaseOrderItem>();
+                         syncCmd.Parameters.Add("@purchaseorder_id", OleDbType.VarWChar).Value = order.purchaseorder_id;
+                         dbReader = syncCmd.ExecuteReader();
+                         if (dbReader.HasRows)
+                         {
+                              while (dbReader.Read())
+                              {
+                                   var newPurchaseOrderItem = new LocalPurchaseOrderItem();
+
+                                   newPurchaseOrderItem.product_code = dbReader.GetString(0);
+                                   newPurchaseOrderItem.product_barcode = dbReader.GetString(1);
+                                   newPurchaseOrderItem.description = dbReader.GetString(2);
+                                   newPurchaseOrderItem.quantity = dbReader.GetDouble(3);
+
+                                   itemList.Add(newPurchaseOrderItem);
+                              }
+                              order.itemList = itemList.ToArray();
+                         }
+                    }
+
+                    dbReader.Close();
+                    DBconnection.Close();
+               }
+               catch (Exception ex)
+               {
+                    throw;
+               }
+               return orderList;
+
+          }
 
 		public static bool TestDPDBConnection()
 		{
