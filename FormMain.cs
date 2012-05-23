@@ -1366,7 +1366,7 @@ namespace StocktakrClient
 
                // Initializes the variables to pass to the MessageBox.Show method.
 
-               string message = "Are you sure ? This action will download ALL Purchase Orders from the server and then delete them.";
+               string message = "Are you sure ? This action will download ALL Purchase Orders with suppliers assigned from the server and then delete them.";
                string caption = "Confirm ";
 
                MessageBoxButtons buttons = MessageBoxButtons.YesNo;
