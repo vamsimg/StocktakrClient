@@ -45,6 +45,10 @@ namespace StocktakrClient.com.stocktakr {
         
         private System.Threading.SendOrPostCallback DeletePurchaseOrdersOperationCompleted;
         
+        private System.Threading.SendOrPostCallback GetReceivedGoodsOrdersOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback DeleteReceivedGoodsOrdersOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -106,6 +110,12 @@ namespace StocktakrClient.com.stocktakr {
         
         /// <remarks/>
         public event DeletePurchaseOrdersCompletedEventHandler DeletePurchaseOrdersCompleted;
+        
+        /// <remarks/>
+        public event GetReceivedGoodsOrdersCompletedEventHandler GetReceivedGoodsOrdersCompleted;
+        
+        /// <remarks/>
+        public event DeleteReceivedGoodsOrdersCompletedEventHandler DeleteReceivedGoodsOrdersCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://stocktakr.com/HelloWorld", RequestNamespace="http://stocktakr.com/", ResponseNamespace="http://stocktakr.com/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -358,6 +368,68 @@ namespace StocktakrClient.com.stocktakr {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://stocktakr.com/GetReceivedGoodsOrders", RequestNamespace="http://stocktakr.com/", ResponseNamespace="http://stocktakr.com/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public ItemResponse GetReceivedGoodsOrders(int storeID, string password) {
+            object[] results = this.Invoke("GetReceivedGoodsOrders", new object[] {
+                        storeID,
+                        password});
+            return ((ItemResponse)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetReceivedGoodsOrdersAsync(int storeID, string password) {
+            this.GetReceivedGoodsOrdersAsync(storeID, password, null);
+        }
+        
+        /// <remarks/>
+        public void GetReceivedGoodsOrdersAsync(int storeID, string password, object userState) {
+            if ((this.GetReceivedGoodsOrdersOperationCompleted == null)) {
+                this.GetReceivedGoodsOrdersOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetReceivedGoodsOrdersOperationCompleted);
+            }
+            this.InvokeAsync("GetReceivedGoodsOrders", new object[] {
+                        storeID,
+                        password}, this.GetReceivedGoodsOrdersOperationCompleted, userState);
+        }
+        
+        private void OnGetReceivedGoodsOrdersOperationCompleted(object arg) {
+            if ((this.GetReceivedGoodsOrdersCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetReceivedGoodsOrdersCompleted(this, new GetReceivedGoodsOrdersCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://stocktakr.com/DeleteReceivedGoodsOrders", RequestNamespace="http://stocktakr.com/", ResponseNamespace="http://stocktakr.com/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public ItemResponse DeleteReceivedGoodsOrders(int storeID, string password) {
+            object[] results = this.Invoke("DeleteReceivedGoodsOrders", new object[] {
+                        storeID,
+                        password});
+            return ((ItemResponse)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void DeleteReceivedGoodsOrdersAsync(int storeID, string password) {
+            this.DeleteReceivedGoodsOrdersAsync(storeID, password, null);
+        }
+        
+        /// <remarks/>
+        public void DeleteReceivedGoodsOrdersAsync(int storeID, string password, object userState) {
+            if ((this.DeleteReceivedGoodsOrdersOperationCompleted == null)) {
+                this.DeleteReceivedGoodsOrdersOperationCompleted = new System.Threading.SendOrPostCallback(this.OnDeleteReceivedGoodsOrdersOperationCompleted);
+            }
+            this.InvokeAsync("DeleteReceivedGoodsOrders", new object[] {
+                        storeID,
+                        password}, this.DeleteReceivedGoodsOrdersOperationCompleted, userState);
+        }
+        
+        private void OnDeleteReceivedGoodsOrdersOperationCompleted(object arg) {
+            if ((this.DeleteReceivedGoodsOrdersCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.DeleteReceivedGoodsOrdersCompleted(this, new DeleteReceivedGoodsOrdersCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -393,6 +465,8 @@ namespace StocktakrClient.com.stocktakr {
         private LocalStocktakeTransaction[] localStocktakeTransactionsField;
         
         private LocalPurchaseOrder[] localPurchaseOrdersField;
+        
+        private LocalReceivedGoodsOrder[] localReceivedGoodsOrdersField;
         
         /// <remarks/>
         public bool is_error {
@@ -441,6 +515,16 @@ namespace StocktakrClient.com.stocktakr {
             }
             set {
                 this.localPurchaseOrdersField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public LocalReceivedGoodsOrder[] localReceivedGoodsOrders {
+            get {
+                return this.localReceivedGoodsOrdersField;
+            }
+            set {
+                this.localReceivedGoodsOrdersField = value;
             }
         }
     }
@@ -591,6 +675,132 @@ namespace StocktakrClient.com.stocktakr {
             }
             set {
                 this.nameField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.233")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://stocktakr.com/")]
+    public partial class LocalReceivedGoodsOrderItem {
+        
+        private string product_codeField;
+        
+        private string product_barcodeField;
+        
+        private string descriptionField;
+        
+        private double quantityField;
+        
+        /// <remarks/>
+        public string product_code {
+            get {
+                return this.product_codeField;
+            }
+            set {
+                this.product_codeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string product_barcode {
+            get {
+                return this.product_barcodeField;
+            }
+            set {
+                this.product_barcodeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string description {
+            get {
+                return this.descriptionField;
+            }
+            set {
+                this.descriptionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public double quantity {
+            get {
+                return this.quantityField;
+            }
+            set {
+                this.quantityField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.233")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://stocktakr.com/")]
+    public partial class LocalReceivedGoodsOrder {
+        
+        private int receivedgoodsorder_idField;
+        
+        private string supplier_codeField;
+        
+        private string personField;
+        
+        private System.DateTime order_datetimeField;
+        
+        private LocalReceivedGoodsOrderItem[] itemListField;
+        
+        /// <remarks/>
+        public int receivedgoodsorder_id {
+            get {
+                return this.receivedgoodsorder_idField;
+            }
+            set {
+                this.receivedgoodsorder_idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string supplier_code {
+            get {
+                return this.supplier_codeField;
+            }
+            set {
+                this.supplier_codeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string person {
+            get {
+                return this.personField;
+            }
+            set {
+                this.personField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime order_datetime {
+            get {
+                return this.order_datetimeField;
+            }
+            set {
+                this.order_datetimeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public LocalReceivedGoodsOrderItem[] itemList {
+            get {
+                return this.itemListField;
+            }
+            set {
+                this.itemListField = value;
             }
         }
     }
@@ -997,6 +1207,58 @@ namespace StocktakrClient.com.stocktakr {
         private object[] results;
         
         internal DeletePurchaseOrdersCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public ItemResponse Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((ItemResponse)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.1")]
+    public delegate void GetReceivedGoodsOrdersCompletedEventHandler(object sender, GetReceivedGoodsOrdersCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.1")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetReceivedGoodsOrdersCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetReceivedGoodsOrdersCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public ItemResponse Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((ItemResponse)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.1")]
+    public delegate void DeleteReceivedGoodsOrdersCompletedEventHandler(object sender, DeleteReceivedGoodsOrdersCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.1")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class DeleteReceivedGoodsOrdersCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal DeleteReceivedGoodsOrdersCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

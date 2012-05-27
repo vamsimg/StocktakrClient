@@ -343,6 +343,131 @@ namespace StocktakrClient
 
           }
 
+          public static void DownloadReceivedGoodsOrders(LocalReceivedGoodsOrder[] orderList)
+          {
+               string StocktakrDBLocation = Properties.Settings.Default.StocktakrDBLocation;
+
+               try
+               {
+                    OleDbConnection DBconnection = null;
+
+
+                    DBconnection = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0; User Id=; Password=; Data Source=" + StocktakrDBLocation);
+
+                    DBconnection.Open();
+
+                    foreach (var order in orderList)
+                    {
+                         OleDbCommand insertCommand = DBconnection.CreateCommand();
+                         string commandText = "INSERT INTO ReceivedGoodsOrders (receivedgoodsorder_id, supplier_code ,person, order_datetime) VALUES (?, ?, ?, ?)";
+
+                         insertCommand.CommandText = commandText;
+
+                         insertCommand.Parameters.Add("@receivedgoodsorder_id", OleDbType.Integer).Value = order.receivedgoodsorder_id;
+                         insertCommand.Parameters.Add("@supplier_code", OleDbType.VarWChar).Value = order.supplier_code;
+                         insertCommand.Parameters.Add("@person", OleDbType.VarWChar).Value = order.person;
+                         insertCommand.Parameters.Add("@order_datetime", OleDbType.Date).Value = order.order_datetime;
+                         insertCommand.ExecuteNonQuery();
+
+                         foreach (var item in order.itemList)
+                         {
+                              insertCommand = DBconnection.CreateCommand();
+                              commandText = "INSERT INTO ReceivedGoodsOrderItems (receivedgoodsorder_id, product_code, product_barcode, description, quantity) VALUES (?, ?, ?, ?, ?)";
+
+                              insertCommand.CommandText = commandText;
+                              insertCommand.Parameters.Add("@receivedgoodsorder_id", OleDbType.Integer).Value = order.receivedgoodsorder_id;
+                              insertCommand.Parameters.Add("@product_code", OleDbType.VarWChar).Value = item.product_code;
+                              insertCommand.Parameters.Add("@product_barcode", OleDbType.VarWChar).Value = item.product_barcode;
+                              insertCommand.Parameters.Add("@description", OleDbType.VarWChar).Value = item.description;
+                              insertCommand.Parameters.Add("@quantity", OleDbType.Double).Value = item.quantity;
+
+                              insertCommand.ExecuteNonQuery();
+                         }
+                    }
+
+                    DBconnection.Close();
+               }
+               catch
+               {
+                    throw;
+               }
+          }
+
+          public static List<LocalReceivedGoodsOrder> GetReceivedGoodsOrdersToCommit()
+          {
+               string StocktakrDBLocation = Properties.Settings.Default.StocktakrDBLocation;
+               List<LocalReceivedGoodsOrder> orderList = new List<LocalReceivedGoodsOrder>();
+
+               try
+               {
+
+                    OleDbConnection DBconnection = null;
+                    OleDbDataReader dbReader = null;
+
+                    DBconnection = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0; User Id=; Password=; Data Source=" + StocktakrDBLocation);
+
+
+                    OleDbCommand syncCmd = DBconnection.CreateCommand();
+
+                    syncCmd.CommandText = "SELECT receivedgoodsorder_id,supplier_code,person, order_datetime from ReceivedGoodsOrders";
+
+                    DBconnection.Open();
+                    dbReader = syncCmd.ExecuteReader();
+
+                    if (dbReader.HasRows)
+                    {
+                         while (dbReader.Read())
+                         {
+                              var newReceivedGoodsOrder = new LocalReceivedGoodsOrder();
+
+
+                              newReceivedGoodsOrder.receivedgoodsorder_id = dbReader.GetInt32(0);
+                              newReceivedGoodsOrder.supplier_code = dbReader.GetString(1);
+                              newReceivedGoodsOrder.person = dbReader.GetString(2);
+                              newReceivedGoodsOrder.order_datetime = dbReader.GetDateTime(3);
+
+                              orderList.Add(newReceivedGoodsOrder);
+                         }
+                    }
+
+                    dbReader.Close();
+
+
+                    syncCmd.CommandText = "SELECT product_code, product_barcode, description, quantity FROM ReceivedGoodsOrderItems WHERE receivedgoodsorder_id = ?";
+
+                    foreach (var order in orderList)
+                    {
+                         List<LocalReceivedGoodsOrderItem> itemList = new List<LocalReceivedGoodsOrderItem>();
+                         syncCmd.Parameters.Add("@receivedgoodsorder_id", OleDbType.VarWChar).Value = order.receivedgoodsorder_id;
+                         dbReader = syncCmd.ExecuteReader();
+                         if (dbReader.HasRows)
+                         {
+                              while (dbReader.Read())
+                              {
+                                   var newReceivedGoodsOrderItem = new LocalReceivedGoodsOrderItem();
+
+                                   newReceivedGoodsOrderItem.product_code = dbReader.GetString(0);
+                                   newReceivedGoodsOrderItem.product_barcode = dbReader.GetString(1);
+                                   newReceivedGoodsOrderItem.description = dbReader.GetString(2);
+                                   newReceivedGoodsOrderItem.quantity = dbReader.GetDouble(3);
+
+                                   itemList.Add(newReceivedGoodsOrderItem);
+                              }
+                              order.itemList = itemList.ToArray();
+                         }
+                    }
+
+                    dbReader.Close();
+                    DBconnection.Close();
+               }
+               catch (Exception ex)
+               {
+                    throw;
+               }
+               return orderList;
+
+          }
+
 		public static bool TestDPDBConnection()
 		{
 			string StocktakrDBLocation = Properties.Settings.Default.StocktakrDBLocation;

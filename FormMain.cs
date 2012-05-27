@@ -84,6 +84,11 @@ namespace StocktakrClient
         private Label GetPurchaseOrdersErrorLabel;
         private Button WritePurchaseOrdersButton;
         private Label WritePurchaseOrdersErrorLabel;
+        private GroupBox ReceivedGoodsGroupBox;
+        private Button GetReceivedGoodsOrdersButton;
+        private Label GetReceivedGoodsErrorLabel;
+        private Button WriteReceivedGoodsOrdersButton;
+        private Label WriteReceivedGoodsErrorLabel;
         private IContainer components;
 
 		
@@ -150,21 +155,26 @@ namespace StocktakrClient
                this.MainTabControl = new System.Windows.Forms.TabControl();
                this.SyncTab = new System.Windows.Forms.TabPage();
                this.panel2 = new System.Windows.Forms.Panel();
-               this.SendOptionsGroupBox = new System.Windows.Forms.GroupBox();
-               this.UpdateItemsButton = new System.Windows.Forms.Button();
-               this.ReplaceItemsButton = new System.Windows.Forms.Button();
-               this.SendItemsErrorLabel = new System.Windows.Forms.Label();
-               this.CommitStocktakeItemsErrorLabel = new System.Windows.Forms.Label();
-               this.CommitStocktakeButton = new System.Windows.Forms.Button();
-               this.GetStocktakeItemsErrorLabel = new System.Windows.Forms.Label();
-               this.GetStocktakeItemsButton = new System.Windows.Forms.Button();
-               this.label9 = new System.Windows.Forms.Label();
-               this.StockTakeGroupBox = new System.Windows.Forms.GroupBox();
+               this.ReceivedGoodsGroupBox = new System.Windows.Forms.GroupBox();
+               this.GetReceivedGoodsOrdersButton = new System.Windows.Forms.Button();
+               this.GetReceivedGoodsErrorLabel = new System.Windows.Forms.Label();
+               this.WriteReceivedGoodsOrdersButton = new System.Windows.Forms.Button();
+               this.WriteReceivedGoodsErrorLabel = new System.Windows.Forms.Label();
                this.PurchaseOrdersGroupBox = new System.Windows.Forms.GroupBox();
                this.GetPurchaseOrdersButton = new System.Windows.Forms.Button();
                this.GetPurchaseOrdersErrorLabel = new System.Windows.Forms.Label();
                this.WritePurchaseOrdersButton = new System.Windows.Forms.Button();
                this.WritePurchaseOrdersErrorLabel = new System.Windows.Forms.Label();
+               this.StockTakeGroupBox = new System.Windows.Forms.GroupBox();
+               this.GetStocktakeItemsButton = new System.Windows.Forms.Button();
+               this.GetStocktakeItemsErrorLabel = new System.Windows.Forms.Label();
+               this.CommitStocktakeButton = new System.Windows.Forms.Button();
+               this.CommitStocktakeItemsErrorLabel = new System.Windows.Forms.Label();
+               this.SendOptionsGroupBox = new System.Windows.Forms.GroupBox();
+               this.UpdateItemsButton = new System.Windows.Forms.Button();
+               this.ReplaceItemsButton = new System.Windows.Forms.Button();
+               this.SendItemsErrorLabel = new System.Windows.Forms.Label();
+               this.label9 = new System.Windows.Forms.Label();
                this.DatabasesTab.SuspendLayout();
                ((System.ComponentModel.ISupportInitialize)(this.POSSoftwareSplitContainer)).BeginInit();
                this.POSSoftwareSplitContainer.Panel1.SuspendLayout();
@@ -175,9 +185,10 @@ namespace StocktakrClient
                this.MainTabControl.SuspendLayout();
                this.SyncTab.SuspendLayout();
                this.panel2.SuspendLayout();
-               this.SendOptionsGroupBox.SuspendLayout();
-               this.StockTakeGroupBox.SuspendLayout();
+               this.ReceivedGoodsGroupBox.SuspendLayout();
                this.PurchaseOrdersGroupBox.SuspendLayout();
+               this.StockTakeGroupBox.SuspendLayout();
+               this.SendOptionsGroupBox.SuspendLayout();
                this.SuspendLayout();
                // 
                // lbLog
@@ -201,7 +212,7 @@ namespace StocktakrClient
                this.DatabasesTab.Location = new System.Drawing.Point(4, 22);
                this.DatabasesTab.Name = "DatabasesTab";
                this.DatabasesTab.Padding = new System.Windows.Forms.Padding(3);
-               this.DatabasesTab.Size = new System.Drawing.Size(538, 524);
+               this.DatabasesTab.Size = new System.Drawing.Size(538, 600);
                this.DatabasesTab.TabIndex = 2;
                this.DatabasesTab.Text = "Databases";
                this.DatabasesTab.UseVisualStyleBackColor = true;
@@ -463,7 +474,7 @@ namespace StocktakrClient
                this.ConnectionTab.Location = new System.Drawing.Point(4, 22);
                this.ConnectionTab.Name = "ConnectionTab";
                this.ConnectionTab.Padding = new System.Windows.Forms.Padding(3);
-               this.ConnectionTab.Size = new System.Drawing.Size(538, 524);
+               this.ConnectionTab.Size = new System.Drawing.Size(538, 600);
                this.ConnectionTab.TabIndex = 0;
                this.ConnectionTab.Text = "Connection";
                this.ConnectionTab.UseVisualStyleBackColor = true;
@@ -550,7 +561,7 @@ namespace StocktakrClient
                this.MainTabControl.Location = new System.Drawing.Point(28, 26);
                this.MainTabControl.Name = "MainTabControl";
                this.MainTabControl.SelectedIndex = 0;
-               this.MainTabControl.Size = new System.Drawing.Size(546, 550);
+               this.MainTabControl.Size = new System.Drawing.Size(546, 626);
                this.MainTabControl.TabIndex = 39;
                // 
                // SyncTab
@@ -559,7 +570,7 @@ namespace StocktakrClient
                this.SyncTab.Location = new System.Drawing.Point(4, 22);
                this.SyncTab.Name = "SyncTab";
                this.SyncTab.Padding = new System.Windows.Forms.Padding(3);
-               this.SyncTab.Size = new System.Drawing.Size(538, 524);
+               this.SyncTab.Size = new System.Drawing.Size(538, 600);
                this.SyncTab.TabIndex = 3;
                this.SyncTab.Text = "Sync";
                this.SyncTab.UseVisualStyleBackColor = true;
@@ -567,122 +578,71 @@ namespace StocktakrClient
                // panel2
                // 
                this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+               this.panel2.Controls.Add(this.ReceivedGoodsGroupBox);
                this.panel2.Controls.Add(this.PurchaseOrdersGroupBox);
                this.panel2.Controls.Add(this.StockTakeGroupBox);
                this.panel2.Controls.Add(this.SendOptionsGroupBox);
                this.panel2.Controls.Add(this.label9);
                this.panel2.Location = new System.Drawing.Point(29, 28);
                this.panel2.Name = "panel2";
-               this.panel2.Size = new System.Drawing.Size(479, 477);
+               this.panel2.Size = new System.Drawing.Size(479, 569);
                this.panel2.TabIndex = 46;
                // 
-               // SendOptionsGroupBox
+               // ReceivedGoodsGroupBox
                // 
-               this.SendOptionsGroupBox.Controls.Add(this.UpdateItemsButton);
-               this.SendOptionsGroupBox.Controls.Add(this.ReplaceItemsButton);
-               this.SendOptionsGroupBox.Controls.Add(this.SendItemsErrorLabel);
-               this.SendOptionsGroupBox.Location = new System.Drawing.Point(23, 58);
-               this.SendOptionsGroupBox.Name = "SendOptionsGroupBox";
-               this.SendOptionsGroupBox.Size = new System.Drawing.Size(432, 120);
-               this.SendOptionsGroupBox.TabIndex = 48;
-               this.SendOptionsGroupBox.TabStop = false;
-               this.SendOptionsGroupBox.Text = "Send Products to Server";
+               this.ReceivedGoodsGroupBox.Controls.Add(this.GetReceivedGoodsOrdersButton);
+               this.ReceivedGoodsGroupBox.Controls.Add(this.GetReceivedGoodsErrorLabel);
+               this.ReceivedGoodsGroupBox.Controls.Add(this.WriteReceivedGoodsOrdersButton);
+               this.ReceivedGoodsGroupBox.Controls.Add(this.WriteReceivedGoodsErrorLabel);
+               this.ReceivedGoodsGroupBox.Location = new System.Drawing.Point(23, 445);
+               this.ReceivedGoodsGroupBox.Name = "ReceivedGoodsGroupBox";
+               this.ReceivedGoodsGroupBox.Size = new System.Drawing.Size(427, 117);
+               this.ReceivedGoodsGroupBox.TabIndex = 51;
+               this.ReceivedGoodsGroupBox.TabStop = false;
+               this.ReceivedGoodsGroupBox.Text = "Received Goods";
+               this.ReceivedGoodsGroupBox.Visible = false;
                // 
-               // UpdateItemsButton
+               // GetReceivedGoodsOrdersButton
                // 
-               this.UpdateItemsButton.Location = new System.Drawing.Point(264, 36);
-               this.UpdateItemsButton.Name = "UpdateItemsButton";
-               this.UpdateItemsButton.Size = new System.Drawing.Size(139, 38);
-               this.UpdateItemsButton.TabIndex = 43;
-               this.UpdateItemsButton.Text = "Update New Items Only";
-               this.UpdateItemsButton.UseVisualStyleBackColor = true;
-               this.UpdateItemsButton.Click += new System.EventHandler(this.UpdateItemsButton_Click);
+               this.GetReceivedGoodsOrdersButton.Location = new System.Drawing.Point(12, 29);
+               this.GetReceivedGoodsOrdersButton.Name = "GetReceivedGoodsOrdersButton";
+               this.GetReceivedGoodsOrdersButton.Size = new System.Drawing.Size(193, 38);
+               this.GetReceivedGoodsOrdersButton.TabIndex = 46;
+               this.GetReceivedGoodsOrdersButton.Text = "A, Get Received Goods Orders from Server";
+               this.GetReceivedGoodsOrdersButton.UseVisualStyleBackColor = true;
+               this.GetReceivedGoodsOrdersButton.Click += new System.EventHandler(this.GetReceivedGoodsOrdersButton_Click);
                // 
-               // ReplaceItemsButton
+               // GetReceivedGoodsErrorLabel
                // 
-               this.ReplaceItemsButton.Location = new System.Drawing.Point(17, 36);
-               this.ReplaceItemsButton.Name = "ReplaceItemsButton";
-               this.ReplaceItemsButton.Size = new System.Drawing.Size(139, 38);
-               this.ReplaceItemsButton.TabIndex = 1;
-               this.ReplaceItemsButton.Text = "Replace All Items";
-               this.ReplaceItemsButton.UseVisualStyleBackColor = true;
-               this.ReplaceItemsButton.Click += new System.EventHandler(this.ReplaceItemsButton_Click);
+               this.GetReceivedGoodsErrorLabel.AutoSize = true;
+               this.GetReceivedGoodsErrorLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+               this.GetReceivedGoodsErrorLabel.ForeColor = System.Drawing.Color.Red;
+               this.GetReceivedGoodsErrorLabel.Location = new System.Drawing.Point(12, 82);
+               this.GetReceivedGoodsErrorLabel.Name = "GetReceivedGoodsErrorLabel";
+               this.GetReceivedGoodsErrorLabel.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+               this.GetReceivedGoodsErrorLabel.Size = new System.Drawing.Size(12, 15);
+               this.GetReceivedGoodsErrorLabel.TabIndex = 47;
                // 
-               // SendItemsErrorLabel
+               // WriteReceivedGoodsOrdersButton
                // 
-               this.SendItemsErrorLabel.AutoSize = true;
-               this.SendItemsErrorLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-               this.SendItemsErrorLabel.ForeColor = System.Drawing.Color.Red;
-               this.SendItemsErrorLabel.Location = new System.Drawing.Point(17, 88);
-               this.SendItemsErrorLabel.Name = "SendItemsErrorLabel";
-               this.SendItemsErrorLabel.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-               this.SendItemsErrorLabel.Size = new System.Drawing.Size(12, 15);
-               this.SendItemsErrorLabel.TabIndex = 42;
+               this.WriteReceivedGoodsOrdersButton.Location = new System.Drawing.Point(228, 29);
+               this.WriteReceivedGoodsOrdersButton.Name = "WriteReceivedGoodsOrdersButton";
+               this.WriteReceivedGoodsOrdersButton.Size = new System.Drawing.Size(193, 38);
+               this.WriteReceivedGoodsOrdersButton.TabIndex = 48;
+               this.WriteReceivedGoodsOrdersButton.Text = "B. Write Received Goods  Orders to POS Database";
+               this.WriteReceivedGoodsOrdersButton.UseVisualStyleBackColor = true;
+               this.WriteReceivedGoodsOrdersButton.Click += new System.EventHandler(this.WriteReceivedGoodsOrdersButton_Click);
                // 
-               // CommitStocktakeItemsErrorLabel
+               // WriteReceivedGoodsErrorLabel
                // 
-               this.CommitStocktakeItemsErrorLabel.AutoSize = true;
-               this.CommitStocktakeItemsErrorLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-               this.CommitStocktakeItemsErrorLabel.ForeColor = System.Drawing.Color.Red;
-               this.CommitStocktakeItemsErrorLabel.Location = new System.Drawing.Point(228, 72);
-               this.CommitStocktakeItemsErrorLabel.Name = "CommitStocktakeItemsErrorLabel";
-               this.CommitStocktakeItemsErrorLabel.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-               this.CommitStocktakeItemsErrorLabel.Size = new System.Drawing.Size(12, 15);
-               this.CommitStocktakeItemsErrorLabel.TabIndex = 45;
-               // 
-               // CommitStocktakeButton
-               // 
-               this.CommitStocktakeButton.Location = new System.Drawing.Point(228, 19);
-               this.CommitStocktakeButton.Name = "CommitStocktakeButton";
-               this.CommitStocktakeButton.Size = new System.Drawing.Size(193, 38);
-               this.CommitStocktakeButton.TabIndex = 44;
-               this.CommitStocktakeButton.Text = "B. Write Stocktake Items to POS Database";
-               this.CommitStocktakeButton.UseVisualStyleBackColor = true;
-               this.CommitStocktakeButton.Click += new System.EventHandler(this.CommitStocktakeButton_Click);
-               // 
-               // GetStocktakeItemsErrorLabel
-               // 
-               this.GetStocktakeItemsErrorLabel.AutoSize = true;
-               this.GetStocktakeItemsErrorLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-               this.GetStocktakeItemsErrorLabel.ForeColor = System.Drawing.Color.Red;
-               this.GetStocktakeItemsErrorLabel.Location = new System.Drawing.Point(12, 72);
-               this.GetStocktakeItemsErrorLabel.Name = "GetStocktakeItemsErrorLabel";
-               this.GetStocktakeItemsErrorLabel.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-               this.GetStocktakeItemsErrorLabel.Size = new System.Drawing.Size(12, 15);
-               this.GetStocktakeItemsErrorLabel.TabIndex = 43;
-               // 
-               // GetStocktakeItemsButton
-               // 
-               this.GetStocktakeItemsButton.Location = new System.Drawing.Point(12, 19);
-               this.GetStocktakeItemsButton.Name = "GetStocktakeItemsButton";
-               this.GetStocktakeItemsButton.Size = new System.Drawing.Size(193, 38);
-               this.GetStocktakeItemsButton.TabIndex = 2;
-               this.GetStocktakeItemsButton.Text = "A. Get StockTake Items from Server";
-               this.GetStocktakeItemsButton.UseVisualStyleBackColor = true;
-               this.GetStocktakeItemsButton.Click += new System.EventHandler(this.GetStocktakeItemsButton_Click);
-               // 
-               // label9
-               // 
-               this.label9.AutoSize = true;
-               this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-               this.label9.Location = new System.Drawing.Point(24, 19);
-               this.label9.Name = "label9";
-               this.label9.Size = new System.Drawing.Size(155, 24);
-               this.label9.TabIndex = 0;
-               this.label9.Text = "Items in Inventory";
-               // 
-               // StockTakeGroupBox
-               // 
-               this.StockTakeGroupBox.Controls.Add(this.GetStocktakeItemsButton);
-               this.StockTakeGroupBox.Controls.Add(this.GetStocktakeItemsErrorLabel);
-               this.StockTakeGroupBox.Controls.Add(this.CommitStocktakeButton);
-               this.StockTakeGroupBox.Controls.Add(this.CommitStocktakeItemsErrorLabel);
-               this.StockTakeGroupBox.Location = new System.Drawing.Point(23, 198);
-               this.StockTakeGroupBox.Name = "StockTakeGroupBox";
-               this.StockTakeGroupBox.Size = new System.Drawing.Size(432, 100);
-               this.StockTakeGroupBox.TabIndex = 49;
-               this.StockTakeGroupBox.TabStop = false;
-               this.StockTakeGroupBox.Text = "StockTake";
+               this.WriteReceivedGoodsErrorLabel.AutoSize = true;
+               this.WriteReceivedGoodsErrorLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+               this.WriteReceivedGoodsErrorLabel.ForeColor = System.Drawing.Color.Red;
+               this.WriteReceivedGoodsErrorLabel.Location = new System.Drawing.Point(228, 82);
+               this.WriteReceivedGoodsErrorLabel.Name = "WriteReceivedGoodsErrorLabel";
+               this.WriteReceivedGoodsErrorLabel.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+               this.WriteReceivedGoodsErrorLabel.Size = new System.Drawing.Size(12, 15);
+               this.WriteReceivedGoodsErrorLabel.TabIndex = 49;
                // 
                // PurchaseOrdersGroupBox
                // 
@@ -739,10 +699,118 @@ namespace StocktakrClient
                this.WritePurchaseOrdersErrorLabel.Size = new System.Drawing.Size(12, 15);
                this.WritePurchaseOrdersErrorLabel.TabIndex = 49;
                // 
+               // StockTakeGroupBox
+               // 
+               this.StockTakeGroupBox.Controls.Add(this.GetStocktakeItemsButton);
+               this.StockTakeGroupBox.Controls.Add(this.GetStocktakeItemsErrorLabel);
+               this.StockTakeGroupBox.Controls.Add(this.CommitStocktakeButton);
+               this.StockTakeGroupBox.Controls.Add(this.CommitStocktakeItemsErrorLabel);
+               this.StockTakeGroupBox.Location = new System.Drawing.Point(23, 198);
+               this.StockTakeGroupBox.Name = "StockTakeGroupBox";
+               this.StockTakeGroupBox.Size = new System.Drawing.Size(432, 100);
+               this.StockTakeGroupBox.TabIndex = 49;
+               this.StockTakeGroupBox.TabStop = false;
+               this.StockTakeGroupBox.Text = "StockTake";
+               // 
+               // GetStocktakeItemsButton
+               // 
+               this.GetStocktakeItemsButton.Location = new System.Drawing.Point(12, 19);
+               this.GetStocktakeItemsButton.Name = "GetStocktakeItemsButton";
+               this.GetStocktakeItemsButton.Size = new System.Drawing.Size(193, 38);
+               this.GetStocktakeItemsButton.TabIndex = 2;
+               this.GetStocktakeItemsButton.Text = "A. Get StockTake Items from Server";
+               this.GetStocktakeItemsButton.UseVisualStyleBackColor = true;
+               this.GetStocktakeItemsButton.Click += new System.EventHandler(this.GetStocktakeItemsButton_Click);
+               // 
+               // GetStocktakeItemsErrorLabel
+               // 
+               this.GetStocktakeItemsErrorLabel.AutoSize = true;
+               this.GetStocktakeItemsErrorLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+               this.GetStocktakeItemsErrorLabel.ForeColor = System.Drawing.Color.Red;
+               this.GetStocktakeItemsErrorLabel.Location = new System.Drawing.Point(12, 72);
+               this.GetStocktakeItemsErrorLabel.Name = "GetStocktakeItemsErrorLabel";
+               this.GetStocktakeItemsErrorLabel.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+               this.GetStocktakeItemsErrorLabel.Size = new System.Drawing.Size(12, 15);
+               this.GetStocktakeItemsErrorLabel.TabIndex = 43;
+               // 
+               // CommitStocktakeButton
+               // 
+               this.CommitStocktakeButton.Location = new System.Drawing.Point(228, 19);
+               this.CommitStocktakeButton.Name = "CommitStocktakeButton";
+               this.CommitStocktakeButton.Size = new System.Drawing.Size(193, 38);
+               this.CommitStocktakeButton.TabIndex = 44;
+               this.CommitStocktakeButton.Text = "B. Write Stocktake Items to POS Database";
+               this.CommitStocktakeButton.UseVisualStyleBackColor = true;
+               this.CommitStocktakeButton.Click += new System.EventHandler(this.CommitStocktakeButton_Click);
+               // 
+               // CommitStocktakeItemsErrorLabel
+               // 
+               this.CommitStocktakeItemsErrorLabel.AutoSize = true;
+               this.CommitStocktakeItemsErrorLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+               this.CommitStocktakeItemsErrorLabel.ForeColor = System.Drawing.Color.Red;
+               this.CommitStocktakeItemsErrorLabel.Location = new System.Drawing.Point(228, 72);
+               this.CommitStocktakeItemsErrorLabel.Name = "CommitStocktakeItemsErrorLabel";
+               this.CommitStocktakeItemsErrorLabel.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+               this.CommitStocktakeItemsErrorLabel.Size = new System.Drawing.Size(12, 15);
+               this.CommitStocktakeItemsErrorLabel.TabIndex = 45;
+               // 
+               // SendOptionsGroupBox
+               // 
+               this.SendOptionsGroupBox.Controls.Add(this.UpdateItemsButton);
+               this.SendOptionsGroupBox.Controls.Add(this.ReplaceItemsButton);
+               this.SendOptionsGroupBox.Controls.Add(this.SendItemsErrorLabel);
+               this.SendOptionsGroupBox.Location = new System.Drawing.Point(23, 58);
+               this.SendOptionsGroupBox.Name = "SendOptionsGroupBox";
+               this.SendOptionsGroupBox.Size = new System.Drawing.Size(432, 120);
+               this.SendOptionsGroupBox.TabIndex = 48;
+               this.SendOptionsGroupBox.TabStop = false;
+               this.SendOptionsGroupBox.Text = "Send Products to Server";
+               // 
+               // UpdateItemsButton
+               // 
+               this.UpdateItemsButton.Location = new System.Drawing.Point(264, 36);
+               this.UpdateItemsButton.Name = "UpdateItemsButton";
+               this.UpdateItemsButton.Size = new System.Drawing.Size(139, 38);
+               this.UpdateItemsButton.TabIndex = 43;
+               this.UpdateItemsButton.Text = "Update New Items Only";
+               this.UpdateItemsButton.UseVisualStyleBackColor = true;
+               this.UpdateItemsButton.Click += new System.EventHandler(this.UpdateItemsButton_Click);
+               // 
+               // ReplaceItemsButton
+               // 
+               this.ReplaceItemsButton.Location = new System.Drawing.Point(17, 36);
+               this.ReplaceItemsButton.Name = "ReplaceItemsButton";
+               this.ReplaceItemsButton.Size = new System.Drawing.Size(139, 38);
+               this.ReplaceItemsButton.TabIndex = 1;
+               this.ReplaceItemsButton.Text = "Replace All Items";
+               this.ReplaceItemsButton.UseVisualStyleBackColor = true;
+               this.ReplaceItemsButton.Click += new System.EventHandler(this.ReplaceItemsButton_Click);
+               // 
+               // SendItemsErrorLabel
+               // 
+               this.SendItemsErrorLabel.AutoSize = true;
+               this.SendItemsErrorLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+               this.SendItemsErrorLabel.ForeColor = System.Drawing.Color.Red;
+               this.SendItemsErrorLabel.Location = new System.Drawing.Point(17, 88);
+               this.SendItemsErrorLabel.Name = "SendItemsErrorLabel";
+               this.SendItemsErrorLabel.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+               this.SendItemsErrorLabel.Size = new System.Drawing.Size(12, 15);
+               this.SendItemsErrorLabel.TabIndex = 42;
+               // 
+               // label9
+               // 
+               this.label9.AutoSize = true;
+               this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+               this.label9.Location = new System.Drawing.Point(24, 19);
+               this.label9.Name = "label9";
+               this.label9.Size = new System.Drawing.Size(155, 24);
+               this.label9.TabIndex = 0;
+               this.label9.Text = "Items in Inventory";
+               // 
                // FormMain
                // 
                this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
-               this.ClientSize = new System.Drawing.Size(1124, 590);
+               this.ClientSize = new System.Drawing.Size(1124, 692);
                this.Controls.Add(this.MainTabControl);
                this.Controls.Add(this.lbLog);
                this.Name = "FormMain";
@@ -763,12 +831,14 @@ namespace StocktakrClient
                this.SyncTab.ResumeLayout(false);
                this.panel2.ResumeLayout(false);
                this.panel2.PerformLayout();
-               this.SendOptionsGroupBox.ResumeLayout(false);
-               this.SendOptionsGroupBox.PerformLayout();
-               this.StockTakeGroupBox.ResumeLayout(false);
-               this.StockTakeGroupBox.PerformLayout();
+               this.ReceivedGoodsGroupBox.ResumeLayout(false);
+               this.ReceivedGoodsGroupBox.PerformLayout();
                this.PurchaseOrdersGroupBox.ResumeLayout(false);
                this.PurchaseOrdersGroupBox.PerformLayout();
+               this.StockTakeGroupBox.ResumeLayout(false);
+               this.StockTakeGroupBox.PerformLayout();
+               this.SendOptionsGroupBox.ResumeLayout(false);
+               this.SendOptionsGroupBox.PerformLayout();
                this.ResumeLayout(false);
                this.PerformLayout();
 
@@ -1479,6 +1549,125 @@ namespace StocktakrClient
           }
 
 		#endregion
+
+          private void GetReceivedGoodsOrdersButton_Click(object sender, EventArgs e)
+          {
+               ClearErrorMessages();
+               Cursor.Current = Cursors.WaitCursor;
+
+               // Initializes the variables to pass to the MessageBox.Show method.
+
+               string message = "Are you sure ? This action will download ALL Received Goods Orders from the server and then delete them.";
+               string caption = "Confirm ";
+
+               MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+
+               DialogResult result;
+
+               // Displays the MessageBox.
+
+               result = MessageBox.Show(message, caption, buttons);
+
+               if (result == System.Windows.Forms.DialogResult.Yes)
+               {
+                    if (!Helpers.TestDPDBConnection())
+                    {
+                         GetPurchaseOrdersErrorLabel.Text = "Error see log";
+                         AddLog("Unable to connect to  the Stocktakr database", true);
+                    }
+                    else
+                    {
+                         try
+                         {
+                              //Check if all fields are filled.
+                              if ((StoreIDtextBox.Text == "") || (PasswordTextBox.Text == ""))
+                              {
+                                   GetPurchaseOrdersErrorLabel.Text = "Store ID or Password are empty";
+                                   return;
+                              }
+
+                              int storeID = Convert.ToInt32(StoreIDtextBox.Text);
+
+                              POSItemHandler handler = new POSItemHandler();
+
+                              ItemResponse newResponse = handler.GetReceivedGoodsOrders(storeID, PasswordTextBox.Text);
+
+                              if (!newResponse.is_error)
+                              {
+
+                                   if (newResponse.localReceivedGoodsOrders == null)
+                                   {
+                                        AddLog("No Received Goods Orders", true);
+                                   }
+                                   else
+                                   {
+                                        Helpers.DownloadReceivedGoodsOrders(newResponse.localReceivedGoodsOrders);
+                                        //var deleteResponse = handler.DeleteReceivedGoodsOrders(storeID, PasswordTextBox.Text);
+                                        AddLog(newResponse.localReceivedGoodsOrders.Count() + " Received Goods Orders downloaded", true);
+                                   }
+                              }
+                              else
+                              {
+                                   AddLog(newResponse.errorMessage, true);
+                                   GetReceivedGoodsErrorLabel.Text = newResponse.errorMessage;
+                              }
+                         }
+                         catch (Exception ex)
+                         {
+                              AddLog(ex.ToString(), true);
+                              GetPurchaseOrdersErrorLabel.Text = "An error has occurred. See log";
+                         }
+                    }
+               }
+               Cursor.Current = Cursors.WaitCursor;
+          }
+
+          private void WriteReceivedGoodsOrdersButton_Click(object sender, EventArgs e)
+          {
+               ClearErrorMessages();
+               // Initializes the variables to pass to the MessageBox.Show method.
+
+               string message = "Are you sure ? This action will move all Received Goods Orders from the temporary database to the POS database.";
+               string caption = "Confirm ";
+
+               MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+
+               DialogResult result;
+
+               // Displays the MessageBox.
+
+               result = MessageBox.Show(message, caption, buttons);
+
+               if (result == System.Windows.Forms.DialogResult.Yes)
+               {				// Closes the parent form.
+                    Cursor.Current = Cursors.WaitCursor;
+                    try
+                    {
+                         int itemCount = 0;
+                         switch (Properties.Settings.Default.POSSoftware)
+                         {
+                              case "MYOB":
+                                   itemCount = MYOB.CommitReceivedGoodsOrdersToPOSDatabase();
+                                   WriteReceivedGoodsErrorLabel.Text = "Success";
+                                   AddLog(itemCount.ToString() + " Received Goods Orders written", true);
+                                   break;
+                              case "Microsoft":
+                                   WriteReceivedGoodsErrorLabel.Text = "Not yet Implemented";
+
+                                   //itemCount = MicrosoftRMS.CommitPurchaseOrdersToPOSDatabase();
+                                   //AddLog(itemCount.ToString() + " Items stocktaked", true);
+                                   break;
+                         }
+                    }
+                    catch (Exception ex)
+                    {
+                         AddLog(ex.ToString(), true);
+                         WriteReceivedGoodsErrorLabel.Text = "An error has occurred. See log";
+                    }
+               }
+               Cursor.Current = Cursors.Default;
+               return;
+          }
 
          
 	}	

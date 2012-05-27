@@ -34,6 +34,7 @@
           <s:element minOccurs="0" maxOccurs="1" name="localItems" type="tns:ArrayOfLocalItem" />
           <s:element minOccurs="0" maxOccurs="1" name="localStocktakeTransactions" type="tns:ArrayOfLocalStocktakeTransaction" />
           <s:element minOccurs="0" maxOccurs="1" name="localPurchaseOrders" type="tns:ArrayOfLocalPurchaseOrder" />
+          <s:element minOccurs="0" maxOccurs="1" name="localReceivedGoodsOrders" type="tns:ArrayOfLocalReceivedGoodsOrder" />
         </s:sequence>
       </s:complexType>
       <s:complexType name="ArrayOfLocalItem">
@@ -89,6 +90,33 @@
         </s:sequence>
       </s:complexType>
       <s:complexType name="LocalPurchaseOrderItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="product_code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="product_barcode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="description" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="quantity" type="s:double" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfLocalReceivedGoodsOrder">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="LocalReceivedGoodsOrder" nillable="true" type="tns:LocalReceivedGoodsOrder" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="LocalReceivedGoodsOrder">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="receivedgoodsorder_id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="supplier_code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="person" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="order_datetime" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="itemList" type="tns:ArrayOfLocalReceivedGoodsOrderItem" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfLocalReceivedGoodsOrderItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="LocalReceivedGoodsOrderItem" nillable="true" type="tns:LocalReceivedGoodsOrderItem" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="LocalReceivedGoodsOrderItem">
         <s:sequence>
           <s:element minOccurs="0" maxOccurs="1" name="product_code" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="product_barcode" type="s:string" />
@@ -200,6 +228,36 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetReceivedGoodsOrders">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="storeID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetReceivedGoodsOrdersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetReceivedGoodsOrdersResult" type="tns:ItemResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteReceivedGoodsOrders">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="storeID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteReceivedGoodsOrdersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeleteReceivedGoodsOrdersResult" type="tns:ItemResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="HelloWorldSoapIn">
@@ -250,6 +308,18 @@
   <wsdl:message name="DeletePurchaseOrdersSoapOut">
     <wsdl:part name="parameters" element="tns:DeletePurchaseOrdersResponse" />
   </wsdl:message>
+  <wsdl:message name="GetReceivedGoodsOrdersSoapIn">
+    <wsdl:part name="parameters" element="tns:GetReceivedGoodsOrders" />
+  </wsdl:message>
+  <wsdl:message name="GetReceivedGoodsOrdersSoapOut">
+    <wsdl:part name="parameters" element="tns:GetReceivedGoodsOrdersResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteReceivedGoodsOrdersSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteReceivedGoodsOrders" />
+  </wsdl:message>
+  <wsdl:message name="DeleteReceivedGoodsOrdersSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteReceivedGoodsOrdersResponse" />
+  </wsdl:message>
   <wsdl:portType name="POSItemHandlerSoap">
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
@@ -282,6 +352,14 @@
     <wsdl:operation name="DeletePurchaseOrders">
       <wsdl:input message="tns:DeletePurchaseOrdersSoapIn" />
       <wsdl:output message="tns:DeletePurchaseOrdersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReceivedGoodsOrders">
+      <wsdl:input message="tns:GetReceivedGoodsOrdersSoapIn" />
+      <wsdl:output message="tns:GetReceivedGoodsOrdersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteReceivedGoodsOrders">
+      <wsdl:input message="tns:DeleteReceivedGoodsOrdersSoapIn" />
+      <wsdl:output message="tns:DeleteReceivedGoodsOrdersSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="POSItemHandlerSoap" type="tns:POSItemHandlerSoap">
@@ -358,6 +436,24 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetReceivedGoodsOrders">
+      <soap:operation soapAction="http://stocktakr.com/GetReceivedGoodsOrders" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteReceivedGoodsOrders">
+      <soap:operation soapAction="http://stocktakr.com/DeleteReceivedGoodsOrders" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="POSItemHandlerSoap12" type="tns:POSItemHandlerSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -426,6 +522,24 @@
     </wsdl:operation>
     <wsdl:operation name="DeletePurchaseOrders">
       <soap12:operation soapAction="http://stocktakr.com/DeletePurchaseOrders" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReceivedGoodsOrders">
+      <soap12:operation soapAction="http://stocktakr.com/GetReceivedGoodsOrders" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteReceivedGoodsOrders">
+      <soap12:operation soapAction="http://stocktakr.com/DeleteReceivedGoodsOrders" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
