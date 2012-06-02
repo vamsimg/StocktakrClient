@@ -1647,9 +1647,10 @@ namespace StocktakrClient
                          switch (Properties.Settings.Default.POSSoftware)
                          {
                               case "MYOB":
-                                   itemCount = MYOB.CommitReceivedGoodsOrdersToPOSDatabase();
-                                   WriteReceivedGoodsErrorLabel.Text = "Success";
-                                   AddLog(itemCount.ToString() + " Received Goods Orders written", true);
+                                   WriteReceivedGoodsErrorLabel.Text = "Not yet Implemented";
+                                   //itemCount = MYOB.CommitReceivedGoodsOrdersToPOSDatabase();
+                                   //WriteReceivedGoodsErrorLabel.Text = "Success";
+                                   //AddLog(itemCount.ToString() + " Received Goods Orders written", true);
                                    break;
                               case "Microsoft":
                                    WriteReceivedGoodsErrorLabel.Text = "Not yet Implemented";

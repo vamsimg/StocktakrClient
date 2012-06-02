@@ -225,12 +225,14 @@ namespace StocktakrClient
                var orderList = Helpers.GetPurchaseOrdersToCommit();
 
                string RMDBLocation = Properties.Settings.Default.RMDBLocation;
+               OleDbConnection RMDBconnection = null;
+               OleDbDataReader dbReader = null;
+               RMDBconnection = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0; User Id=; Password=; Data Source=" + RMDBLocation);
+               RMDBconnection.Open();
+
                try
                {
-                    OleDbConnection RMDBconnection = null;
-                    OleDbDataReader dbReader = null;
-                    RMDBconnection = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0; User Id=; Password=; Data Source=" + RMDBLocation);
-                    RMDBconnection.Open();
+                    
 
                     string insertOrderCommandText = "INSERT INTO Orders (order_id,order_date, due_date, staff_id, supplier_id, order_suffix, comments) VALUES (?, ?, ?, ?, ?, ?,?)";
                     string insertItemCommandText = "INSERT INTO OrdersLine (line_id, order_id, supplier_id, stock_id, cost_ex, cost_inc, goods_tax, quantity, supcode) VALUES (? ,?, ?, ?, ?, ?, ?, ?, ?)";
@@ -246,7 +248,13 @@ namespace StocktakrClient
                          OleDbCommand insertOrderCommand = RMDBconnection.CreateCommand();
 
                          insertOrderCommand.CommandText = getLastOrderID;
-                         int newOrderId = (int)insertOrderCommand.ExecuteScalar() + 1;
+
+                         int newOrderId = 1;
+                         Object result = insertOrderCommand.ExecuteScalar();
+                         if (result != DBNull.Value)
+                         {
+                              newOrderId = (int)result + 1;
+                         }
 
                          insertOrderCommand.CommandText = insertOrderCommandText;
                          insertOrderCommand.Parameters.Add("@order_id", OleDbType.Integer).Value = newOrderId;
@@ -256,10 +264,10 @@ namespace StocktakrClient
                          insertOrderCommand.Parameters.Add("@supplier_id", OleDbType.Integer).Value = Convert.ToInt32(order.supplier_code);
                          insertOrderCommand.Parameters.Add("@order_suffix", OleDbType.VarChar).Value = "s_" + order.purchaseorder_id.ToString();
                          insertOrderCommand.Parameters.Add("@comments", OleDbType.VarChar).Value = order.person;
-                         
+
                          insertOrderCommand.ExecuteNonQuery();
 
-                         
+
 
                          foreach (var item in order.itemList)
                          {
@@ -278,10 +286,18 @@ namespace StocktakrClient
                                    decimal cost = dbReader.GetDecimal(1);
                                    int supplier_id = dbReader.GetInt32(2);
 
+                                   dbReader.Close();
+                                   
                                    OleDbCommand insertItemCommand = RMDBconnection.CreateCommand();
                                    insertItemCommand.CommandText = getLastLineID;
-                                   int newLineID = (int)insertItemCommand.ExecuteScalar() + 1;
                                    
+                                   int newLineID = 1;
+                                   result = insertItemCommand.ExecuteScalar();
+                                   if(result != DBNull.Value)
+                                   {
+                                        newLineID = (int)insertItemCommand.ExecuteScalar() + 1;
+                                   }
+
                                    insertItemCommand.CommandText = insertItemCommandText;
 
                                    insertItemCommand.Parameters.Add("@line_id", OleDbType.Integer).Value = newLineID;
@@ -310,21 +326,26 @@ namespace StocktakrClient
                                    {
                                         insertItemCommand.Parameters.Add("@supcode", OleDbType.VarChar).Value = supcode;
                                    }
-                                   dbReader.Close();
+                                  
                                    insertItemCommand.ExecuteNonQuery();
                               }
                          }
                     }
 
 
-                    RMDBconnection.Close();
+
+                    Helpers.DeletePurchaseOrders();
                }
                catch (Exception ex)
                {
                     throw;
                }
+               finally
+               {
+                    RMDBconnection.Close();
+               }
                
-               Helpers.DeletePurchaseOrders();
+               
                return orderList.Count();
           }
 
@@ -341,106 +362,7 @@ namespace StocktakrClient
                string supcode = (string)getSupplierCodeCommand.ExecuteScalar();
                return supcode;
           }
-
-
-          public static int CommitReceivedGoodsOrdersToPOSDatabase()
-          {
-               var orderList = Helpers.GetReceivedGoodsOrdersToCommit();
-
-               string RMDBLocation = Properties.Settings.Default.RMDBLocation;
-               try
-               {
-                    OleDbConnection RMDBconnection = null;
-                    OleDbDataReader dbReader = null;
-                    RMDBconnection = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0; User Id=; Password=; Data Source=" + RMDBLocation);
-                    RMDBconnection.Open();
-
-                    string insertOrderCommandText = "INSERT INTO Goods (goods_id, goods_date, staff_id, supplier_id, comments, invoice_no, invoice_date, order_no, freight_tax) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-                    string insertItemCommandText = "INSERT INTO GoodsLine (line_id, goods_id, stock_id, cost_ex, cost_inc, goods_tax, quantity) VALUES (? ,?, ?, ?, ?, ?, ?)";
-                    string getItemCommandText = "SELECT goods_tax, cost, supplier_id from Stock where stock_id = ?";
-                    string getLastOrderID = "Select Max(goods_id) from Goods";
-                    string getLastLineID = "Select Max(line_id) from GoodsLine";                  
-
-                    foreach (var order in orderList)
-                    {
-
-                         OleDbCommand insertOrderCommand = RMDBconnection.CreateCommand();
-                         //Create the primary key for the next row
-                         insertOrderCommand.CommandText = getLastOrderID;
-                         int newOrderId = (int)insertOrderCommand.ExecuteScalar() + 1;
-
-                         insertOrderCommand.CommandText = insertOrderCommandText;
-                         insertOrderCommand.Parameters.Add("@goods_id", OleDbType.Integer).Value = newOrderId;
-                         insertOrderCommand.Parameters.Add("@goods_date", OleDbType.Date).Value = DateTime.Now;                         
-                         insertOrderCommand.Parameters.Add("@staff_id", OleDbType.Integer).Value = 1;
-                         insertOrderCommand.Parameters.Add("@supplier_id", OleDbType.Integer).Value = Convert.ToInt32(order.supplier_code);                         
-                         insertOrderCommand.Parameters.Add("@comments", OleDbType.VarChar).Value = "Stocktakr "+ order.receivedgoodsorder_id.ToString() + " " +order.order_datetime.ToString("dd - MMM -yyyy") + " " + order.person;
-                         insertOrderCommand.Parameters.Add("@invoice_no", OleDbType.VarChar).Value = "S_ " + order.order_datetime.ToString("dd-MMM-yyyy");
-                         insertOrderCommand.Parameters.Add("@invoice_date", OleDbType.Date).Value = order.order_datetime;
-                         insertOrderCommand.Parameters.Add("@order_no", OleDbType.VarChar).Value = "";
-                         insertOrderCommand.Parameters.Add("@freight_tax", OleDbType.VarChar).Value = "GST";                
-                         insertOrderCommand.ExecuteNonQuery();
-
-
-
-                         foreach (var item in order.itemList)
-                         {
-                              OleDbCommand getCmd = RMDBconnection.CreateCommand();
-                              //Get Item details.		          
-
-                              getCmd.CommandText = getItemCommandText;
-                              getCmd.Parameters.Add("@stock_id", OleDbType.Integer).Value = item.product_code;
-                              dbReader = getCmd.ExecuteReader();
-
-                              if (dbReader.HasRows)
-                              {
-                                   dbReader.Read();
-
-                                   string tax = dbReader.GetString(0);
-                                   decimal cost = dbReader.GetDecimal(1);
-                                   int supplier_id = dbReader.GetInt32(2);
-
-                                   OleDbCommand insertItemCommand = RMDBconnection.CreateCommand();
-                                   //Create the primary key.
-                                   insertItemCommand.CommandText = getLastLineID;
-                                   int newLineID = (int)insertItemCommand.ExecuteScalar() + 1;
-
-                                   insertItemCommand.CommandText = insertItemCommandText;
-
-                                   insertItemCommand.Parameters.Add("@line_id", OleDbType.Integer).Value = newLineID;
-                                   insertItemCommand.Parameters.Add("@goods_id", OleDbType.Integer).Value = newOrderId;
-                                   
-                                   insertItemCommand.Parameters.Add("@stock_id", OleDbType.Integer).Value = Convert.ToDouble(item.product_code);
-                                   insertItemCommand.Parameters.Add("@cost_ex", OleDbType.Currency).Value = cost;
-                                   if (tax == "GST")
-                                   {
-                                        insertItemCommand.Parameters.Add("@cost_inc", OleDbType.Currency).Value = cost * GSTmultiplier;
-                                   }
-                                   else
-                                   {
-                                        insertItemCommand.Parameters.Add("@cost_inc", OleDbType.Currency).Value = cost;
-                                   }
-                                   insertItemCommand.Parameters.Add("@goods_tax", OleDbType.VarChar).Value = tax;
-                                   insertItemCommand.Parameters.Add("@quantity", OleDbType.Double).Value = item.quantity;                                  
-                                   insertItemCommand.ExecuteNonQuery();
-                                   dbReader.Close();
-                              }
-                         }
-                    }
-
-
-                    RMDBconnection.Close();
-               }
-               catch (Exception ex)
-               {
-                    throw;
-               }
-
-               Helpers.DeletePurchaseOrders();
-               return orderList.Count();
-          }
-
-
+          
 
 	}
 }
