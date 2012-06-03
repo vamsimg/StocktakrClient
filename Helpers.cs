@@ -330,9 +330,10 @@ namespace StocktakrClient
                               }
                               order.itemList = itemList.ToArray();
                          }
+                         dbReader.Close();
                     }
 
-                    dbReader.Close();
+                    
                     DBconnection.Close();
                }
                catch (Exception ex)
