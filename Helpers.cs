@@ -308,13 +308,19 @@ namespace StocktakrClient
                     dbReader.Close();
 
 
-                    syncCmd.CommandText = "SELECT product_code, product_barcode, description, quantity FROM PurchaseOrderItems WHERE purchaseorder_id = ?";
-
+                    
                     foreach (var order in orderList)
                     {
                          List<LocalPurchaseOrderItem> itemList = new List<LocalPurchaseOrderItem>();
-                         syncCmd.Parameters.Add("@purchaseorder_id", OleDbType.VarWChar).Value = order.purchaseorder_id;
-                         dbReader = syncCmd.ExecuteReader();
+
+                         OleDbCommand getCmd = DBconnection.CreateCommand();                         
+                         
+                         getCmd.CommandText = "SELECT product_code, product_barcode, description, quantity FROM PurchaseOrderItems WHERE purchaseorder_id = ?";
+
+                         getCmd.Parameters.Add("@purchaseorder_id", OleDbType.Integer).Value = order.purchaseorder_id;
+
+                         dbReader = getCmd.ExecuteReader();
+                         
                          if (dbReader.HasRows)
                          {
                               while (dbReader.Read())
