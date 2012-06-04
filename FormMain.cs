@@ -441,7 +441,7 @@ namespace StocktakrClient
                this.FindDPDBButton.Name = "FindDPDBButton";
                this.FindDPDBButton.Size = new System.Drawing.Size(75, 23);
                this.FindDPDBButton.TabIndex = 34;
-               this.FindDPDBButton.Text = "Find DPDB";
+               this.FindDPDBButton.Text = "Find SDB";
                this.FindDPDBButton.UseVisualStyleBackColor = true;
                this.FindDPDBButton.Click += new System.EventHandler(this.FindDPDBButton_Click);
                // 
