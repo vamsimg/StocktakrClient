@@ -1,3 +1,4 @@
 
-/obj
-/Bin
+/client/obj
+/client/Bin
+/Setup/Setup
