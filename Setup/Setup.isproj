@@ -28,8 +28,8 @@
 	</ItemGroup>
 	<Import Project="$(MSBuildExtensionsPath32)\InstallShield\2011Limited\InstallShield.targets"/>
 	<ItemGroup>
-		<ProjectReference Include="..\StocktakrClient.csproj">
-			<Name>StocktakrClient</Name>
+		<ProjectReference Include="..\client\StocktakrClient.csproj">
+			<Name>StocktakrClient1</Name>
 			<Project>{E0811215-AB43-4783-9C1A-79ADB7A47133}</Project>
 		</ProjectReference>
 	</ItemGroup>

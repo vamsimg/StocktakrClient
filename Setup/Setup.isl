@@ -342,9 +342,9 @@
 		<col def="S0">ISDotNetInstallerArgsUninstall</col>
 		<col def="S0">ISDotNetInstallerArgsRollback</col>
 		<row><td>NewComponent1</td><td>{94021E1E-7EB9-4901-A17F-F7E47756E12A}</td><td>INSTALLDIR</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>StocktakrClient.Content_Files</td><td>{D1511448-24FC-4061-BB73-5C3272E62436}</td><td>INSTALLDIR</td><td>2</td><td/><td>stocktakrclient.content_file</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>StocktakrClient.Primary_output</td><td>{35E82281-BCF3-4578-AE92-ACCA6E23C9E9}</td><td>INSTALLDIR</td><td>2</td><td/><td>stocktakrclient.primary_outp</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>StocktakrClient.XML_Serialization_Assemblies</td><td>{F0704CCA-192A-4C22-AD60-48AC67196985}</td><td>INSTALLDIR</td><td>2</td><td/><td>stocktakrclient.xml_serializ</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>StocktakrClient.Content_Files</td><td>{8B96DE06-712D-401D-AB6B-FB8D1CE59E21}</td><td>INSTALLDIR</td><td>2</td><td/><td>stocktakrclient.content_file</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>StocktakrClient.Primary_output</td><td>{0369275A-942B-4654-8350-4E132F8A30A9}</td><td>INSTALLDIR</td><td>2</td><td/><td>stocktakrclient.primary_outp</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>StocktakrClient.XML_Serialization_Assemblies</td><td>{C4FB0ECE-57B8-4708-B72D-330FF724CD5C}</td><td>INSTALLDIR</td><td>2</td><td/><td>stocktakrclient.xml_serializ</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 	</table>
 
 	<table name="Condition">
@@ -1171,6 +1171,7 @@
 		<row><td>USERPROFILE</td><td>TARGETDIR</td><td>.:USERPR~1|UserProfile</td><td/><td>0</td><td/></row>
 		<row><td>WindowsFolder</td><td>TARGETDIR</td><td>.:Windows</td><td/><td>0</td><td/></row>
 		<row><td>WindowsVolume</td><td>TARGETDIR</td><td>.:WinRoot</td><td/><td>0</td><td/></row>
+		<row><td>setup</td><td>stockt_1_stocktakr</td><td>Setup</td><td/><td>1</td><td/></row>
 		<row><td>stockt_1_stocktakr</td><td>ProgramMenuFolder</td><td>STOCKT~1|Stocktakr</td><td/><td>1</td><td/></row>
 	</table>
 
@@ -1881,9 +1882,9 @@
 		<col def="S255">ISBuildSourcePath</col>
 		<col def="I4">ISAttributes</col>
 		<col def="S72">ISComponentSubFolder_</col>
-		<row><td>stocktakrclient.content_file</td><td>StocktakrClient.Content_Files</td><td>StocktakrClient.Content Files</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;StocktakrClient&gt;|ContentFiles</td><td>3</td><td/></row>
-		<row><td>stocktakrclient.primary_outp</td><td>StocktakrClient.Primary_output</td><td>StocktakrClient.Primary output</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;StocktakrClient&gt;|Built</td><td>3</td><td/></row>
-		<row><td>stocktakrclient.xml_serializ</td><td>StocktakrClient.XML_Serialization_Assemblies</td><td>StocktakrClient.XML Serialization Assemblies</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;StocktakrClient&gt;|XmlSerializer</td><td>3</td><td/></row>
+		<row><td>stocktakrclient.content_file</td><td>StocktakrClient.Content_Files</td><td>StocktakrClient.Content Files</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;StocktakrClient1&gt;|ContentFiles</td><td>3</td><td/></row>
+		<row><td>stocktakrclient.primary_outp</td><td>StocktakrClient.Primary_output</td><td>StocktakrClient.Primary output</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;StocktakrClient1&gt;|Built</td><td>3</td><td/></row>
+		<row><td>stocktakrclient.xml_serializ</td><td>StocktakrClient.XML_Serialization_Assemblies</td><td>StocktakrClient.XML Serialization Assemblies</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;StocktakrClient1&gt;|XmlSerializer</td><td>3</td><td/></row>
 	</table>
 
 	<table name="FileSFPCatalog">
@@ -2142,9 +2143,9 @@
 		<col def="S0">HTTPLocation</col>
 		<col def="S0">Miscellaneous</col>
 		<row><td>NewComponent1</td><td/><td/><td>_1CEAAEF0_5A95_44EA_88B1_B341D3D1CBAD_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>StocktakrClient.Content_Files</td><td/><td/><td>_F073BC28_5D8D_4530_A979_A15801B62624_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>StocktakrClient.Primary_output</td><td/><td/><td>_CD64D727_401E_46DF_A97B_D4A03AEF89D3_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>StocktakrClient.XML_Serialization_Assemblies</td><td/><td/><td>_01C09EE5_E971_4EC8_A53A_E163989DEE81_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>StocktakrClient.Content_Files</td><td/><td/><td>_78FE684B_2D96_47BA_A145_06CBBAC2C124_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>StocktakrClient.Primary_output</td><td/><td/><td>_50B57327_4E84_48CA_81CD_4BD8C81D161C_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>StocktakrClient.XML_Serialization_Assemblies</td><td/><td/><td>_FFDF382D_08AB_468D_AAEB_295104ECBF9D_FILTER</td><td/><td/><td/><td/></row>
 	</table>
 
 	<table name="ISCustomActionReference">
@@ -2463,6 +2464,7 @@
 		<row><td>ISProjectFolder</td><td/><td/><td>1</td></row>
 		<row><td>ProgramFilesFolder</td><td/><td/><td>1</td></row>
 		<row><td>StocktakrClient</td><td>StocktakrClient.csproj</td><td/><td>2</td></row>
+		<row><td>StocktakrClient1</td><td>client\StocktakrClient.csproj</td><td/><td>2</td></row>
 		<row><td>SystemFolder</td><td/><td/><td>1</td></row>
 		<row><td>WindowsFolder</td><td/><td/><td>1</td></row>
 	</table>
@@ -3578,7 +3580,9 @@
 		<row><td>IDS_PROGMSG_XML_ROLLBACK_FILES</td><td>1033</td><td>Rolling back XML file changes...</td><td>0</td><td/><td>857756658</td></row>
 		<row><td>IDS_PROGMSG_XML_UPDATE_FILE</td><td>1033</td><td>Updating XML file %s...</td><td>0</td><td/><td>857756658</td></row>
 		<row><td>IDS_SETUPEXE_EXPIRE_MSG</td><td>1033</td><td>This setup works until %s. The setup will now exit.</td><td>0</td><td/><td>857756658</td></row>
-		<row><td>IDS_SHORTCUT_DISPLAY_NAME3</td><td>1033</td><td>POS Client</td><td>0</td><td/><td>1126186859</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME1</td><td>1033</td><td>Uninstall Stocktakr</td><td>0</td><td/><td>1260406211</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME2</td><td>1033</td><td>Stocktakr POS Client</td><td>0</td><td/><td>1260443139</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME3</td><td>1033</td><td>Stocktakr</td><td>0</td><td/><td>1260416451</td></row>
 		<row><td>IDS_SQLBROWSE_INTRO</td><td>1033</td><td>From the list of servers below, select the database server you would like to target.</td><td>0</td><td/><td>857756658</td></row>
 		<row><td>IDS_SQLBROWSE_INTRO_DB</td><td>1033</td><td>From the list of catalog names below, select the database catalog you would like to target.</td><td>0</td><td/><td>857756658</td></row>
 		<row><td>IDS_SQLBROWSE_INTRO_TEMPLATE</td><td>1033</td><td>[IS_SQLBROWSE_INTRO]</td><td>0</td><td/><td>857756658</td></row>
@@ -3869,6 +3873,7 @@
 		<row><td>IDS__TargetReq_DESC_RESOLUTION</td><td>1033</td><td>The screen resolution is not adequate for running [ProductName].</td><td>0</td><td/><td>857756658</td></row>
 		<row><td>ID_STRING1</td><td>1033</td><td>http://www.Stocktakr.com</td><td>0</td><td/><td>857758706</td></row>
 		<row><td>ID_STRING2</td><td>1033</td><td>Stocktakr</td><td>0</td><td/><td>857758706</td></row>
+		<row><td>ID_STRING3</td><td>1033</td><td>Stocktakr POS Client</td><td>0</td><td/><td>1260447235</td></row>
 		<row><td>ID_STRING4</td><td>1033</td><td>Launch |Built</td><td>0</td><td/><td>857769010</td></row>
 		<row><td>IIDS_UITEXT_FeatureUninstalled</td><td>1033</td><td>This feature will remain uninstalled.</td><td>0</td><td/><td>857756658</td></row>
 	</table>
@@ -4563,10 +4568,9 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<col def="L255">FileName</col>
 		<col def="s72">DirProperty</col>
 		<col def="i2">InstallMode</col>
-		<row><td>FileKey1</td><td>StocktakrClient.Primary_output</td><td/><td>stockt_1_stocktakr</td><td>2</td></row>
-		<row><td>FileKey2</td><td>StocktakrClient.Primary_output</td><td/><td>setup</td><td>2</td></row>
+		<row><td>FileKey1</td><td>StocktakrClient.Primary_output</td><td/><td>setup</td><td>2</td></row>
 		<row><td>UNINST_Uninstall_Setup</td><td>NewComponent1</td><td/><td>stockt_1_stocktakr</td><td>2</td></row>
-		<row><td>_Built</td><td>StocktakrClient.Primary_output</td><td/><td>stockt_1_stocktakr</td><td>2</td></row>
+		<row><td>_Built</td><td>StocktakrClient.Primary_output</td><td/><td>setup</td><td>2</td></row>
 	</table>
 
 	<table name="RemoveIniFile">
@@ -4652,9 +4656,9 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<col def="S255">ISComments</col>
 		<col def="S255">ISShortcutName</col>
 		<col def="I4">ISAttributes</col>
-		<row><td>UNINST_Uninstall_Setup</td><td>stockt_1_stocktakr</td><td>UNINST|Uninstall Setup</td><td>NewComponent1</td><td>[SystemFolder]msiexec.exe</td><td>/x {149A04FA-68F2-4021-9BC4-01D6585B73EE}</td><td/><td/><td>UNINST_Uninstall_S_6447D0089D5B40508D942CF1F23F67D3.exe</td><td>0</td><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
-		<row><td>_Built</td><td>stockt_1_stocktakr</td><td>##IDS_SHORTCUT_DISPLAY_NAME3##</td><td>StocktakrClient.Primary_output</td><td>AlwaysInstall</td><td/><td/><td/><td>_Built_AD8583093BAC4D818FE6E27D3F263903.exe</td><td>0</td><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
-		<row><td>_Built1</td><td>DesktopFolder</td><td>##IDS_SHORTCUT_DISPLAY_NAME3##</td><td>StocktakrClient.Primary_output</td><td>AlwaysInstall</td><td/><td/><td/><td>_Built1_65D8E6C0D53D4D3C8B14469150B2B92E.exe</td><td>0</td><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
+		<row><td>UNINST_Uninstall_Setup</td><td>stockt_1_stocktakr</td><td>##IDS_SHORTCUT_DISPLAY_NAME1##</td><td>NewComponent1</td><td>[SystemFolder]msiexec.exe</td><td>/x {149A04FA-68F2-4021-9BC4-01D6585B73EE}</td><td/><td/><td>UNINST_Uninstall_S_6447D0089D5B40508D942CF1F23F67D3.exe</td><td>0</td><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
+		<row><td>_Built</td><td>setup</td><td>##IDS_SHORTCUT_DISPLAY_NAME2##</td><td>StocktakrClient.Primary_output</td><td>AlwaysInstall</td><td/><td/><td/><td/><td/><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
+		<row><td>_Built1</td><td>DesktopFolder</td><td>##IDS_SHORTCUT_DISPLAY_NAME2##</td><td>StocktakrClient.Primary_output</td><td>AlwaysInstall</td><td/><td/><td/><td/><td/><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
 	</table>
 
 	<table name="Signature">
