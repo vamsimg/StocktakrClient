@@ -10,10 +10,10 @@ using System.Reflection;
 
 
 namespace StocktakrClient
-{
+{     
 	class MicrosoftRMS
 	{
-		public static string MakeConnectionString(string location, string DBname, string user, string password)
+          public static string MakeConnectionString(string location, string DBname, string user, string password)
 		{
 			return String.Format("Data Source={0};Initial Catalog = {1}; User ID = {2}; Password = {3}", location, DBname, user, password);
 		}	
@@ -349,13 +349,11 @@ namespace StocktakrClient
               
 
 
-         
-
           private static int CreateNewPurchaseOrder(SqlConnection connection, LocalPurchaseOrder order)
           {
                DateTime createdDatetime = DateTime.Now;              
                //Tell the SqlCommand what query to execute and what SqlConnection to use.  
-               using (SqlCommand sqlCmd = new SqlCommand("INSERT INTO dbo.PurchaseOrder(POTitle, PONumber, DateCreated, SupplierID) VALUES (@POTitle, @PONumber,@DateCreated, @SupplierID)", connection))
+               using (SqlCommand sqlCmd = new SqlCommand("INSERT INTO dbo.PurchaseOrder(POTitle, PONumber, DateCreated, SupplierID, [TO]) VALUES (@POTitle, @PONumber,@DateCreated, @SupplierID, @To)", connection))
                {
 
                     //Add SqlParameters to the SqlCommand  
@@ -363,6 +361,7 @@ namespace StocktakrClient
                     sqlCmd.Parameters.AddWithValue("@PONumber", "s_"+order.purchaseorder_id.ToString());
                     sqlCmd.Parameters.AddWithValue("@DateCreated", createdDatetime);
                     sqlCmd.Parameters.AddWithValue("@SupplierID", Convert.ToInt32(order.supplier_code));
+                    sqlCmd.Parameters.AddWithValue("@To", order.supplier_name);
                     
                     //Open the SqlConnection before executing the query.  
                     try
@@ -420,6 +419,7 @@ namespace StocktakrClient
                newTable.Columns.Add("QuantityOrdered");
                newTable.Columns.Add("ItemID");
                newTable.Columns.Add("Price");
+               newTable.Columns.Add("TaxRate");
                
                foreach (var entry in entries)
                {    
@@ -438,7 +438,9 @@ namespace StocktakrClient
                          {
                               finalCostPrice = localItem.cost_price;
                          }
-                         newTable.Rows.Add(entry.description, createdDatetime, newPurchaseOrderID, entry.quantity, itemID, finalCostPrice);
+
+                         double taxPercentage = GetTaxRateForItem(itemID, connString);
+                         newTable.Rows.Add(entry.description, createdDatetime, newPurchaseOrderID, entry.quantity, itemID, finalCostPrice, taxPercentage);
                     }                    
                }
 
@@ -460,6 +462,7 @@ namespace StocktakrClient
                          sbc.ColumnMappings.Add("QuantityOrdered", "QuantityOrdered");
                          sbc.ColumnMappings.Add("ItemID", "ItemID");
                          sbc.ColumnMappings.Add("Price", "Price");
+                         sbc.ColumnMappings.Add("TaxRate", "TaxRate");
                         
                          // Finally write to server
                          sbc.WriteToServer(newTable);
@@ -473,9 +476,43 @@ namespace StocktakrClient
                }
                
                return success;
+          }         
+
+
+          //Australian stores only.
+          private static double GetTaxRateForItem(int itemID, string connString)
+          {
+               SqlConnection connection = new SqlConnection(connString);
+               double taxPercentage = 0;
+               using (SqlCommand sqlCmd = new SqlCommand("select ItemTax.Description from Item  inner join ItemTax on Item.TaxID = ItemTax.ID where Item.ID = @itemID", connection))
+               {
+
+                    //Add SqlParameters to the SqlCommand                     
+                    sqlCmd.Parameters.AddWithValue("@ItemID", itemID);
+                    
+
+                    //Open the SqlConnection before executing the query.  
+                    try
+                    {
+                         connection.Open();
+                         string description = (string)sqlCmd.ExecuteScalar();
+                         if (description == "GST")
+                         {
+                              taxPercentage = 10;
+                         }
+                    }
+                    catch
+                    {
+                         throw;
+                    }
+                    finally
+                    {
+                         connection.Close();
+                    }
+               }
+
+               return taxPercentage;
           }
-
-
 
           private static decimal LookupSupplierPrice(int itemID, int supplierID, string connString)
           {
@@ -539,7 +576,7 @@ namespace StocktakrClient
 				     newItem.sale_price = (decimal)itemDataReader["Price"];
 				     newItem.quantity = (double)itemDataReader["Quantity"];
 				     newItem.is_static = false;
-                         newItem.supplier_code = (string)itemDataReader["SupplierID"];
+                         newItem.supplier_code = itemDataReader["SupplierID"].ToString();
 				}
 				itemDataReader.Close();
 				connection.Close();

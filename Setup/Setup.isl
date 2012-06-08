@@ -52,7 +52,7 @@
 	<summary>
 		<codepage>1252</codepage>
 		<title>Installation Database</title>
-		<subject/>
+		<subject>Setup</subject>
 		<author>##ID_STRING2##</author>
 		<keywords>Installer,MSI,Database</keywords>
 		<comments>Contact:  Your local administrator</comments>
@@ -1171,7 +1171,6 @@
 		<row><td>USERPROFILE</td><td>TARGETDIR</td><td>.:USERPR~1|UserProfile</td><td/><td>0</td><td/></row>
 		<row><td>WindowsFolder</td><td>TARGETDIR</td><td>.:Windows</td><td/><td>0</td><td/></row>
 		<row><td>WindowsVolume</td><td>TARGETDIR</td><td>.:WinRoot</td><td/><td>0</td><td/></row>
-		<row><td>setup</td><td>stockt_1_stocktakr</td><td>Setup</td><td/><td>1</td><td/></row>
 		<row><td>stockt_1_stocktakr</td><td>ProgramMenuFolder</td><td>STOCKT~1|Stocktakr</td><td/><td>1</td><td/></row>
 	</table>
 
@@ -3579,7 +3578,7 @@
 		<row><td>IDS_PROGMSG_XML_ROLLBACK_FILES</td><td>1033</td><td>Rolling back XML file changes...</td><td>0</td><td/><td>857756658</td></row>
 		<row><td>IDS_PROGMSG_XML_UPDATE_FILE</td><td>1033</td><td>Updating XML file %s...</td><td>0</td><td/><td>857756658</td></row>
 		<row><td>IDS_SETUPEXE_EXPIRE_MSG</td><td>1033</td><td>This setup works until %s. The setup will now exit.</td><td>0</td><td/><td>857756658</td></row>
-		<row><td>IDS_SHORTCUT_DISPLAY_NAME3</td><td>1033</td><td>Launch |Built</td><td>0</td><td/><td>857764914</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME3</td><td>1033</td><td>POS Client</td><td>0</td><td/><td>1126186859</td></row>
 		<row><td>IDS_SQLBROWSE_INTRO</td><td>1033</td><td>From the list of servers below, select the database server you would like to target.</td><td>0</td><td/><td>857756658</td></row>
 		<row><td>IDS_SQLBROWSE_INTRO_DB</td><td>1033</td><td>From the list of catalog names below, select the database catalog you would like to target.</td><td>0</td><td/><td>857756658</td></row>
 		<row><td>IDS_SQLBROWSE_INTRO_TEMPLATE</td><td>1033</td><td>[IS_SQLBROWSE_INTRO]</td><td>0</td><td/><td>857756658</td></row>
@@ -3976,6 +3975,8 @@
 		<row><td>UNINST_Uninstall_S_6447D0089D5B40508D942CF1F23F67D3.exe</td><td/><td>C:\Program Files (x86)\InstallShield\2011LE\Redist\Language Independent\OS Independent\uninstall.ico</td><td>0</td></row>
 		<row><td>_3C49C1D0A8244828BB646ACE45D2FFB3.exe</td><td/><td>C:\Users\vamsinator\Desktop\Stocktakr\stocktakrClient\obj\x86\Release\StocktakrClient.exe</td><td>0</td></row>
 		<row><td>_3F506F2B56DE4A7285A1F764FBF00A67.exe</td><td/><td>C:\Users\vamsinator\Desktop\Stocktakr\stocktakrClient\obj\x86\Release\StocktakrClient.exe</td><td>0</td></row>
+		<row><td>_Built1_65D8E6C0D53D4D3C8B14469150B2B92E.exe</td><td/><td>C:\Users\vamsinator\Desktop\Stocktakr\stocktakrClient\client\favicon.ico</td><td>0</td></row>
+		<row><td>_Built_AD8583093BAC4D818FE6E27D3F263903.exe</td><td/><td>C:\Users\vamsinator\Desktop\Stocktakr\stocktakrClient\client\favicon.ico</td><td>0</td></row>
 	</table>
 
 	<table name="IniFile">
@@ -4107,7 +4108,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>ISTheme</td><td>InstallShield Blue.theme</td></row>
 		<row><td>ISUSLock</td><td>{D005ADD5-542C-47F0-B16C-58FFB476C14F}</td></row>
 		<row><td>ISUSSignature</td><td>{92164F0D-FE15-4CEC-8CA0-38B10389BD03}</td></row>
-		<row><td>ISVisitedViews</td><td>viewAssistant,viewRelease</td></row>
+		<row><td>ISVisitedViews</td><td>viewAssistant,viewRelease,viewShortcuts</td></row>
 		<row><td>Limited</td><td>1</td></row>
 		<row><td>LockPermissionMode</td><td>1</td></row>
 		<row><td>MsiExecCmdLineOptions</td><td/></row>
@@ -4564,8 +4565,8 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<col def="i2">InstallMode</col>
 		<row><td>FileKey1</td><td>StocktakrClient.Primary_output</td><td/><td>stockt_1_stocktakr</td><td>2</td></row>
 		<row><td>FileKey2</td><td>StocktakrClient.Primary_output</td><td/><td>setup</td><td>2</td></row>
-		<row><td>UNINST_Uninstall_Setup</td><td>NewComponent1</td><td/><td>setup</td><td>2</td></row>
-		<row><td>_Built</td><td>StocktakrClient.Primary_output</td><td/><td>setup</td><td>2</td></row>
+		<row><td>UNINST_Uninstall_Setup</td><td>NewComponent1</td><td/><td>stockt_1_stocktakr</td><td>2</td></row>
+		<row><td>_Built</td><td>StocktakrClient.Primary_output</td><td/><td>stockt_1_stocktakr</td><td>2</td></row>
 	</table>
 
 	<table name="RemoveIniFile">
@@ -4651,9 +4652,9 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<col def="S255">ISComments</col>
 		<col def="S255">ISShortcutName</col>
 		<col def="I4">ISAttributes</col>
-		<row><td>UNINST_Uninstall_Setup</td><td>setup</td><td>UNINST|Uninstall Setup</td><td>NewComponent1</td><td>[SystemFolder]msiexec.exe</td><td>/x {149A04FA-68F2-4021-9BC4-01D6585B73EE}</td><td/><td/><td>UNINST_Uninstall_S_6447D0089D5B40508D942CF1F23F67D3.exe</td><td>0</td><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
-		<row><td>_Built</td><td>setup</td><td>##IDS_SHORTCUT_DISPLAY_NAME3##</td><td>StocktakrClient.Primary_output</td><td>AlwaysInstall</td><td/><td/><td/><td/><td>0</td><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
-		<row><td>_Built1</td><td>DesktopFolder</td><td>##IDS_SHORTCUT_DISPLAY_NAME3##</td><td>StocktakrClient.Primary_output</td><td>AlwaysInstall</td><td/><td/><td/><td/><td>0</td><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
+		<row><td>UNINST_Uninstall_Setup</td><td>stockt_1_stocktakr</td><td>UNINST|Uninstall Setup</td><td>NewComponent1</td><td>[SystemFolder]msiexec.exe</td><td>/x {149A04FA-68F2-4021-9BC4-01D6585B73EE}</td><td/><td/><td>UNINST_Uninstall_S_6447D0089D5B40508D942CF1F23F67D3.exe</td><td>0</td><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
+		<row><td>_Built</td><td>stockt_1_stocktakr</td><td>##IDS_SHORTCUT_DISPLAY_NAME3##</td><td>StocktakrClient.Primary_output</td><td>AlwaysInstall</td><td/><td/><td/><td>_Built_AD8583093BAC4D818FE6E27D3F263903.exe</td><td>0</td><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
+		<row><td>_Built1</td><td>DesktopFolder</td><td>##IDS_SHORTCUT_DISPLAY_NAME3##</td><td>StocktakrClient.Primary_output</td><td>AlwaysInstall</td><td/><td/><td/><td>_Built1_65D8E6C0D53D4D3C8B14469150B2B92E.exe</td><td>0</td><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
 	</table>
 
 	<table name="Signature">

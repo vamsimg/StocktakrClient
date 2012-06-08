@@ -874,6 +874,8 @@ namespace StocktakrClient.com.stocktakr {
         
         private string supplier_codeField;
         
+        private string supplier_nameField;
+        
         private string personField;
         
         private System.DateTime order_datetimeField;
@@ -897,6 +899,16 @@ namespace StocktakrClient.com.stocktakr {
             }
             set {
                 this.supplier_codeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string supplier_name {
+            get {
+                return this.supplier_nameField;
+            }
+            set {
+                this.supplier_nameField = value;
             }
         }
         

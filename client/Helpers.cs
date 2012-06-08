@@ -234,7 +234,7 @@ namespace StocktakrClient
                     foreach (var order in orderList)
                     {
                          OleDbCommand insertCommand = DBconnection.CreateCommand();
-                         string commandText = "INSERT INTO PurchaseOrders (purchaseorder_id, supplier_code ,person, order_datetime) VALUES (?, ?, ?, ?)";
+                         string commandText = "INSERT INTO PurchaseOrders (purchaseorder_id, supplier_code ,person, order_datetime, supplier_name) VALUES (?, ?, ?, ?, ?)";
 
                          insertCommand.CommandText = commandText;
 
@@ -242,6 +242,7 @@ namespace StocktakrClient
                          insertCommand.Parameters.Add("@supplier_code", OleDbType.VarWChar).Value = order.supplier_code;
                          insertCommand.Parameters.Add("@person", OleDbType.VarWChar).Value = order.person;
                          insertCommand.Parameters.Add("@order_datetime", OleDbType.Date).Value = order.order_datetime;
+                         insertCommand.Parameters.Add("@supplier_name", OleDbType.VarWChar).Value = order.supplier_name;
                          insertCommand.ExecuteNonQuery();
 
                          foreach (var item in order.itemList)
@@ -284,7 +285,7 @@ namespace StocktakrClient
 
                     OleDbCommand syncCmd = DBconnection.CreateCommand();
                     
-                    syncCmd.CommandText = "SELECT purchaseorder_id,supplier_code,person, order_datetime from PurchaseOrders";
+                    syncCmd.CommandText = "SELECT purchaseorder_id,supplier_code,person, order_datetime,supplier_name from PurchaseOrders";
 
                     DBconnection.Open();
                     dbReader = syncCmd.ExecuteReader();
@@ -300,7 +301,7 @@ namespace StocktakrClient
                               newPurchaseOrder.supplier_code = dbReader.GetString(1);
                               newPurchaseOrder.person = dbReader.GetString(2);
                               newPurchaseOrder.order_datetime = dbReader.GetDateTime(3);
-
+                              newPurchaseOrder.supplier_name = dbReader.GetString(4);
                               orderList.Add(newPurchaseOrder);
                          }
                     }

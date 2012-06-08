@@ -1531,10 +1531,9 @@ namespace StocktakrClient
                                    AddLog(itemCount.ToString() + " Purchase Orders written", true);
                                    break;
                               case "Microsoft":
-                                   WritePurchaseOrdersErrorLabel.Text = "Not yet Implemented";
                                    
-                                   //itemCount = MicrosoftRMS.CommitPurchaseOrdersToPOSDatabase();
-                                   //AddLog(itemCount.ToString() + " Items stocktaked", true);
+                                   itemCount = MicrosoftRMS.CommitPurchaseOrdersToPOSDatabase();
+                                   AddLog(itemCount.ToString() + " Purchase Orders written", true);
                                    break;
                          }
                     }
