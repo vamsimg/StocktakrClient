@@ -1171,7 +1171,6 @@
 		<row><td>USERPROFILE</td><td>TARGETDIR</td><td>.:USERPR~1|UserProfile</td><td/><td>0</td><td/></row>
 		<row><td>WindowsFolder</td><td>TARGETDIR</td><td>.:Windows</td><td/><td>0</td><td/></row>
 		<row><td>WindowsVolume</td><td>TARGETDIR</td><td>.:WinRoot</td><td/><td>0</td><td/></row>
-		<row><td>setup</td><td>stockt_1_stocktakr</td><td>Setup</td><td/><td>1</td><td/></row>
 		<row><td>stockt_1_stocktakr</td><td>ProgramMenuFolder</td><td>STOCKT~1|Stocktakr</td><td/><td>1</td><td/></row>
 	</table>
 
@@ -3978,10 +3977,16 @@
 		<col def="I2">ISIconIndex</col>
 		<row><td>ARPPRODUCTICON.exe</td><td/><td>&lt;ISProductFolder&gt;\redist\Language Independent\OS Independent\setupicon.ico</td><td>0</td></row>
 		<row><td>UNINST_Uninstall_S_6447D0089D5B40508D942CF1F23F67D3.exe</td><td/><td>C:\Program Files (x86)\InstallShield\2011LE\Redist\Language Independent\OS Independent\uninstall.ico</td><td>0</td></row>
+		<row><td>_187768B8029F488F9A3D93583F3C6A84.exe</td><td/><td>C:\Users\vamsinator\Desktop\Stocktakr\stocktakrClient\client\obj\x86\Release\StocktakrClient.exe</td><td>0</td></row>
 		<row><td>_3C49C1D0A8244828BB646ACE45D2FFB3.exe</td><td/><td>C:\Users\vamsinator\Desktop\Stocktakr\stocktakrClient\obj\x86\Release\StocktakrClient.exe</td><td>0</td></row>
 		<row><td>_3F506F2B56DE4A7285A1F764FBF00A67.exe</td><td/><td>C:\Users\vamsinator\Desktop\Stocktakr\stocktakrClient\obj\x86\Release\StocktakrClient.exe</td><td>0</td></row>
+		<row><td>_492BB2DCE3F24ADBBE2F319FB391BD15.exe</td><td/><td>C:\Users\vamsinator\Desktop\Stocktakr\stocktakrClient\client\obj\x86\Release\StocktakrClient.exe</td><td>0</td></row>
+		<row><td>_5229A73E5B894F2CB633158EBDD6035D.exe</td><td/><td>C:\Users\vamsinator\Desktop\Stocktakr\stocktakrClient\client\obj\x86\Release\StocktakrClient.exe</td><td>0</td></row>
+		<row><td>_A1E821D4EFBD4815AFACCB0554DA2E72.exe</td><td/><td>C:\Users\vamsinator\Desktop\Stocktakr\stocktakrClient\client\obj\x86\Release\StocktakrClient.exe</td><td>0</td></row>
+		<row><td>_AD9BF8FEB348437F9FF5F40CBA54F827.exe</td><td/><td>C:\Users\vamsinator\Desktop\Stocktakr\stocktakrClient\client\obj\x86\Release\StocktakrClient.exe</td><td>0</td></row>
 		<row><td>_Built1_65D8E6C0D53D4D3C8B14469150B2B92E.exe</td><td/><td>C:\Users\vamsinator\Desktop\Stocktakr\stocktakrClient\client\favicon.ico</td><td>0</td></row>
 		<row><td>_Built_AD8583093BAC4D818FE6E27D3F263903.exe</td><td/><td>C:\Users\vamsinator\Desktop\Stocktakr\stocktakrClient\client\favicon.ico</td><td>0</td></row>
+		<row><td>_D365BD8A126341A889871A01820A7AFF.exe</td><td/><td>C:\Users\vamsinator\Desktop\Stocktakr\stocktakrClient\client\obj\x86\Release\StocktakrClient.exe</td><td>0</td></row>
 	</table>
 
 	<table name="IniFile">
@@ -4570,7 +4575,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<col def="i2">InstallMode</col>
 		<row><td>FileKey1</td><td>StocktakrClient.Primary_output</td><td/><td>setup</td><td>2</td></row>
 		<row><td>UNINST_Uninstall_Setup</td><td>NewComponent1</td><td/><td>stockt_1_stocktakr</td><td>2</td></row>
-		<row><td>_Built</td><td>StocktakrClient.Primary_output</td><td/><td>setup</td><td>2</td></row>
+		<row><td>_Built</td><td>StocktakrClient.Primary_output</td><td/><td>stockt_1_stocktakr</td><td>2</td></row>
 	</table>
 
 	<table name="RemoveIniFile">
@@ -4657,7 +4662,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<col def="S255">ISShortcutName</col>
 		<col def="I4">ISAttributes</col>
 		<row><td>UNINST_Uninstall_Setup</td><td>stockt_1_stocktakr</td><td>##IDS_SHORTCUT_DISPLAY_NAME1##</td><td>NewComponent1</td><td>[SystemFolder]msiexec.exe</td><td>/x {149A04FA-68F2-4021-9BC4-01D6585B73EE}</td><td/><td/><td>UNINST_Uninstall_S_6447D0089D5B40508D942CF1F23F67D3.exe</td><td>0</td><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
-		<row><td>_Built</td><td>setup</td><td>##IDS_SHORTCUT_DISPLAY_NAME2##</td><td>StocktakrClient.Primary_output</td><td>AlwaysInstall</td><td/><td/><td/><td/><td/><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
+		<row><td>_Built</td><td>stockt_1_stocktakr</td><td>##IDS_SHORTCUT_DISPLAY_NAME2##</td><td>StocktakrClient.Primary_output</td><td>AlwaysInstall</td><td/><td/><td/><td/><td/><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
 		<row><td>_Built1</td><td>DesktopFolder</td><td>##IDS_SHORTCUT_DISPLAY_NAME2##</td><td>StocktakrClient.Primary_output</td><td>AlwaysInstall</td><td/><td/><td/><td/><td/><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
 	</table>
 

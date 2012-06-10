@@ -112,12 +112,8 @@ namespace StocktakrClient
 
 						newItem.is_static = dbReader.GetBoolean(6);
 
-                              int supplierID = dbReader.GetInt32(7);
-                              if(supplierID != 0)
-                              {
-                                   newItem.supplier_code = supplierID.ToString();
-                              }
-
+                              int supplierID = dbReader.GetInt32(7);                              
+                              newItem.supplier_code = supplierID.ToString();                             
 						itemList.Add(newItem);
 					}
 				}
@@ -224,6 +220,8 @@ namespace StocktakrClient
           {
                var orderList = Helpers.GetPurchaseOrdersToCommit();
 
+               int staffID = GetLastStaffID();
+
                string RMDBLocation = Properties.Settings.Default.RMDBLocation;
                OleDbConnection RMDBconnection = null;
                OleDbDataReader dbReader = null;
@@ -239,8 +237,7 @@ namespace StocktakrClient
                     string getItemCommandText = "SELECT goods_tax, cost, supplier_id from Stock where stock_id = ?";
                     string getLastOrderID = "Select Max(order_id) from Orders";
                     string getLastLineID = "Select Max(line_id) from OrdersLine";
-                    string getSupplierCode = "Select supcode from SupplierCode where supplier_id = ? and stock_id = ?";
-
+                   
 
                     foreach (var order in orderList)
                     {
@@ -260,7 +257,7 @@ namespace StocktakrClient
                          insertOrderCommand.Parameters.Add("@order_id", OleDbType.Integer).Value = newOrderId;
                          insertOrderCommand.Parameters.Add("@order_date", OleDbType.Date).Value = DateTime.Now;
                          insertOrderCommand.Parameters.Add("@due_date", OleDbType.Date).Value = DateTime.Now.AddDays(7);
-                         insertOrderCommand.Parameters.Add("@staff_id", OleDbType.Integer).Value = 1;
+                         insertOrderCommand.Parameters.Add("@staff_id", OleDbType.Integer).Value = staffID;
                          insertOrderCommand.Parameters.Add("@supplier_id", OleDbType.Integer).Value = Convert.ToInt32(order.supplier_code);
                          insertOrderCommand.Parameters.Add("@order_suffix", OleDbType.VarChar).Value = "s_" + order.purchaseorder_id.ToString();
                          insertOrderCommand.Parameters.Add("@comments", OleDbType.VarChar).Value = order.person;
@@ -316,7 +313,7 @@ namespace StocktakrClient
                                    insertItemCommand.Parameters.Add("@goods_tax", OleDbType.VarChar).Value = tax;
                                    insertItemCommand.Parameters.Add("@quantity", OleDbType.Double).Value = item.quantity;
 
-                                   string supcode = GetSupCode(RMDBconnection, getSupplierCode, supplier_id, Convert.ToDouble(item.product_code));
+                                   string supcode = GetSupCode(RMDBconnection, supplier_id, Convert.ToDouble(item.product_code));
 
                                    if (String.IsNullOrEmpty(supcode))
                                    {
@@ -349,10 +346,11 @@ namespace StocktakrClient
                return orderList.Count();
           }
 
-
-
-          private static string GetSupCode(OleDbConnection RMDBconnection, string getSupplierCode, int supplier_id, double stock_id)
+          private static string GetSupCode(OleDbConnection RMDBconnection, int supplier_id, double stock_id)
           {
+               string getSupplierCode = "Select supcode from SupplierCode where supplier_id = ? and stock_id = ?";
+
+
                OleDbCommand getSupplierCodeCommand = RMDBconnection.CreateCommand();
                getSupplierCodeCommand.CommandText = getSupplierCode;
                getSupplierCodeCommand.Parameters.Add("@supplier_id", OleDbType.Integer).Value = supplier_id;
@@ -362,7 +360,80 @@ namespace StocktakrClient
                string supcode = (string)getSupplierCodeCommand.ExecuteScalar();
                return supcode;
           }
-          
 
+
+          private static int GetLastStaffID()
+          {
+               string RMDBLocation = Properties.Settings.Default.RMDBLocation;
+               int staffID;
+               try
+               {
+                    OleDbConnection RMDBconnection = null;
+                    OleDbDataReader dbReader = null;
+
+                    RMDBconnection = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0; User Id=; Password=; Data Source=" + RMDBLocation);
+                    RMDBconnection.Open();
+
+                    OleDbCommand SyncCmd = RMDBconnection.CreateCommand();
+                    //Get customers.
+                    string commandText = "SELECT Max(staff_id) from Staff";
+
+                    SyncCmd.CommandText = commandText;
+
+                    staffID = (int)SyncCmd.ExecuteScalar();                   
+                    
+                    RMDBconnection.Close();
+               }
+               catch (Exception ex)
+               {
+                    throw;
+               }
+               return staffID;
+          }
+
+          //private static Dictionary<int, string> GetStaffMembers()
+          //{
+          //     string RMDBLocation = Properties.Settings.Default.RMDBLocation;
+
+          //     var dict = new Dictionary<int, string>();
+
+          //     try
+          //     {
+          //          OleDbConnection RMDBconnection = null;
+          //          OleDbDataReader dbReader = null;
+
+          //          RMDBconnection = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0; User Id=; Password=; Data Source=" + RMDBLocation);
+          //          RMDBconnection.Open();
+
+          //          OleDbCommand SyncCmd = RMDBconnection.CreateCommand();
+          //          //Get customers.
+          //          string commandText = "SELECT staff_id, given_names, surname from Staff";
+
+          //          SyncCmd.CommandText = commandText;
+
+          //          dbReader = SyncCmd.ExecuteReader();
+
+          //          if (dbReader.HasRows)
+          //          {
+          //               while (dbReader.Read())
+          //               {
+          //                    int staff_id = dbReader.GetInt32(0);
+          //                    string first_name = dbReader.GetString(1);
+          //                    string last_name = dbReader.GetString(2);
+
+          //                    string full_name = first_name + " " + last_name;
+          //                    dict.Add(staff_id, full_name);
+          //               }
+          //          }
+
+          //          dbReader.Close();
+          //          RMDBconnection.Close();
+          //     }
+          //     catch (Exception ex)
+          //     {
+          //          throw;
+          //     }
+          //     return dict;              
+          //}
 	}
 }

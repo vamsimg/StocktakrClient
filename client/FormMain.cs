@@ -197,7 +197,7 @@ namespace StocktakrClient
                this.lbLog.Multiline = true;
                this.lbLog.Name = "lbLog";
                this.lbLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-               this.lbLog.Size = new System.Drawing.Size(519, 550);
+               this.lbLog.Size = new System.Drawing.Size(519, 706);
                this.lbLog.TabIndex = 22;
                // 
                // DatabasesTab
@@ -212,7 +212,7 @@ namespace StocktakrClient
                this.DatabasesTab.Location = new System.Drawing.Point(4, 22);
                this.DatabasesTab.Name = "DatabasesTab";
                this.DatabasesTab.Padding = new System.Windows.Forms.Padding(3);
-               this.DatabasesTab.Size = new System.Drawing.Size(538, 600);
+               this.DatabasesTab.Size = new System.Drawing.Size(538, 684);
                this.DatabasesTab.TabIndex = 2;
                this.DatabasesTab.Text = "Databases";
                this.DatabasesTab.UseVisualStyleBackColor = true;
@@ -474,7 +474,7 @@ namespace StocktakrClient
                this.ConnectionTab.Location = new System.Drawing.Point(4, 22);
                this.ConnectionTab.Name = "ConnectionTab";
                this.ConnectionTab.Padding = new System.Windows.Forms.Padding(3);
-               this.ConnectionTab.Size = new System.Drawing.Size(538, 600);
+               this.ConnectionTab.Size = new System.Drawing.Size(538, 684);
                this.ConnectionTab.TabIndex = 0;
                this.ConnectionTab.Text = "Connection";
                this.ConnectionTab.UseVisualStyleBackColor = true;
@@ -561,7 +561,7 @@ namespace StocktakrClient
                this.MainTabControl.Location = new System.Drawing.Point(28, 26);
                this.MainTabControl.Name = "MainTabControl";
                this.MainTabControl.SelectedIndex = 0;
-               this.MainTabControl.Size = new System.Drawing.Size(546, 626);
+               this.MainTabControl.Size = new System.Drawing.Size(546, 710);
                this.MainTabControl.TabIndex = 39;
                // 
                // SyncTab
@@ -570,7 +570,7 @@ namespace StocktakrClient
                this.SyncTab.Location = new System.Drawing.Point(4, 22);
                this.SyncTab.Name = "SyncTab";
                this.SyncTab.Padding = new System.Windows.Forms.Padding(3);
-               this.SyncTab.Size = new System.Drawing.Size(538, 600);
+               this.SyncTab.Size = new System.Drawing.Size(538, 684);
                this.SyncTab.TabIndex = 3;
                this.SyncTab.Text = "Sync";
                this.SyncTab.UseVisualStyleBackColor = true;
@@ -585,7 +585,7 @@ namespace StocktakrClient
                this.panel2.Controls.Add(this.label9);
                this.panel2.Location = new System.Drawing.Point(29, 28);
                this.panel2.Name = "panel2";
-               this.panel2.Size = new System.Drawing.Size(479, 569);
+               this.panel2.Size = new System.Drawing.Size(479, 650);
                this.panel2.TabIndex = 46;
                // 
                // ReceivedGoodsGroupBox
@@ -594,7 +594,7 @@ namespace StocktakrClient
                this.ReceivedGoodsGroupBox.Controls.Add(this.GetReceivedGoodsErrorLabel);
                this.ReceivedGoodsGroupBox.Controls.Add(this.WriteReceivedGoodsOrdersButton);
                this.ReceivedGoodsGroupBox.Controls.Add(this.WriteReceivedGoodsErrorLabel);
-               this.ReceivedGoodsGroupBox.Location = new System.Drawing.Point(23, 445);
+               this.ReceivedGoodsGroupBox.Location = new System.Drawing.Point(28, 528);
                this.ReceivedGoodsGroupBox.Name = "ReceivedGoodsGroupBox";
                this.ReceivedGoodsGroupBox.Size = new System.Drawing.Size(427, 117);
                this.ReceivedGoodsGroupBox.TabIndex = 51;
@@ -652,7 +652,7 @@ namespace StocktakrClient
                this.PurchaseOrdersGroupBox.Controls.Add(this.WritePurchaseOrdersErrorLabel);
                this.PurchaseOrdersGroupBox.Location = new System.Drawing.Point(23, 322);
                this.PurchaseOrdersGroupBox.Name = "PurchaseOrdersGroupBox";
-               this.PurchaseOrdersGroupBox.Size = new System.Drawing.Size(427, 117);
+               this.PurchaseOrdersGroupBox.Size = new System.Drawing.Size(427, 200);
                this.PurchaseOrdersGroupBox.TabIndex = 50;
                this.PurchaseOrdersGroupBox.TabStop = false;
                this.PurchaseOrdersGroupBox.Text = "Purchase Orders";
@@ -810,7 +810,7 @@ namespace StocktakrClient
                // FormMain
                // 
                this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
-               this.ClientSize = new System.Drawing.Size(1124, 692);
+               this.ClientSize = new System.Drawing.Size(1124, 748);
                this.Controls.Add(this.MainTabControl);
                this.Controls.Add(this.lbLog);
                this.Name = "FormMain";
@@ -919,7 +919,7 @@ namespace StocktakrClient
 				MicrosoftRMSRadioButton.Checked = false;
 				ToggleSoftwarePanels(true);
 
-				RMDBTextBox.Text = Properties.Settings.Default.RMDBLocation;		
+				RMDBTextBox.Text = Properties.Settings.Default.RMDBLocation;
 			}
 			else if (Properties.Settings.Default.POSSoftware == "Microsoft")
 			{
@@ -930,12 +930,11 @@ namespace StocktakrClient
 				MicrosoftLocationTextBox.Text = Properties.Settings.Default.POSServerLocation;
 				MicrosoftDBTextBox.Text = Properties.Settings.Default.POSServerDBName;
 				MicrosoftUserTextBox.Text = Properties.Settings.Default.POSServerUser;
-				MicrosoftPasswordTextBox.Text = Properties.Settings.Default.POSServerPassword;				
+				MicrosoftPasswordTextBox.Text = Properties.Settings.Default.POSServerPassword;
 			}
-		}   
+		}
 
-
-		
+         	
 		#region Button Events
 	        
 		private void ClearErrorMessages()
@@ -991,7 +990,9 @@ namespace StocktakrClient
 			  {
 				 ConnectionErrorlabel.Text = ex.ToString();
 			  }
-		   }		
+		}		
+
+
 		private void SaveDatabaseSettingsButton_Click(object sender, EventArgs e)
 		{
 			ClearErrorMessages();
@@ -1009,7 +1010,7 @@ namespace StocktakrClient
 				{
 					is_valid = true;
 					Properties.Settings.Default.POSSoftware = "MYOB";
-					Properties.Settings.Default.RMDBLocation = RMDBTextBox.Text;
+					Properties.Settings.Default.RMDBLocation = RMDBTextBox.Text;                         
 				}
 			}
 			else if (MicrosoftRMSRadioButton.Checked)
@@ -1038,8 +1039,7 @@ namespace StocktakrClient
 					Properties.Settings.Default.POSServerDBName = MicrosoftDBTextBox.Text;
 					Properties.Settings.Default.POSServerUser = MicrosoftUserTextBox.Text;
 					Properties.Settings.Default.POSServerPassword = MicrosoftPasswordTextBox.Text;
-				}
-
+				}                    
 			}
 
 			if (RMDBTextBox.Text == "")
@@ -1114,7 +1114,7 @@ namespace StocktakrClient
 		{
 			if (MYOBRadioButton.Checked)
 			{
-				ToggleSoftwarePanels(true);
+				ToggleSoftwarePanels(true);                    
 			}
 		}
 
@@ -1122,7 +1122,7 @@ namespace StocktakrClient
 		{
 			if (MicrosoftRMSRadioButton.Checked)
 			{
-				ToggleSoftwarePanels(false);
+				ToggleSoftwarePanels(false);                    
 			}
 		}
 
