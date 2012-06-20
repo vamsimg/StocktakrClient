@@ -38,6 +38,8 @@ namespace StocktakrClient
 
 					// create a command object
 					SqlCommand selectCommand = connection.CreateCommand();
+                         connection.Open();
+
 					//Get customer.
 					selectCommand.CommandText = String.Format("select ID, ItemLookupCode, Description, Cost, SalePrice, Quantity, SupplierID from Item where LastUpdated > '{0}'", lastSync.ToString("yyyy-MM-dd HH:mm:ss"));
 
@@ -180,7 +182,7 @@ namespace StocktakrClient
                {
                     throw;
                }
-               Helpers.CreateSyncTimestamp();
+               
                return suppliers;
           }
 
@@ -195,9 +197,12 @@ namespace StocktakrClient
                try
                {
                     var transactionList = Helpers.GetStocktakeTransactionsToCommit();
-                    int count = transactionList.Count(); 
+                    int count = transactionList.Count();
+
+                    DateTime openingDatetime = transactionList.Min(t => t.stocktake_datetime).AddMinutes(-1);
+
                     // create a connection object
-                    int newPhysicalInventoryID = CreateNewPhysicalInventory(connection, code);
+                    int newPhysicalInventoryID = CreateNewPhysicalInventory(connection, code, openingDatetime);
 
                     if (InsertTransactions(transactionList, newPhysicalInventoryID))
                     {
@@ -212,10 +217,8 @@ namespace StocktakrClient
                
           }
 
-          private static int CreateNewPhysicalInventory(SqlConnection connection,string code)
-          {
-             
-               DateTime openTime = DateTime.Now;               
+          private static int CreateNewPhysicalInventory(SqlConnection connection,string code, DateTime openTime)
+          {                 
                string description = "Imported by Stocktakr";
                //Tell the SqlCommand what query to execute and what SqlConnection to use.  
                using (SqlCommand sqlCmd = new SqlCommand("INSERT INTO dbo.PhysicalInventory(OpenTime, Description,Code) VALUES (@OpenTime, @Description,@Code)", connection))

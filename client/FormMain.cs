@@ -1410,13 +1410,13 @@ namespace StocktakrClient
 							break;
 						case "Microsoft":
                                    //17chars only due to limit in RMS db.
-                                   string code = DateTime.Now.ToString("yyyy-mm-dd_hh:mm");
+                                   string code = DateTime.Now.ToString("yyyy-MM-dd_hh:mm");
                                    
                                    itemCount = MicrosoftRMS.CommitStocktakeToPOSDatabase(code);
                                    
                                    AddLog(itemCount.ToString() + " Items stocktaked", true);
 
-                                   CommitStocktakeItemsErrorLabel.Text = "Stocktake successful. Lookup code for the Physical Inventory is: " + code;
+                                   CommitStocktakeItemsErrorLabel.Text = "Success. Lookup code is: " + code;
 							break;
 					}				
 				}

@@ -52,7 +52,7 @@
 	<summary>
 		<codepage>1252</codepage>
 		<title>Installation Database</title>
-		<subject>Setup</subject>
+		<subject>Stocktakr POS Client</subject>
 		<author>##ID_STRING2##</author>
 		<keywords>Installer,MSI,Database</keywords>
 		<comments>Contact:  Your local administrator</comments>
@@ -4118,7 +4118,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>ISTheme</td><td>InstallShield Blue.theme</td></row>
 		<row><td>ISUSLock</td><td>{D005ADD5-542C-47F0-B16C-58FFB476C14F}</td></row>
 		<row><td>ISUSSignature</td><td>{92164F0D-FE15-4CEC-8CA0-38B10389BD03}</td></row>
-		<row><td>ISVisitedViews</td><td>viewAssistant,viewRelease,viewShortcuts</td></row>
+		<row><td>ISVisitedViews</td><td>viewAssistant,viewRelease,viewShortcuts,viewAppFiles</td></row>
 		<row><td>Limited</td><td>1</td></row>
 		<row><td>LockPermissionMode</td><td>1</td></row>
 		<row><td>MsiExecCmdLineOptions</td><td/></row>
@@ -4495,7 +4495,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS</td><td>##IDS_PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS##</td><td/></row>
 		<row><td>PROGRAMFILETOLAUNCHATEND</td><td>[INSTALLDIR]StocktakrClient.Primary output</td><td/></row>
 		<row><td>ProductCode</td><td>{149A04FA-68F2-4021-9BC4-01D6585B73EE}</td><td/></row>
-		<row><td>ProductName</td><td>Setup</td><td/></row>
+		<row><td>ProductName</td><td>Stocktakr POS Client</td><td/></row>
 		<row><td>ProductVersion</td><td>1.1</td><td/></row>
 		<row><td>ProgressType0</td><td>install</td><td/></row>
 		<row><td>ProgressType1</td><td>Installing</td><td/></row>
