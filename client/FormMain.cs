@@ -1229,7 +1229,7 @@ namespace StocktakrClient
 				{
 					POSItemHandler handler = new POSItemHandler();					
 
-					handler.Timeout = 1000000;
+					handler.Timeout = 2000000;
 
                          ItemResponse supplierResponse = handler.UpdateSuppliers(storeID, PasswordTextBox.Text, localSuppliers.ToArray());
                          if (supplierResponse.is_error)
